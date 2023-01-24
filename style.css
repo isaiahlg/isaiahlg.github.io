@@ -1,0 +1,11 @@
+body {
+    font-family: arial;
+    background-image: url("earthatnight.jpg");
+}
+
+.content {
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+    color: white;
+}
