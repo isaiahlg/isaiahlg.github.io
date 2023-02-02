@@ -1,7 +1,8 @@
 body {
     font-family: arial;
     background-image: url("/assets/earthatnight.jpg");
-    background-position: center;
+    background-position: top;
+    margin: 0px;
 }
 
 .content {
@@ -11,12 +12,37 @@ body {
     color: white;
 }
 
-img {
-    opacity: 0.9;
-    /* margin: 20px; */
+.white-image {
+    opacity: 0.8;
 }
 
-button {
+.black-image {
+    opacity: 0.8;
+    filter: invert(100%);
+}
+
+img:hover {
+    opacity: 1.0;
+}
+
+.back-button {
+    background-color: indigo;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 14px;
+    margin: 10px 10px;
+    transition-duration: 0.5s;
+    border-radius: 30px;
+}
+
+.back-button:hover {
+    background-color: blueviolet; 
+    box-shadow: 0 5px 10px 0 rgba(255, 255, 255, 0.15), 0 5px 10px 0 rgba(255, 255, 255, 0.15);
+}
+
+.purple-button {
     background-color: indigo;
     border: none;
     color: white;
@@ -24,16 +50,65 @@ button {
     text-align: center;
     font-size: 14px;
     margin: 10px 15px;
-    transition-duration: 0.7s;
-    border-radius: 10px;
+    transition-duration: 0.5s;
+    border-radius: 30px;
     width: 40%;
 }
 
-button:hover {
+.purple-button:hover {
     background-color: blueviolet; 
-    box-shadow: 0 5px 10px 0 rgba(255, 255, 255, 0.1), 0 5px 10px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 10px 0 rgba(255, 255, 255, 0.15), 0 5px 10px 0 rgba(255, 255, 255, 0.15);
 }
 
-.invert {
-    filter: invert(100%);
+hr.rounded {
+    border-top: 8px solid white;
+    border-radius: 5px;
 }
+
+.navbar {
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    overflow: auto;
+    opacity: 0.8;
+}
+
+.navbar a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    width: 31%;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition-duration: 0.5s;
+}
+
+.navbar a:hover {
+    background-color: blueviolet;
+}
+
+.navbar .active {
+    background-color: indigo;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+
+.footer {
+    overflow: auto;
+    margin: auto;
+    margin-bottom: 50px;
+    margin-top: 30px;
+    
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+a:link {
+    text-decoration: none;
+  }

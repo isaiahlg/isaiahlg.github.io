@@ -3,23 +3,40 @@
 
 <head>
     <link rel="stylesheet" href="/style.css">
+    <script src="https://kit.fontawesome.com/f4ea09cda5.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+        $(function(){
+            $('a').each(function(){
+                if ($(this).prop('href') == window.location.href) {
+                    $(this).addClass('active'); $(this).parents('li').addClass('active');
+                }
+            });
+        });
+    </script>
+    <script src="index.js"></script>
 </head>
 
 <body>
+    <div class="navbar">
+        <a href="/index.html"><i class="fa fa-fw fa-home"></i> Home</a>
+        <a href="/csci5622/home.html"><i class="fa fa-fw fa-robot"></i> Machine Learning</a>
+        <a href="/photography/home.html"><i class="fa fa-fw fa-camera"></i> Photography</a>
+    </div>
     <div class="content">
+        <img class="black-image" style="margin-top:20px; margin-bottom:0px;" src="/assets/ml.svg"></img>
         <h1>Machine Learning for CSCI 5622</h1>
-        <button onclick="window.location.href='/csci5622/intro.html';">Introduction</button>
-        <button onclick="window.location.href='/csci5622/eda.html';">Data Prep & EDA</button>
-        <button onclick="window.location.href='/csci5622/coming.html';">Clustering</button>
-        <button onclick="window.location.href='/csci5622/coming.html';">ARM</button>
-        <button onclick="window.location.href='/csci5622/coming.html';">Naive Bayes</button>
-        <button onclick="window.location.href='/csci5622/coming.html';">Decision Trees</button>
-        <button onclick="window.location.href='/csci5622/coming.html';">SVMs</button>
-        <button onclick="window.location.href='/csci5622/coming.html';">Regression</button>
-        <button onclick="window.location.href='/csci5622/coming.html';">NN</button>
-        <button onclick="window.location.href='/csci5622/coming.html';">Conclusions</button>
+        <button class="purple-button" onclick="window.location.href='/csci5622/intro.html';">Introduction</button>
+        <button class="purple-button" onclick="window.location.href='/csci5622/eda.html';">Data Prep & EDA</button>
+        <button class="purple-button" onclick="window.location.href='/csci5622/coming.html';">Clustering</button>
+        <button class="purple-button" onclick="window.location.href='/csci5622/coming.html';">ARM</button>
+        <button class="purple-button" onclick="window.location.href='/csci5622/coming.html';">Naive Bayes</button>
+        <button class="purple-button" onclick="window.location.href='/csci5622/coming.html';">Decision Trees</button>
+        <button class="purple-button" onclick="window.location.href='/csci5622/coming.html';">SVMs</button>
+        <button class="purple-button" onclick="window.location.href='/csci5622/coming.html';">Regression</button>
+        <button class="purple-button" onclick="window.location.href='/csci5622/coming.html';">NN</button>
+        <button class="purple-button" onclick="window.location.href='/csci5622/coming.html';">Conclusions</button>
         <br></br>
-        <img src="/assets/ml.svg" class="invert"></img>
     </div>
 </body>
 </html>
