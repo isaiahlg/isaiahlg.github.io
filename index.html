@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="/assets/bbsmall.png">
     <script src="https://kit.fontawesome.com/f4ea09cda5.js" crossorigin="anonymous"></script>
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script>
         $(function(){
             $('a').each(function(){
                 if ($(this).prop('href') == window.location.href) {
-                    $(this).addClass('active'); $(this).parents('li').addClass('active');
+                    $(this).addClass('active');
                 }
             });
         });
@@ -28,7 +28,7 @@
     </div>
     <div class="content">
         <a href="#">
-            <img class="white-image" src="/assets/bbbig.png"></img>
+            <img class="portrait" src="/assets/ilg.jpg"></img>
         </a>
         <h1>Isaiah Lyons-Galante</h1>
         <p>Geospatial Data Scientist | Full-stack Software Engineer</p>
@@ -36,18 +36,19 @@
         <p>Graduate Research Assistant at NREL</p>
     </div>
     <div class="footer">
-        <a class="purple-button" href="https://github.com/isaiahlg">
-            <i class="fa-solid fa-graduation-cap"></i> Google Scholar
+        <a class="purple-button" href="mailto:isaiah.lyons-galante@colorado.edu">
+            <i class="fa fa-envelope"></i> Email
         </a>
-        <a class="purple-button" href="https://github.com/isaiahlg">
+        <a class="purple-button" href="https://github.com/isaiahlg" target="_blank">
+            <i class="fa-solid fa-graduation-cap"></i> Scholar
+        </a>
+        <a class="purple-button" href="https://github.com/isaiahlg" target="_blank">
             <i class="fa fa-github"></i> Github
         </a>
-        &nbsp
-        <a class="purple-button" href="https://www.linkedin.com/in/isaiah-lg/">
+        <a class="purple-button" href="https://www.linkedin.com/in/isaiah-lg/" target="_blank">
             <i class="fa fa-linkedin"></i> LinkedIn
         </a>
-        &nbsp
-        <a class="purple-button" href="https://www.colorado.edu/geography/isaiah-lyons-galante">
+        <a class="purple-button" href="https://www.colorado.edu/geography/isaiah-lyons-galante" target="_blank">
             <i class="fa fa-university"></i> CU Boulder
         </a>
     </div>

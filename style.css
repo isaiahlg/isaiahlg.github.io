@@ -12,8 +12,10 @@ body {
     color: white;
 }
 
-.white-image {
-    opacity: 0.8;
+.portrait {
+    height: 300px;
+    width: auto;
+    margin-top: 100px;
 }
 
 .black-image {
@@ -43,13 +45,14 @@ img:hover {
 }
 
 .purple-button {
+    float: none;
     background-color: indigo;
     border: none;
     color: white;
     padding: 15px 30px;
     text-align: center;
     font-size: 14px;
-    margin: 10px 15px;
+    margin: 10px 10px;
     transition-duration: 0.5s;
     border-radius: 30px;
     width: 40%;
@@ -67,7 +70,7 @@ hr.rounded {
 
 .navbar {
     width: 100%;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(27, 27, 27);
     overflow: auto;
     opacity: 0.8;
 }
@@ -75,8 +78,9 @@ hr.rounded {
 .navbar a {
     float: left;
     text-align: center;
-    padding: 12px;
-    width: 31%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 33.33%;
     color: white;
     text-decoration: none;
     font-size: 14px;
@@ -91,13 +95,6 @@ hr.rounded {
     background-color: indigo;
 }
 
-@media screen and (max-width: 500px) {
-  .navbar a {
-    float: none;
-    display: block;
-  }
-}
-
 .footer {
     overflow: auto;
     margin: auto;
@@ -108,6 +105,18 @@ hr.rounded {
     color: white;
     padding: 20px;
 }
+
+@media screen and (max-width: 800px) {
+    .navbar a {
+        display: block;
+        width: 100%;
+    }
+    .purple-button {
+        display: block;
+        width: 83%;
+    }
+  }
+
 
 a:link {
     text-decoration: none;
