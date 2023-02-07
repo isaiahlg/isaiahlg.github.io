@@ -6,7 +6,7 @@ body {
 }
 
 .content {
-    max-width: 500px;
+    max-width: 800px;
     margin: auto;
     text-align: center;
     color: white;
@@ -121,3 +121,17 @@ hr.rounded {
 a:link {
     text-decoration: none;
   }
+
+p {
+    text-align: left;
+}
+
+.textbox {
+    background-color: black;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    opacity: 0.8;
+    border-radius: 10px;
+}
