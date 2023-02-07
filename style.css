@@ -2,6 +2,7 @@ body {
     font-family: arial;
     background-image: url("/assets/earthatnight.jpg");
     background-position: top;
+    background-attachment: fixed;
     margin: 0px;
 }
 
@@ -10,6 +11,7 @@ body {
     margin: auto;
     text-align: center;
     color: white;
+    font-size: 11pt;
 }
 
 .portrait {
@@ -120,18 +122,36 @@ hr.rounded {
 
 a:link {
     text-decoration: none;
-  }
-
-p {
-    text-align: left;
 }
 
 .textbox {
-    background-color: black;
+    background-color: rgba(0,0,0, 0.8);
     padding-left: 100px;
     padding-right: 100px;
-    padding-top: 20px;
+    padding-top: 50px;
     padding-bottom: 50px;
-    opacity: 0.8;
     border-radius: 10px;
+}
+
+.text {
+    text-align: left;
+}
+
+.figure {
+    height: auto;
+    width: 600px;
+    margin-top: 20px;
+    opacity: 1.0;
+}
+
+.caption {
+    margin-top: 0px;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.reference {
+    text-align: left;
+    margin-left: 2em; 
+    text-indent: -2em;
 }
