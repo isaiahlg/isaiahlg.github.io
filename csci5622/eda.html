@@ -11,7 +11,8 @@
     <div class="content">
         <div class="textbox">
             <h1>Exploratory Data Analysis</h1>
-            <h4>Demographic & Health Surveys</h4>
+            <h3>Demographic & Health Surveys</h3>
+            <h4>Data Fetching</h4>
             <p class="text">
                 A key source of survey data from sub-Saharan Africa and other developing countries comes from
                 the Demographic and Health Surveys (DHS) Program from the United States Agency for International 
@@ -29,12 +30,43 @@
                 of this code for pulling data from the API, processing it, and cleaning the data can be found on
                 <a href="https://github.com/isaiahlg/csci5622mod1/blob/main/module1.rmd" target="_blank">GitHub</a>
             </p>
-            <img class="figure" src="/csci5622/figures/figure1.png">
-            <p class="caption">
-                Figure 1: A map of the African continent showing access to electricity as a percentage of 
-                the population (World Bank, n.d.)
+            <h4>Data Cleaning</h4>
+            <p class="text">
+                Once the data had been imported into R from the DHS, data inspection and cleaning began. The immediate
+                concern was around the size of the data. For a single survey round in a single country (Sierra Leone, 2019), 
+                there were 13,399 observations of 3,455 variables, equating to 46,293,545 data points. This is an 
+                enormous dataset that needed to be pared down. To determine what data to keep, one must reference the
+                <a href="https://dhsprogram.com/pubs/pdf/DHSG4/Recode7_DHS_10Sep2018_DHSG4.pdf" target="_blank">DHS's Standard 
+                Recode Manual</a>, a 204-page PDF that describes what each of the thousands of questions are indicating.
+                This research is primarily concerend with economic indicators at the household level, and so only the first 
+                two sections of the questionnaire were kept, or around the first 200 variables. This reduced the file size by 15X,
+                making it editable in a visual relational database such as Google Sheets. Each variable was then manually 
+                inspected and decoded to determine if it was of interest. Another 3/4 of the columns were dropped, leaving just
+                56 variables behind.
             </p>
-            <h4>Twitter Data</h4>
+            <p class="text">
+                Each column was coded as charater or integer values, and so the columns were manually reisnpected again. The 
+                variables that were not truly numeric were converted to factors for proper treatment. Finally, the data were
+                ready for summary and visualization.
+            </p>
+            <h4>Data Visualization</h4>
+            <p class="text">
+                The first set of visualizations were a set of histograms looking at the range of values for each of the variables.
+            </p>
+            <img class="figure" src="/csci5622/charts/hist/altitudeHist.png">
+            <img class="figure" src="/csci5622/charts/hist/householdHist.png">
+            <img class="figure" src="/csci5622/charts/hist/womenHist.png">
+            <img class="figure" src="/csci5622/charts/hist/menHist.png">
+            <img class="figure" src="/csci5622/charts/hist/childrenHist.png">
+            <img class="figure" src="/csci5622/charts/hist/altitudeHist.png">
+            <p class="text">
+                The next visualization looks at asset ownership, including access to electricity.
+            </p>
+            <img class="figure" src="/csci5622/charts/bar/assetsBar.png">
+            <p class="caption">
+                
+            </p>
+            <h3>Twitter Data</h3>
             <p class="text">
                 To compliment the DHS data, data from the Twitter API was also extracted.
             </p>

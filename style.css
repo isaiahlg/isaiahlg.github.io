@@ -58,6 +58,7 @@ img:hover {
     transition-duration: 0.5s;
     border-radius: 30px;
     width: 40%;
+    text-decoration: none;
 }
 
 .purple-button:hover {
@@ -117,12 +118,6 @@ hr.rounded {
         display: block;
         width: 83%;
     }
-  }
-
-
-a:link {
-    font-size: 11pt;
-    text-decoration: none;
 }
 
 .textbox {
@@ -136,6 +131,18 @@ a:link {
 
 .text {
     text-align: left;
+}
+
+.text a {
+    color: rgb(95, 124, 255);
+}
+
+.text a:visited {
+    color: rgb(175, 111, 184);
+  }
+  
+.text a:hover {
+    color: blueviolet;
 }
 
 .figure {
