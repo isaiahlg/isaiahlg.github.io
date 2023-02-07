@@ -11,20 +11,33 @@
     <div class="content">
         <div class="textbox">
             <h1>Exploratory Data Analysis</h1>
+            <h4>Demographic & Health Surveys</h4>
             <p class="text">
-                Some of the lowest income countries in the world are in sub-Saharan Africa (SSA) (World Bank Data, n.d.).
-                A lack of infrastructure and access to essential services like health care, education, and electricity are 
-                often cited as key contributors to this persistent wealth gap (United Nations, n.d.). To help combat this, 
-                the United Nations (UN) created 17 Sustainable Development Goals (SDGs) in 2015 to be accomplished by 2030. 
-                SDG 7 is to “ensure access to affordable, reliable, sustainable and modern energy for all” (United Nations, n.d.). 
-                However, dozens of countries in SSA still have connected less than half of the population (Figure 1).
+                A key source of survey data from sub-Saharan Africa and other developing countries comes from
+                the Demographic and Health Surveys (DHS) Program from the United States Agency for International 
+                Development (USAID). 
+            </p>
+            <p class="text">
+                Raw data from DHS must first be requested through the information request form, with the intended
+                use of the data registered. Once access is granted, the data can be fetched in two ways: (1) by 
+                downloading a zip file folder from the website, and (2) by requesting data over the API. The documentation
+                for the API is limited but can be found on the DHS website 
+                <a href="https://api.dhsprogram.com/#/index.html" target="_blank">here</a>. A sample of a downloaded
+                zip file can be found <a href="https://github.com/isaiahlg/csci5622mod1/tree/main/data/SLHR7ADT" target="_blank">
+                here</a>. To use the API, an R package was developed by a group of researchers for the rOpenSci project
+                and can be found on <a href="https://github.com/ropensci/rdhs" target="_blank">GitHub</a>. The implemntation
+                of this code for pulling data from the API, processing it, and cleaning the data can be found on
+                <a href="https://github.com/isaiahlg/csci5622mod1/blob/main/module1.rmd" target="_blank">GitHub</a>
             </p>
             <img class="figure" src="/csci5622/figures/figure1.png">
             <p class="caption">
                 Figure 1: A map of the African continent showing access to electricity as a percentage of 
                 the population (World Bank, n.d.)
             </p>
-            
+            <h4>Twitter Data</h4>
+            <p class="text">
+                To compliment the DHS data, data from the Twitter API was also extracted.
+            </p>
             <hr></hr>
             <h2 style="margin-top: 30px;">References</h1>
             <p class="reference"> 

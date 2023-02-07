@@ -121,6 +121,7 @@ hr.rounded {
 
 
 a:link {
+    font-size: 11pt;
     text-decoration: none;
 }
 
@@ -139,7 +140,7 @@ a:link {
 
 .figure {
     height: auto;
-    width: 600px;
+    width: 100%;
     margin-top: 20px;
     opacity: 1.0;
 }
@@ -154,4 +155,9 @@ a:link {
     text-align: left;
     margin-left: 2em; 
     text-indent: -2em;
+}
+
+.photo {
+    width: 100%;
+    height: auto;
 }
