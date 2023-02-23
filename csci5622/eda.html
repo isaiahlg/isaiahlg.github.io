@@ -11,7 +11,9 @@
     <div class="content">
         <div class="textbox">
             <h1>Exploratory Data Analysis</h1>
+            
             <h3>Demographic & Health Surveys</h3>
+            
             <h4>Data Fetching</h4>
             <p class="text">
                 A key source of survey data from sub-Saharan Africa and other developing countries comes from
@@ -30,6 +32,8 @@
                 of this code for pulling data from the API, processing it, and cleaning the data can be found on
                 <a href="https://github.com/isaiahlg/csci5622mod1/blob/main/module1.rmd" target="_blank">GitHub</a>
             </p>
+            
+            
             <h4>Data Cleaning</h4>
             <p class="text">
                 Once the data had been imported into R from the DHS, data inspection and cleaning began. The immediate
@@ -47,34 +51,72 @@
             <p class="text">
                 Each column was coded as charater or integer values, and so the columns were manually reisnpected again. The 
                 variables that were not truly numeric were converted to factors for proper treatment. Finally, the data were
-                ready for summary and visualization.
+                ready for summary and visualization. Below are some screenshots of the data.
             </p>
+            <img class="figure" src="/csci5622/figures/3_dhsdata.png">
+            <p class="caption">Figure 3: Here is a snapshot of the raw zip data files available for download on the DHS website.</p>
+            <img class="figure" src="/csci5622/figures/4_zipdata.png">
+            <p class="caption">Figure 4: Here is a snapshot of the contents of one of the zip folders once downloaded from the DHS website
+                and unzipped.</p>
+            <img class="figure" src="/csci5622/figures/5_rawdata.png">
+            <p class="caption">Figure 5: After importing the data into R, the dataframe looks like this snapshot. Note the enormous number
+                of columns and rows!</p>
+            <img class="figure" src="/csci5622/figures/6_cleandata.png">
+            <p class="caption">Figure 6: After cleaning the data, we have many fewer columns of data, and the categorical data is 
+                recategorized as factor data instead of numeric data.
+            </p>
+
             <h4>Data Visualization</h4>
             <p class="text">
-                The first set of visualizations were a set of histograms looking at the range of values for each of the variables.
+                The first set of visualizations were a set of histograms looking at the range of values for each of the survey variables. 
+                Remember that each record in the surveys is a single household.
             </p>
             <img class="figure" src="/csci5622/charts/hist/altitudeHist.png">
+            <p class="caption">Figure 7: The range of altitude of each survey cluster, given in meters. Notice how close to sea-level, most 
+                of Sierra Leone lies. ie less than 500 meters above sea level.
+            </p>
             <img class="figure" src="/csci5622/charts/bar/regionBar.png">
+            <p class="caption">Figure 8: Sierra Leone has 5 geographical regions, and it seems that the surveys were well spread throughout
+                the country.
+            </p>
             <img class="figure" src="/csci5622/charts/bar/languageBar.png">
+            <p class="caption">Figure 9: These are the various native tongues of each household. One might expect more than 6 categories, given 
+                that there are 16 ethnic groups in Sierra Leone, such as the Temne and the Mende. I'll need to see what each of these labels
+                correspond to. 
+            </p>
             <img class="figure" src="/csci5622/charts/hist/householdHist.png">
+            <p class="caption">Figure 10: Finally, a beautiful poisson distribution! There is a clear mode of 4-5 household members, but a long
+                right tail with some households having upwards of 20 members. 
+            </p>
             <img class="figure" src="/csci5622/charts/hist/womenHist.png">
+            <p class="caption">Figure 11: This shows the number of women aged 15-49 years old in the household. Interestingly, almost 3000 households
+                have none, but a majority have 1. Some go up to 6 or 7! 
+            </p>
             <img class="figure" src="/csci5622/charts/hist/menHist.png">
+            <p class="caption">Figure 12: This shows the number of men aged 15-49 years old in the household. It's a sobering chart, showing us that
+                a majority of households have no men present. One can see from these two charts that women often anchor the household.
+            </p>
             <img class="figure" src="/csci5622/charts/hist/childrenHist.png">
+            <p class="caption">Figure 13: This shows the number of children under 5 years old in the household. Most households do have small children,
+                but only a couple. One might wonder why the survey does not capture household members aged 5-15 years. 
+            </p>
             <img class="figure" src="/csci5622/charts/bar/watersourceBar.png">
-            <p class="text">
-                The next visualization looks at asset ownership, including access to electricity.
+            <p class="caption">Figure 14: This historgram shows us the various sources of drinking water. It's quite varied. However, to get more 
+                out of this, one must map the values to the corresponding water sources. 
             </p>
             <img class="figure" src="/csci5622/charts/bar/assetsBar.png">
-            <p class="caption">
+            <p class="caption">Figure 15: This figure is perhaps the most interesting one -- it shows the number of households that own a particular asset,
+                with a reference bar included at the top for the total number of households surveyed. One can see that radios are the most commonly 
+                owned asset, with televisions in second. Access to electricity is extremely low, with fewer than 1 in 5 households having access. Very few
+                households seem to be able to afford motorcycles, much less a car.
             </p>
-            <!-- <h3>Twitter Data</h3>
-            <p class="text">
-                To compliment the DHS data, data from the Twitter API was also extracted.
-            </p> -->
+            <p class="text">This concludes the Exploratory Data Analysis section. In future work, we'll begin to find patterns within the data with methods
+                such as association rule mining and unsupervised clustering.
+            </p>
             <hr></hr>
-            <h2 style="margin-top: 30px;">References</h1>
+            <h2 style="margin-top: 30px;">References</h2>
             <p class="reference"> 
-                World Bank. (n.d.). World Bank Open Data | Data. Retrieved December 9, 2022, from https://data.worldbank.org/
+                Statistics Sierra Leone Stats SL and ICF. 2020. Sierra Leone Demographic and Health Survey 2019. Freetown, Sierra Leone, and Rockville, Maryland, USA: Stats SL and ICF.
             </p>
         </div>
     </div>
