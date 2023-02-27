@@ -15,12 +15,12 @@
             <h3>Demographic & Health Surveys</h3>
             
             <h4>Data Fetching</h4>
-            <p class="text">
+            <p>
                 A key source of survey data from sub-Saharan Africa and other developing countries comes from
                 the Demographic and Health Surveys (DHS) Program from the United States Agency for International 
                 Development (USAID). 
             </p>
-            <p class="text">
+            <p>
                 Raw data from DHS must first be requested through the information request form, with the intended
                 use of the data registered. Once access is granted, the data can be fetched in two ways: (1) by 
                 downloading a zip file folder from the website, and (2) by requesting data over the API. The documentation
@@ -35,7 +35,7 @@
             
             
             <h4>Data Cleaning</h4>
-            <p class="text">
+            <p>
                 Once the data had been imported into R from the DHS, data inspection and cleaning began. The immediate
                 concern was around the size of the data. For a single survey round in a single country (Sierra Leone, 2019), 
                 there were 13,399 observations of 3,455 variables, equating to 46,293,545 data points. This is an 
@@ -48,7 +48,7 @@
                 inspected and decoded to determine if it was of interest. Another 3/4 of the columns were dropped, leaving just
                 56 variables behind.
             </p>
-            <p class="text">
+            <p>
                 Each column was coded as charater or integer values, and so the columns were manually reisnpected again. The 
                 variables that were not truly numeric were converted to factors for proper treatment. Finally, the data were
                 ready for summary and visualization. Below are some screenshots of the data.
@@ -67,7 +67,7 @@
             </p>
 
             <h4>Data Visualization</h4>
-            <p class="text">
+            <p>
                 The first set of visualizations were a set of histograms looking at the range of values for each of the survey variables. 
                 Remember that each record in the surveys is a single household.
             </p>
@@ -110,7 +110,7 @@
                 owned asset, with televisions in second. Access to electricity is extremely low, with fewer than 1 in 5 households having access. Very few
                 households seem to be able to afford motorcycles, much less a car.
             </p>
-            <p class="text">This concludes the Exploratory Data Analysis section. In future work, we'll begin to find patterns within the data with methods
+            <p>This concludes the Exploratory Data Analysis section. In future work, we'll begin to find patterns within the data with methods
                 such as association rule mining and unsupervised clustering.
             </p>
             <hr></hr>
