@@ -21,14 +21,61 @@
 
             <h3>Overview</h3>
             <p>
-                Some text here.
+                Clustering is a set of unsupervised learning algorithms that serve to group like data together. In order to be able to group data by "similarity",
+                all clustering methods must define a distance metric that gives the "distance" between any two points in the dataset, say A and B. The distance
+                function can be any function that (a) is always >= 0, is 0 if A and B are the same point, and cannot be shortcutted through a third point C. That is,
+                the distance D(A,B) must be >= D(A,C) + D(B,C). No wormholes! Common distance metrics include minkowski distances with p=1 (Manhattan Distance) and 
+                p=2 (Euclidean Distance), as well as consine similarity. One you have a distance metric, there are three main approaches to clustering: 
+                <ol>
+                    <li><b>Partitional Clustering:</b> in this approach, "partitions" are created between groups that become clustered around centroids. Examples of this
+                        are k-means, k-modes, and k-prototypes.
+                    </li>
+                    <li><b>Hierachical Clustering:</b> in this approach, elements are grouped together in a hierarchical tree, with similar elements belonging to the same
+                    branches. Algorithms can start from the top-down and divide (such as DIANA), or start from the bottom-up and agglomerate (such as AGNES).</li>
+                    <li><b>Density Clustering:</b> in this approach, elements are group with their closest neighbors iteratively. This way, clusters of points can be formed
+                    that span overlapping values of the various dimensions, but are shaped in a relatively continuous blob.</li>
+                </ol>
+            <figure>
+                <img class="figure" src="/csci5622/figures/16_clustering.png">
+                <figcaption>Figure 16: Examples of various types of clustering algorithms (Seif, 2018).</figcaption>
+            </figure>
+            <p>
+                In this project, clustering is used to determine how many meaningful groups there are among households in the survey based on the number of people 
+                that comprise the household, the number of rooms of the house, and a wealth index score. The outcome of this clustering will tell how many socio-demographic
+                strata there are within this dataset.
             </p>
-            <img class="figure" src="/csci5622/figures/3_dhsdata.png">
-            <figcaption>Figure 7: Here's a figure.</p>
+            <figure>
+                <img class="figure" src="/csci5622/figures/17_slhome.jpg">
+                <figcaption>Figure 17: A single-mother household in rural Sierra Leone (Wamala, 2022).</figcaption>
+            </figure>
             <h3>Data Prep</h3>
+            <p>
+                For this dataset, clustering is performed based on euclidean distance and based on cosine similarity. Both of these algorithms require continuous, numeric
+                data for each of the dimensions, and so the data had to be cleaned. Of the 50 or so variables kept from the cleaning process, only 9 of them have clean
+                numeric data. Of these variables, only 6 were determined to be of interest:
+                <ol>
+                    <li>hv010: Number of eligible women in household</li>
+                    <li>hv011: Number of eligible men in household</li>
+                    <li>hv012: Number of de jure members</li>
+                    <li>hv014: Number of children 5 and under (de jure)</li>
+                    <li>hv216: Number of rooms used for sleeping</li>
+                    <!-- repeat analysis without the wealth index factor score and see if we can predict that -->
+                    <!-- see if the other non-numeric wealth index factor scores are related -->
+                    <li>hv271: Wealth index factor score combined (5 decimals)</li>
+                </ol>
+            </p>
+            <figure>
+                <img class="figure" src="/csci5622/figures/18_numdata.png">
+                <figcaption>Figure 18: A snapshot of the dataset ready to be scaled for clustering. A copy of this dataset can be found 
+                    <a href="https://github.com/isaiahlg/csci5622mod2/tree/main/proj/data">here</a>.</figcaption>
+                    <!-- export the trimmed data and the scaled data from python and add to /data/ folder -->
+            </figure>
             <h3>Code</h3>
             <h3>Results</h3>
             <h3>Conclusions</h3>
+            <h3>References</h3>
+            <p class="reference">Seif, George. 2018. Towards Data Science. https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68</p>
+            <p class="reference">Wamala, Lydia. 2022. World Food Project. https://www.wfp.org/stories/rural-sierra-leone-fatmatas-kids-wont-be-eating-tonight</p>
             
 
         </div>
