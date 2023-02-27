@@ -149,8 +149,7 @@ hr.rounded {
     opacity: 1.0;
 }
 
-.caption {
-    margin-top: 0px;
+figcaption {
     margin-bottom: 30px;
     font-style: italic;
 }
