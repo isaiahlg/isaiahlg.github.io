@@ -16,21 +16,10 @@
             <h3>Demographic & Health Surveys</h3>
             
             <h4>Data Fetching</h4>
-            <p>
-                A key source of survey data from sub-Saharan Africa and other developing countries comes from the Demographic and Health Surveys (DHS) Program from the United States Agency for International Development (USAID). 
-            </p>
-            <p>
-                Raw data from DHS must first be requested through the information request form, with the intended use of the data registered. Once access is granted, the data can be fetched in two ways: (1) by  downloading a zip file folder from the website, and (2) by requesting data over the API. The documentation for the API is limited but can be found on the DHS website  <a href="https://api.dhsprogram.com/#/index.html" target=blank">here</a>. A sample of a downloaded zip file can be found <a href="https://github.com/isaiahlg/csci5622mod1/tree/main/data/SLHR7ADT" target=blank"> here</a>. To use the API, an R package is developed by a group of researchers for the rOpenSci project and can be found on <a href="https://github.com/ropensci/rdhs" target=blank">GitHub</a>. The implemntation of this code for pulling data from the API, processing it, and cleaning the data can be found on <a href="https://github.com/isaiahlg/csci5622mod1/blob/main/module1.rmd" target=blank">GitHub</a>
-            </p>
-            
+            A key source of survey data from sub-Saharan Africa and other developing countries comes from the Demographic and Health Surveys (DHS) Program from the United States Agency for International Development (USAID). Raw data from DHS must first be requested through the information request form, with the intended use of the data registered. Once access is granted, the data can be fetched in two ways: (1) by  downloading a zip file folder from the website, and (2) by requesting data over the API. The documentation for the API is limited but can be found on the DHS website  <a href="https://api.dhsprogram.com/#/index.html" target=blank">here</a>. A sample of a downloaded zip file can be found <a href="https://github.com/isaiahlg/csci5622mod1/tree/main/data/SLHR7ADT" target=blank"> here</a>. To use the API, an R package is developed by a group of researchers for the rOpenSci project and can be found on <a href="https://github.com/ropensci/rdhs" target=blank">GitHub</a>. The implemntation of this code for pulling data from the API, processing it, and cleaning the data can be found on <a href="https://github.com/isaiahlg/csci5622mod1/blob/main/module1.rmd" target=blank">GitHub</a>
             
             <h4>Data Cleaning</h4>
-            <p>
-                Once the data had been imported into R from the DHS, data inspection and cleaning began. The immediate concern is around the size of the data. For a single survey round in a single country (Sierra Leone, 2019),  there are 13,399 observations of 3,455 variables, equating to 46,293,545 data points. This is an  enormous dataset that needed to be pared down. To determine what data to keep, one must reference the <a href="https://dhsprogram.com/pubs/pdf/DHSG4/RecodeDH10Sep201DHSG4.pdf" target=blank">DHS's Standard  Recode Manual</a>, a 204-page PDF that describes what each of the thousands of questions are indicating. This research is primarily concerend with economic indicators at the household level, and so only the first  two sections of the questionnaire are kept, or around the first 200 variables. This reduced the file size by 15X, making it editable in a visual relational database such as Google Sheets. Each variable is then manually  inspected and decoded to determine if it is of interest. Another 3/4 of the columns are dropped, leaving just 56 variables behind.
-            </p>
-            <p>
-                Each column is coded as charater or integer values, and so the columns are manually reisnpected again. The variables that are not truly numeric are converted to factors for proper treatment. Finally, the data wereready for summary and visualization. Below are some screenshots of the data.
-            </p>
+            Once the data had been imported into R from the DHS, data inspection and cleaning began. The immediate concern is around the size of the data. For a single survey round in a single country (Sierra Leone, 2019),  there are 13,399 observations of 3,455 variables, equating to 46,293,545 data points. This is an  enormous dataset that needed to be pared down. To determine what data to keep, one must reference the <a href="https://dhsprogram.com/pubs/pdf/DHSG4/RecodeDH10Sep201DHSG4.pdf" target=blank">DHS's Standard  Recode Manual</a>, a 204-page PDF that describes what each of the thousands of questions are indicating. This research is primarily concerend with economic indicators at the household level, and so only the first  two sections of the questionnaire are kept, or around the first 200 variables. This reduced the file size by 15X, making it editable in a visual relational database such as Google Sheets. Each variable is then manually  inspected and decoded to determine if it is of interest. Another 3/4 of the columns are dropped, leaving just 56 variables behind. Each column is coded as charater or integer values, and so the columns are manually reisnpected again. The variables that are not truly numeric are converted to factors for proper treatment. Finally, the data wereready for summary and visualization. Below are some screenshots of the data.
             <figure>
                 <img class="figure" src="/csci5622/figures/eda/dhsdata.png">
                 <figcaption>Here is a snapshot of the raw zip data files available for download on the DHS website.</figcaption>
@@ -49,9 +38,7 @@
             </figure>
 
             <h4>Data Visualization</h4>
-            <p>
-                The first set of visualizations are a set of histograms looking at the range of values for each of the survey variables. Remember that each record in the surveys is a single household.
-            </p>
+            The first set of visualizations are a set of histograms looking at the range of values for each of the survey variables. Remember that each record in the surveys is a single household.
             <figure>
                 <img class="figure" src="/csci5622/figures/eda/altitudeHist.png">
                 <figcaption>The range of altitude of each survey cluster, given in meters. Notice how close to sea-level, most of Sierra Leone lies. ie less than 500 meters above sea level.</figcaption>
@@ -88,9 +75,7 @@
                 <img class="figure" src="/csci5622/figures/eda/assetsBar.png">
                 <figcaption>This the most interesting one -- it shows the number of households that own a particular asset, with a reference bar included at the top for the total number of households surveyed. One can see that radios are the most commonly owned asset, with televisions in second. Access to electricity is extremely low, with fewer than 1 in 5 households having access. Very few households seem to be able to afford motorcycles, much less a car.
             </figure>
-            <p>
                 This concludes the Exploratory Data Analysis section. In future work, we'll begin to find patterns within the data with methods such as association rule mining and unsupervised clustering.
-            </p>
             <hr></hr>
             <h2 style="margin-top: 30px;">References</h2>
             <p class="reference"> 
