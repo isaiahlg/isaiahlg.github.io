@@ -46,7 +46,7 @@
 
             <h3>Data Prep</h3>
             <p>
-                As described above, Association Rule Mining requires data with unique items that are in transaction format. The first step towards this end for the DHS data was to filter for just columns of interest.  Of the 56 variables kept in the Data Cleaning phase, 21 were selected for association rule mining because they pertained to assets. They were:
+                As described above, Association Rule Mining requires data with unique items that are in transaction format. The first step towards this end for the DHS data is to filter for just columns of interest.  Of the 56 variables kept in the Data Cleaning phase, 21 are selected for association rule mining because they pertained to assets. They were:
                 <ul>
                     <li>hv206: Has electricity</li>
                     <li>hv207: Has radio</li>
@@ -70,7 +70,7 @@
                     <li>hv246f: Owns chickens/poultry</li>
                     <li>hv247: Has bank account</li>
                 </ul> 
-                The next step was to remove any rows that had NA, missing, or unknown values. In this dataset, that was any row with a value of 95 of higher. To do this, the dataframe is converted to integers and then a numeric filter is applied. Next, for consistency, all zero values were converted to NA, and all other non-zero values  were converted to 1s. To continue, the integers are then converted to characters. The final transformation applied to the record data was  to substitute the 1s in each column for a word unique to each column that descibes the asset, such as  "electricity" or "goats". This left a neat dataframe pictured below:
+                The next step is to remove any rows that had NA, missing, or unknown values. In this dataset, that is any row with a value of 95 of higher. To do this, the dataframe is converted to integers and then a numeric filter is applied. Next, for consistency, all zero values are converted to NA, and all other non-zero values are converted to 1s. To continue, the integers are then converted to characters. The final transformation applied to the record data is  to substitute the 1s in each column for a word unique to each column that descibes the asset, such as  "electricity" or "goats". This left a neat dataframe pictured below:
             </p>
             <figure>
                 <img class="figure" src="/csci5622/figures/arm/recorddata.png">
@@ -78,7 +78,7 @@
                 </figcaption>
             </figure>
             <p>
-                The next step was to convert the data into transaction data, which can fortunately completed in a single line in R. Beautiful. Below, find another snapshot of the data, this time in transaction format. In this format, it is essentially a list of assets that each house owns - a post-purchase market basket.
+                The next step is to convert the data into transaction data, which can fortunately completed in a single line in R. Beautiful. Below, find another snapshot of the data, this time in transaction format. In this format, it is essentially a list of assets that each house owns - a post-purchase market basket.
             </p>
             <figure>
                 <img class="figure" src="/csci5622/figures/arm/txdata.png">
@@ -88,10 +88,16 @@
 
             <h3>Code</h3>
             <p>
-                All code for ARM was written in R, and can be found on Github <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/arm.Rmd">here</a>.
+                All code for ARM is written in R, and can be found on Github <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/arm.Rmd">here</a>.
             </p>
-            
+            <!-- (d) Results. Discuss, illustrate, describe, and visualize the results. Include the top 15 rules for support, 
+                    the top 15 for confidence, and the top 15 for lift. What thresholds did you use? Include at least 2 visualizations 
+                    (networks) that show the associations you found. 
+                (e) Conclusions. What did you learn that pertains to your topic?  -->
             <h3>Results</h3>
+            <p>
+                Before rules are even mined. 
+            </p>
             <figure>
                 <a href="/csci5622/rulesVis.html">
                     <img class="figure" src="/csci5622/figures/arm/rulesVis.png">
