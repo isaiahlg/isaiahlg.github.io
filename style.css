@@ -7,7 +7,7 @@ body {
 }
 
 .content {
-    max-width: 800px;
+    max-width: 1000px;
     margin: auto;
     text-align: center;
     color: white;
@@ -122,7 +122,7 @@ hr.rounded {
     
     text-align: center;
     color: white;
-    padding: 20px;
+    padding: 30px;
 }
 
 @media screen and (max-width: 800px) {
