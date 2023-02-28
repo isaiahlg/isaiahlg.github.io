@@ -25,41 +25,58 @@
             -->
             <h3>Overview</h3>
             <p>
-                Association Rule Mining (ARM) is a technique in machine learning that identifies relationships between items in large datasets.
-                It involves finding patterns, or associations, between items that occur together frequently, and "mining" out rules that
-                describe the data. ARM is perfect for transaction data where each transaction is unlabeled, just like a grocery store basket.
+                Association Rule Mining (ARM) is a technique in machine learning that identifies relationships between items in large datasets. It involves finding patterns, or associations, between items that occur together frequently, and "mining" out rules that describe the data. ARM is perfect for transaction data where each transaction is unlabeled, just like a grocery store basket.
             </p>
             <figure>
                 <img class="figure" src="/csci5622/figures/arm/basket.png">
                 <figcaption>Rules are mined from transactional data to find items that appear frequently together.</figcaption>
             </figure>
             <p>
-                A rule represents an if-then relationship between two sets of items with an antecedent on the left-hand side (the "if"), and
-                the consequent on the right-hand side (the "then"). Each rule is characterized by a variety of metrics, the most common
-                of which are support, confidence, and lift. These metrics are used to evaluate the strength and significance of the discovered 
-                association rules. Support measures how often the sets of items appears in the dataset, while confidence measures the proportion
-                of times that the consequent appears given the antecedent. The support will always be lower than the frequency of each item
-                individually, and the confidence of a rule will always be greater than or equal to the rule. Lift measures the degree of correlation
-                between the antecedent and consequent, accounting for the base frequency of both.
+                A rule represents an if-then relationship between two sets of items with an antecedent on the left-hand side (the "if"), and the consequent on the right-hand side (the "then"). Each rule is characterized by a variety of metrics, the most common of which are support, confidence, and lift. These metrics are used to evaluate the strength and significance of the discovered  association rules. Support measures how often the sets of items appears in the dataset, while confidence measures the proportion of times that the consequent appears given the antecedent. The support will always be lower than the frequency of each item individually, and the confidence of a rule will always be greater than or equal to the rule. Lift measures the degree of correlation between the antecedent and consequent, accounting for the base frequency of both.
 
-                The Apriori algorithm is a popular algorithm used in association rule mining. It works by generating a set of candidate itemsets
-                and pruning them based on their support values. The algorithm starts with single items and incrementally builds larger itemsets 
-                until no more frequent itemsets can be found. It prunes supersets by checking whether all subsets of a candidate itemset meet 
-                the minimum support threshold. This reduces the search space and improves efficiency.
+                The Apriori algorithm is a popular algorithm used in association rule mining. It works by generating a set of candidate itemsets and pruning them based on their support values. The algorithm starts with single items and incrementally builds larger itemsets  until no more frequent itemsets can be found. It prunes supersets by checking whether all subsets of a candidate itemset meet  the minimum support threshold. This reduces the search space and improves efficiency.
             </p>
             <figure>
                 <img class="figure" src="/csci5622/figures/arm/apriori.png">
                 <figcaption>The Apriori Algorithm makes rule mining much more effient as supersets of infrequent rules are pruned.</figcaption>
             </figure>
             <p>
-                For this dataset, ARM is used to find associations between the various assets included in the DHS surveys, such as cell phones, 
-                bicycles, mosquito nets, and refridgerators.
+                For this dataset, ARM is used to find associations between the various assets included in the DHS surveys, such as cell phones, bicycles, mosquito nets, and refridgerators.
             </p>
 
             <h3>Data Prep</h3>
             <p>
-                As described above, 
+                As described above, Association Rule Mining requires data with unique items that are in transaction format. The first step towards this end for the DHS data was to filter for just columns of interest.  Of the 56 variables kept in the Data Cleaning phase, 21 were selected for association rule mining because they pertained to assets. They were:
+                <ul>
+                    <li>hv206: Has electricity</li>
+                    <li>hv207: Has radio</li>
+                    <li>hv208: Has television</li>
+                    <li>hv209: Has refrigerator</li>
+                    <li>hv210: Has bicycle</li>
+                    <li>hv211: Has motorcycle/scooter</li>
+                    <li>hv212: Has car/truck</li>
+                    <li>hv221: Has telephone (land-line)</li>
+                    <li>hv227: Has mosquito bed net for sleeping</li>
+                    <li>hv243a: Has mobile telephone</li>
+                    <li>hv243b: Has watch</li>
+                    <li>hv243c: Has animal-drawn cart</li>
+                    <li>hv243d: Has boat with a motor</li>
+                    <li>hv243e: Has a computer</li>
+                    <li>hv246a: Owns cattle</li>
+                    <li>hv246b: Owns cows/ bulls</li>
+                    <li>hv246c: Owns horses/ donkeys/ mules</li>
+                    <li>hv246d: Owns goats</li>
+                    <li>hv246e: Owns sheep</li>
+                    <li>hv246f: Owns chickens/poultry</li>
+                    <li>hv247: Has bank account</li>
+                </ul> 
+                The next step was to remove any rows that had NA, missing, or unknown values. In this dataset, that was any row with a value of 95 of higher. To do this, the dataframe is converted to integers and then a numeric filter is applied. Next, for consistency, all zero values were converted to NA, and all other non-zero values  were converted to 1s. To continue, the integers are then converted to characters. The final transformation applied to the record data was  to substitute the 1s in each column for a word unique to each column that descibes the asset, such as  "electricity" or "goats". This left a neat dataframe pictured below:
             </p>
+            <figure>
+                <img class="figure" src="/csci5622/figures/arm/recorddata.png">
+                <figcaption>The final state of the data while still in record format, ready to be changed into transaction data. The R data object is on <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/data/sl19arm.rds"> here</a>
+                </figcaption>
+            </figure>
 
             <h3>Code</h3>
             

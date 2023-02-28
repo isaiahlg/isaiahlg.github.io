@@ -22,11 +22,7 @@
 
             <h3>Overview</h3>
             <p>
-                Clustering is a set of unsupervised learning algorithms that serve to group like data together. In order to be able to group data by "similarity",
-                all clustering methods must define a distance metric that gives the "distance" between any two points in the dataset, say A and B. The distance
-                function can be any function that (a) is always >= 0, is 0 if A and B are the same point, and cannot be shortcutted through a third point C. That is,
-                the distance D(A,B) must be >= D(A,C) + D(B,C). No wormholes! Common distance metrics include minkowski distances with p=1 (Manhattan Distance) and 
-                p=2 (Euclidean Distance), as well as consine similarity. One you have a distance metric, there are three main approaches to clustering: 
+                Clustering is a set of unsupervised learning algorithms that serve to group like data together. In order to be able to group data by "similarity", all clustering methods must define a distance metric that gives the "distance" between any two points in the dataset, say A and B. The distance function can be any function that (a) is always >= 0, is 0 if A and B are the same point, and cannot be shortcutted through a third point C. That is, the distance D(A,B) must be >= D(A,C) + D(B,C). No wormholes! Common distance metrics include minkowski distances with p=1 (Manhattan Distance) and p=2 (Euclidean Distance), as well as consine similarity. One you have a distance metric, there are three main approaches to clustering: 
                 <ol>
                     <li><b>Partitional Clustering:</b> in this approach, "partitions" are created between groups that become clustered around centroids. Examples of this
                         are k-means, k-modes, and k-prototypes.
@@ -41,9 +37,7 @@
                 <figcaption>Examples of various types of clustering algorithms (Seif, 2018).</figcaption>
             </figure>
             <p>
-                In this project, clustering is used to determine how many meaningful groups there are among households in the survey based on the number of people 
-                that comprise the household, the number of rooms of the house, and a wealth index score. The outcome of this clustering will tell how many socio-demographic
-                strata there are within this dataset.
+                In this project, clustering is used to determine how many meaningful groups there are among households in the survey based on the number of people that comprise the household, the number of rooms of the house, and a wealth index score. The outcome of this clustering will tell how many socio-demographicstrata there are within this dataset.
             </p>
             <figure>
                 <img class="figure" src="/csci5622/figures/clustering/slhome.jpg">
@@ -52,9 +46,7 @@
             
             <h3>Data Prep</h3>
             <p>
-                For this dataset, clustering is performed based on euclidean distance and based on cosine similarity. Both of these algorithms require continuous, numeric
-                data for each of the dimensions, and so the data has to be cleaned. Of the 50 or so variables kept from the cleaning process, only 9 of them have clean
-                numeric data. Of these variables, only 6 are determined to be of interest:
+                For this dataset, clustering is performed based on euclidean distance and based on cosine similarity. Both of these algorithms require continuous, numeric data for each of the dimensions, and so the data has to be cleaned. Of the 50 or so variables kept from the cleaning process, only 9 of them have clean numeric data. Of these variables, only 6 are determined to be of interest:
                 <ol>
                     <li>hv010: Number of eligible women in household</li>
                     <li>hv011: Number of eligible men in household</li>
@@ -77,9 +69,7 @@
                     <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/data/sl19scaled.csv">here</a>.</figcaption>
             </figure>
             <p>
-                In order to see if there are any patterns in the clustering, a principal component analysis is run of the remaining 5 numerical variables down to 2 
-                principal components. This allows for a 2D plot of the data. The label is added back into the PCA data frame to be graphed with color, with the results
-                below:
+                In order to see if there are any patterns in the clustering, a principal component analysis is run of the remaining 5 numerical variables down to 2 principal components. This allows for a 2D plot of the data. The label is added back into the PCA data frame to be graphed with color, with the results below:
             </p>
             <figure>
                 <img class="figure" src="/csci5622/figures/clustering/pcaclusters.png">
@@ -88,8 +78,8 @@
                 </figcaption>
             </figure>
             <h3>Code</h3>
-            <p>Python was used to perform k-means clustering and principal component analysis with the code <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/kmeans.py">here</a>. 
-                R was used to perform hierarchical clustering with the code <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/hclust.Rmd">here</a>. 
+            <p>
+                Python was used to perform k-means clustering and principal component analysis with the code <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/kmeans.py">here</a>. R was used to perform hierarchical clustering with the code <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/hclust.Rmd">here</a>. 
             </p>
             
             <h3>Results</h3>
@@ -98,26 +88,22 @@
             </p>
             <figure>
                 <img class="figure" src="/csci5622/figures/clustering/kmeans2.png">
-                <figcaption>Clustering results for k=2, graphed along the two principal components. Unsurprisingly, the split is almost entirely along
-                    the first principal component.
+                <figcaption>Clustering results for k=2, graphed along the two principal components. Unsurprisingly, the split is almost entirely along the first principal component.
                 </figcaption>
             </figure>
             <figure>
                 <img class="figure" src="/csci5622/figures/clustering/kmeans3.png">
-                <figcaption>Clustering results for k=3, graphed along the two principal components. Here, the partitions are still primarily
-                    along the first principal component.
+                <figcaption>Clustering results for k=3, graphed along the two principal components. Here, the partitions are still primarily along the first principal component.
                 </figcaption>
             </figure>
             <figure>
                 <img class="figure" src="/csci5622/figures/clustering/kmeans4.png">
-                <figcaption>Clustering results for k=4, graphed along the two principal components. Here, we see a fourth category emerge 
-                    on top defined primarily by high values of the second principal component.
+                <figcaption>Clustering results for k=4, graphed along the two principal components. Here, we see a fourth category emerge on top defined primarily by high values of the second principal component.
                 </figcaption>
             </figure>
             <figure>
                 <img class="figure" src="/csci5622/figures/clustering/kmeans5.png">
-                <figcaption>Clustering results for k=5, graphed along the two principal components. Here, we seen interesting segementation
-                    happen in the heart of the cluster, likely along a the dimensions least captured by the principal components.
+                <figcaption>Clustering results for k=5, graphed along the two principal components. Here, we seen interesting segementation happen in the heart of the cluster, likely along a the dimensions least captured by the principal components.
                 </figcaption>
             </figure>
             <figure>
@@ -138,50 +124,31 @@
             </figure>
             <h3>Conclusions</h3>
             <p>
-                To draw conclusions about the relationship between demographics and wealth index, it's necessary to first compute the mean values for 
-                each variable for each of the clusters to find their "centers". Next, these scaled values for cluster centers can be multiplied times
-                the standard deviation for each column, and then added to the mean, so that they are effectively "unscaled". Next, the mean value of
-                the label (in this case, wealth index) is computed for each of the clusters for each of set of k-means. This shows the average wealth
-                of each cluster. These results are shown in the table below:
+                To draw conclusions about the relationship between demographics and wealth index, it's necessary to first compute the mean values for each variable for each of the clusters to find their "centers". Next, these scaled values for cluster centers can be multiplied times the standard deviation for each column, and then added to the mean, so that they are effectively "unscaled". Next, the mean value of the label (in this case, wealth index) is computed for each of the clusters for each of set of k-means. This shows the average wealth of each cluster. These results are shown in the table below:
             </p>
             <figure>
                 <img class="figure" src="/csci5622/figures/clustering/clustercenters.png">
                 <figcaption>The centers of each cluster as well as the mean values for wealth index.</figcaption>
             </figure>
             <p>
-                Finally, the results of the clustering are interpretable. Going through each value of k, the following can be said about each 
-                of the clusters:
+                Finally, the results of the clustering are interpretable. Going through each value of k, the following can be said about each of the clusters:
             </p>
             <ul>
-                <li>2 Clusters: Here, there is a pretty clear split between large and small households. Cluster B averages over 2 women per household
-                    along with over 8 people total. These households are slightly wealthier than their smaller counterparts. 
+                <li>2 Clusters: Here, there is a pretty clear split between large and small households. Cluster B averages over 2 women per household along with over 8 people total. These households are slightly wealthier than their smaller counterparts. 
                 </li>
-                <li>3 Clusters: This is the number of clusters for which the silhouette score was lowest. Here, the wealthiest group of households
-                    are also the largest, with 2.6 women and 10.3 total members. Their houses are accordingly larger, averaging 4.6 rooms. The average
-                    number of men is 1.4, suggesting these households are multiple families living in the same compound. Ironically, the poorest group
-                    is the middle one, that have about 4 children or dependents, but many of which have no men in the household. These fare worse than 
-                    the smallest households have have just 2 children or dependents. It seems being a single parent of multiple dependents is tough.
+                <li>3 Clusters: This is the number of clusters for which the silhouette score was lowest. Here, the wealthiest group of households are also the largest, with 2.6 women and 10.3 total members. Their houses are accordingly larger, averaging 4.6 rooms. The average number of men is 1.4, suggesting these households are multiple families living in the same compound. Ironically, the poorest group is the middle one, that have about 4 children or dependents, but many of which have no men in the household. These fare worse than  the smallest households have have just 2 children or dependents. It seems being a single parent of multiple dependents is tough.
                 </li>
-                <li>4 Clusters:  Here there is a similar trend as with 3 clusters in that the smallest households are not the poorest, but instead
-                    the households with one woman taking care of many dependents (4.3) but few men (0.3) fare the worst. In contrast, households with 
-                    the most men (2.5) fare the best, even better than the larger households with more women, total members, and rooms for sleeping. This
-                    suggests that asset accrual is largely driven by men, not by women. This makes sense in a patriarchal society that expects women
-                    to take care of the family.  
+                <li>4 Clusters:  Here there is a similar trend as with 3 clusters in that the smallest households are not the poorest, but instead the households with one woman taking care of many dependents (4.3) but few men (0.3) fare the worst. In contrast, households with  the most men (2.5) fare the best, even better than the larger households with more women, total members, and rooms for sleeping. This suggests that asset accrual is largely driven by men, not by women. This makes sense in a patriarchal society that expects women to take care of the family.  
                 </li>
-                <li>5 Clusters: This clustering largely shows the same patters found in the 4-cluster grouping. The poorest households are not the
-                    the smallest ones, but the ones with lots of babies but few men. 
+                <li>5 Clusters: This clustering largely shows the same patters found in the 4-cluster grouping. The poorest households are not the the smallest ones, but the ones with lots of babies but few men. 
                 </li>
             </ul>
             <p>
-                It should be noted as well that these trends are slight (z-scores all smaller than 0.3). This is inline with the initial graph
-                created with clusters that shows a high degree of dispersion of the wealth quintiles. Further resesearch should take into account
-                non-numerical variables as well, like the algorithm k-prototype. Hopefully this would provide a better predictive model for wealth index
-                than just using household demographics.
+                It should be noted as well that these trends are slight (z-scores all smaller than 0.3). This is inline with the initial graph created with clusters that shows a high degree of dispersion of the wealth quintiles. Further resesearch should take into account non-numerical variables as well, like the algorithm k-prototype. Hopefully this would provide a better predictive model for wealth index than just using household demographics.
             </p>
             <h3>References</h3>
             <p class="reference">Seif, George. 2018. Towards Data Science. https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68</p>
             <p class="reference">Wamala, Lydia. 2022. World Food Project. https://www.wfp.org/stories/rural-sierra-leone-fatmatas-kids-wont-be-eating-tonight</p>
-            
 
         </div>
     </div>
