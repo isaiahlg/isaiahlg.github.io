@@ -36,7 +36,7 @@
                     that span overlapping values of the various dimensions, but are shaped in a relatively continuous blob.</li>
                 </ol>
             <figure>
-                <img class="figure" src="/csci5622/figures/16_clustering.png">
+                <img class="figure" src="/csci5622/figures/clustering.png">
                 <figcaption>Figure 16: Examples of various types of clustering algorithms (Seif, 2018).</figcaption>
             </figure>
             <p>
@@ -45,33 +45,56 @@
                 strata there are within this dataset.
             </p>
             <figure>
-                <img class="figure" src="/csci5622/figures/17_slhome.jpg">
+                <img class="figure" src="/csci5622/figures/slhome.jpg">
                 <figcaption>Figure 17: A single-mother household in rural Sierra Leone (Wamala, 2022).</figcaption>
             </figure>
+            
             <h3>Data Prep</h3>
             <p>
                 For this dataset, clustering is performed based on euclidean distance and based on cosine similarity. Both of these algorithms require continuous, numeric
-                data for each of the dimensions, and so the data had to be cleaned. Of the 50 or so variables kept from the cleaning process, only 9 of them have clean
-                numeric data. Of these variables, only 6 were determined to be of interest:
+                data for each of the dimensions, and so the data has to be cleaned. Of the 50 or so variables kept from the cleaning process, only 9 of them have clean
+                numeric data. Of these variables, only 6 are determined to be of interest:
                 <ol>
                     <li>hv010: Number of eligible women in household</li>
                     <li>hv011: Number of eligible men in household</li>
                     <li>hv012: Number of de jure members</li>
                     <li>hv014: Number of children 5 and under (de jure)</li>
                     <li>hv216: Number of rooms used for sleeping</li>
-                    <!-- repeat analysis without the wealth index factor score and see if we can predict that -->
-                    <!-- see if the other non-numeric wealth index factor scores are related -->
-                    <li>hv271: Wealth index factor score combined (5 decimals)</li>
+                    <li>hv270a: Wealth index for urban/rural</li>
                 </ol>
+                In this clustering analysis, demographics will be used to predict wealth index for urban rural, and so the final variable hv270a is removed as it is the 
+                "label". Below, find snapshots of the data post-processing.
             </p>
             <figure>
-                <img class="figure" src="/csci5622/figures/18_numdata.png">
-                <figcaption>Figure 18: A snapshot of the dataset ready to be scaled for clustering. A copy of this dataset can be found 
-                    <a href="https://github.com/isaiahlg/csci5622mod2/tree/main/proj/data">here</a>.</figcaption>
-                    <!-- export the trimmed data and the scaled data from python and add to /data/ folder -->
+                <img class="figure" src="/csci5622/figures/numdata.png">
+                <figcaption>Figure 18: A snapshot of the dataset ready to be scaled for clustering. A copy of this numerical dataset can be found 
+                    <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/data/sl19num.csv">here</a>.</figcaption>
+            </figure>
+            <figure>
+                <img class="figure" src="/csci5622/figures/scaleddata.png">
+                <figcaption>Figure 19: A snapshot of the dataset after normalization, ready for clustering. A copy of this scaled dataset can be found 
+                    <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/data/sl19scaled.csv">here</a>.</figcaption>
+            </figure>
+            <p>
+                In order to see if there are any patterns in the clustering, a principal component analysis is run of the remaining 5 numerical variables down to 2 
+                principal components. This allows for a 2D plot of the data. The label is added back into the PCA data frame to be graphed with color, with the results
+                below:
+            </p>
+            <figure>
+                <img class="figure" src="/csci5622/charts/scatter/pcaclusters.png">
+                <figcaption>Figure 20: A 2D plot of the principal components of the numerical data with the wealth index overlaid in color. Here one can see that 
+                    the correlation between the demographic variables being used and wealth index is not very strong, since the colors are all a bit disperesed.
+                </figcaption>
             </figure>
             <h3>Code</h3>
+            <p>Python was used to perform k-means clustering and principal component analysis with the code <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/kmeans.py">here</a>. 
+                R was used to perform hierarchical clustering with the code <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/hclust.Rmd">here</a>. 
+            </p>
+            
             <h3>Results</h3>
+            <p>
+                
+            </p>
             <h3>Conclusions</h3>
             <h3>References</h3>
             <p class="reference">Seif, George. 2018. Towards Data Science. https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68</p>

@@ -25,12 +25,12 @@
                 use of the data registered. Once access is granted, the data can be fetched in two ways: (1) by 
                 downloading a zip file folder from the website, and (2) by requesting data over the API. The documentation
                 for the API is limited but can be found on the DHS website 
-                <a href="https://api.dhsprogram.com/#/index.html" target="_blank">here</a>. A sample of a downloaded
-                zip file can be found <a href="https://github.com/isaiahlg/csci5622mod1/tree/main/data/SLHR7ADT" target="_blank">
+                <a href="https://api.dhsprogram.com/#/index.html" target=blank">here</a>. A sample of a downloaded
+                zip file can be found <a href="https://github.com/isaiahlg/csci5622mod1/tree/main/data/SLHR7ADT" target=blank">
                 here</a>. To use the API, an R package was developed by a group of researchers for the rOpenSci project
-                and can be found on <a href="https://github.com/ropensci/rdhs" target="_blank">GitHub</a>. The implemntation
+                and can be found on <a href="https://github.com/ropensci/rdhs" target=blank">GitHub</a>. The implemntation
                 of this code for pulling data from the API, processing it, and cleaning the data can be found on
-                <a href="https://github.com/isaiahlg/csci5622mod1/blob/main/module1.rmd" target="_blank">GitHub</a>
+                <a href="https://github.com/isaiahlg/csci5622mod1/blob/main/module1.rmd" target=blank">GitHub</a>
             </p>
             
             
@@ -40,7 +40,7 @@
                 concern was around the size of the data. For a single survey round in a single country (Sierra Leone, 2019), 
                 there were 13,399 observations of 3,455 variables, equating to 46,293,545 data points. This is an 
                 enormous dataset that needed to be pared down. To determine what data to keep, one must reference the
-                <a href="https://dhsprogram.com/pubs/pdf/DHSG4/Recode7_DHS_10Sep2018_DHSG4.pdf" target="_blank">DHS's Standard 
+                <a href="https://dhsprogram.com/pubs/pdf/DHSG4/RecodeDH10Sep201DHSG4.pdf" target=blank">DHS's Standard 
                 Recode Manual</a>, a 204-page PDF that describes what each of the thousands of questions are indicating.
                 This research is primarily concerend with economic indicators at the household level, and so only the first 
                 two sections of the questionnaire were kept, or around the first 200 variables. This reduced the file size by 15X,
@@ -54,21 +54,21 @@
                 ready for summary and visualization. Below are some screenshots of the data.
             </p>
             <figure>
-                <img class="figure" src="/csci5622/figures/3_dhsdata.png">
+                <img class="figure" src="/csci5622/figures/eda/dhsdata.png">
                 <figcaption>Figure 3: Here is a snapshot of the raw zip data files available for download on the DHS website.</figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/figures/4_zipdata.png">
+                <img class="figure" src="/csci5622/figures/eda/zipdata.png">
                 <figcaption>Figure 4: Here is a snapshot of the contents of one of the zip folders once downloaded from the DHS website
                     and unzipped.</figcaption>
                 </figure>
             <figure>
-                <img class="figure" src="/csci5622/figures/5_rawdata.png">
+                <img class="figure" src="/csci5622/figures/eda/rawdata.png">
                 <figcaption>Figure 5: After importing the data into R, the dataframe looks like this snapshot. Note the enormous number
                     of columns and rows!</figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/figures/6_cleandata.png">
+                <img class="figure" src="/csci5622/figures/eda/cleandata.png">
                 <figcaption>Figure 6: After cleaning the data, we have many fewer columns of data, and the categorical data is 
                     recategorized as factor data instead of numeric data.</figcaption>
             </figure>
@@ -79,48 +79,48 @@
                 Remember that each record in the surveys is a single household.
             </p>
             <figure>
-                <img class="figure" src="/csci5622/charts/hist/altitudeHist.png">
+                <img class="figure" src="/csci5622/figures/eda/altitudeHist.png">
                 <figcaption>Figure 7: The range of altitude of each survey cluster, given in meters. Notice how close to sea-level, most 
                     of Sierra Leone lies. ie less than 500 meters above sea level.</figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/charts/bar/regionBar.png">
+                <img class="figure" src="/csci5622/figures/eda/regionBar.png">
                 <figcaption>Figure 8: Sierra Leone has 5 geographical regions, and it seems that the surveys were well spread throughout
                     the country.</figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/charts/bar/languageBar.png">
+                <img class="figure" src="/csci5622/figures/eda/languageBar.png">
                 <figcaption>Figure 9: These are the various native tongues of each household. One might expect more than 6 categories, given 
                     that there are 16 ethnic groups in Sierra Leone, such as the Temne and the Mende. I'll need to see what each of these labels
                     correspond to. </figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/charts/hist/householdHist.png">
+                <img class="figure" src="/csci5622/figures/eda/householdHist.png">
                 <figcaption>Figure 10: Finally, a beautiful poisson distribution! There is a clear mode of 4-5 household members, but a long
                     right tail with some households having upwards of 20 members. </figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/charts/hist/womenHist.png">
+                <img class="figure" src="/csci5622/figures/eda/womenHist.png">
                 <figcaption>Figure 11: This shows the number of women aged 15-49 years old in the household. Interestingly, almost 3000 households
                     have none, but a majority have 1. Some go up to 6 or 7! </figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/charts/hist/menHist.png">
+                <img class="figure" src="/csci5622/figures/eda/menHist.png">
                 <figcaption>Figure 12: This shows the number of men aged 15-49 years old in the household. It's a sobering chart, showing us that
                     a majority of households have no men present. One can see from these two charts that women often anchor the household.</figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/charts/hist/childrenHist.png">
+                <img class="figure" src="/csci5622/figures/eda/childrenHist.png">
                 <figcaption>Figure 13: This shows the number of children under 5 years old in the household. Most households do have small children,
                     but only a couple. One might wonder why the survey does not capture household members aged 5-15 years. 
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/charts/bar/watersourceBar.png">
+                <img class="figure" src="/csci5622/figures/eda/watersourceBar.png">
                 <figcaption>Figure 14: This historgram shows us the various sources of drinking water. It's quite varied. However, to get more 
                     out of this, one must map the values to the corresponding water sources. 
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/charts/bar/assetsBar.png">
+                <img class="figure" src="/csci5622/figures/eda/assetsBar.png">
                 <figcaption>Figure 15: This figure is perhaps the most interesting one -- it shows the number of households that own a particular asset,
                     with a reference bar included at the top for the total number of households surveyed. One can see that radios are the most commonly 
                     owned asset, with televisions in second. Access to electricity is extremely low, with fewer than 1 in 5 households having access. Very few
