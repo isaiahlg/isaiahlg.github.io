@@ -121,9 +121,50 @@
             </figure>
             <figure>
                 <img class="figure" src="/csci5622/figures/clustering/silhouette.png">
-                <figcaption>The silhouette graph for K. We can see that the minimum Silhouette Score is 0.212 when n=3.</figcaption>
+                <figcaption>The silhouette graph for K. We can see that the minimum Silhouette Score is 0.21 when n=3.</figcaption>
             </figure>
             <h3>Conclusions</h3>
+            <p>
+                To draw conclusions about the relationship between demographics and wealth index, it's necessary to first compute the mean values for 
+                each variable for each of the clusters to find their "centers". Next, these scaled values for cluster centers can be multiplied times
+                the standard deviation for each column, and then added to the mean, so that they are effectively "unscaled". Next, the mean value of
+                the label (in this case, wealth index) is computed for each of the clusters for each of set of k-means. This shows the average wealth
+                of each cluster. These results are shown in the table below:
+            </p>
+            <figure>
+                <img class="figure" src="/csci5622/figures/clustering/clustercenters.png">
+                <figcaption>The centers of each cluster as well as the mean values for wealth index.</figcaption>
+            </figure>
+            <p>
+                Finally, the results of the clustering are interpretable. Going through each value of k, the following can be said about each 
+                of the clusters:
+            </p>
+            <ul>
+                <li>2 Clusters: Here, there is a pretty clear split between large and small households. Cluster B averages over 2 women per household
+                    along with over 8 people total. These households are slightly wealthier than their smaller counterparts. 
+                </li>
+                <li>3 Clusters: This is the number of clusters for which the silhouette score was lowest. Here, the wealthiest group of households
+                    are also the largest, with 2.6 women and 10.3 total members. Their houses are accordingly larger, averaging 4.6 rooms. The average
+                    number of men is 1.4, suggesting these households are multiple families living in the same compound. Ironically, the poorest group
+                    is the middle one, that have about 4 children or dependents, but many of which have no men in the household. These fare worse than 
+                    the smallest households have have just 2 children or dependents. It seems being a single parent of multiple dependents is tough.
+                </li>
+                <li>4 Clusters:  Here there is a similar trend as with 3 clusters in that the smallest households are not the poorest, but instead
+                    the households with one woman taking care of many dependents (4.3) but few men (0.3) fare the worst. In contrast, households with 
+                    the most men (2.5) fare the best, even better than the larger households with more women, total members, and rooms for sleeping. This
+                    suggests that asset accrual is largely driven by men, not by women. This makes sense in a patriarchal society that expects women
+                    to take care of the family.  
+                </li>
+                <li>5 Clusters: This clustering largely shows the same patters found in the 4-cluster grouping. The poorest households are not the
+                    the smallest ones, but the ones with lots of babies but few men. 
+                </li>
+            </ul>
+            <p>
+                It should be noted as well that these trends are slight (z-scores all smaller than 0.3). This is inline with the initial graph
+                created with clusters that shows a high degree of dispersion of the wealth quintiles. Further resesearch should take into account
+                non-numerical variables as well, like the algorithm k-prototype. Hopefully this would provide a better predictive model for wealth index
+                than just using household demographics.
+            </p>
             <h3>References</h3>
             <p class="reference">Seif, George. 2018. Towards Data Science. https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68</p>
             <p class="reference">Wamala, Lydia. 2022. World Food Project. https://www.wfp.org/stories/rural-sierra-leone-fatmatas-kids-wont-be-eating-tonight</p>
