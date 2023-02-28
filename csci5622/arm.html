@@ -96,7 +96,38 @@
                 (e) Conclusions. What did you learn that pertains to your topic?  -->
             <h3>Results</h3>
             <p>
-                Before rules are even mined. 
+                Before rules are even mined, one can plot the frequency of each of the items in the transaction data. In this case, this tell us what are the most commonly owned assets among the households surveyed. In the figure below, we can see that the most commonly owned assets by far are cell phones and bednets, followed by radio, chickens, and a watch. The next category might be considered luxuty items in Sierra Leone since fewer than 1 in 5 households have one: electricity, goats, television, and a bank account. Down close to 1 in 10 households, we have motorcycle, sheep, and fridge. Finally, the rest of the assets appear in fewer than 1 in 20 households: bicycle, computer, car, cows, and a boat. The last three assets have such low rates, they no longer seem like luxuries, but rather oddities: landline, animal cart, and horses. Really interesting stuff here.
+            </p>
+            <figure>
+                <img class="figure" src="/csci5622/figures/arm/freq.png">
+                <figcaption>The relative frequencies of assets among Sierra Leonean households.</figcaption>
+            </figure>
+            <p>
+                Rule mining was a bit of an interative process in choosing the thresholds. The maximum value for support was just 0.5, and so the threshold was set relatively low at 0.15 to ensure rarer items with intersting associations could still be captured. Confidence values ranged quite high, so the threshold was set up to 0.5 to filter the total number of rules down close to 60--more than 45 but not much more. Finally, the rules have a minimum number of elements of two to avoid any null values on the left or right hand sides. Below are screenshots of our top rules sorted by their respective metrics:
+            </p>
+            <figure>
+                <img class="figure" src="/csci5622/figures/arm/rulesSup1.png">
+                <img class="figure" src="/csci5622/figures/arm/rulesSup2.png" style="margin-top: -5px;">
+                <figcaption>The 15 rules with the highest support.</figcaption>
+            </figure>
+            <p>
+                Unsurprisingly, the rule with the highest support is among bednets and cellphones, and vice version. The lift is just 1.02 though, meaning their appearance is relatively independent. The next highest support is between cell phones and radios, a logical pairing -- battery powered, connective electronics. A lift > 1 suggests they truly do pair together. Next we have chickens and bednets, which one can assume is an association found in rural areas. The only other item that we see emerge into the most common rules is watches. Not a lot of surpises nor insights here. Next, we can examine the rules with the highest confidence: 
+            </p>
+            <figure>
+                <img class="figure" src="/csci5622/figures/arm/rulesConf1.png">
+                <img class="figure" src="/csci5622/figures/arm/rulesConf2.png" style="margin-top: -5px;">
+                <figcaption>The 15 rules with the highest confidence.</figcaption>
+            </figure>
+            <p>
+                Here, we have some more telling rules! The highest confidence rule is that if a household has a television, there is a > 98% chance that they will have a cell phone. This is intuitive but the level of confidence is still impressive. Along a similar vein, the next high-confidence rule tell us that if a household has electricity, there's a > 97% chance they'll have a cell phone. Neither of these occur very often (about 1 in 6 households), but the confidence is so high. The next few rules are other combinations of assets that suggest a household will have a cell phone, such as a radio and a watch, or a bednet/watch combo. The top 12 confidence rules are all predicting the presence of cell phones. #13-15 are predicting the presence of bednets, given by radio/cell/chickens, as well as a watch. In short, these rules are telling us that cell phones and bednets not just widespread, but that they are much more prevalent among households with other, more rare assets. This suggests a sort of hierarchy among assets that could be useful for future analysis. Next, we can examine the rules with the highest lift: 
+            </p>
+            <figure>
+                <img class="figure" src="/csci5622/figures/arm/rulesLift1.png">
+                <img class="figure" src="/csci5622/figures/arm/rulesLift2.png" style="margin-top: -5px;">
+                <figcaption>The 15 rules with the highest lift.</figcaption>
+            </figure>
+            <p>
+                Finally, we can export the 10 most interesting rules based on lift into an interactive HTML-based visualization. The blue rectangles depict elements, connected by rules in red circles. The intensity of the color shows the lift of each rule. 
             </p>
             <figure>
                 <a href="/csci5622/rulesVis.html">
@@ -104,7 +135,11 @@
                 </a>
                 <figcaption>An interactive visualization of the 10 rules with the highest lift. Click the image for the interactive version!</figcaption>
             </figure>
+            
+            
             <h3>Conclusions</h3>
+            
+            
             <h3>References</h3>
             <p class="reference">
                 Data Camp. 2018. "Market Basket Analysis using R." https://www.datacamp.com/tutorial/market-basket-analysis-r
