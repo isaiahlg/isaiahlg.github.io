@@ -36,8 +36,8 @@
                     that span overlapping values of the various dimensions, but are shaped in a relatively continuous blob.</li>
                 </ol>
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering.png">
-                <figcaption>Figure 16: Examples of various types of clustering algorithms (Seif, 2018).</figcaption>
+                <img class="figure" src="/csci5622/figures/clustering/clustering.png">
+                <figcaption>Examples of various types of clustering algorithms (Seif, 2018).</figcaption>
             </figure>
             <p>
                 In this project, clustering is used to determine how many meaningful groups there are among households in the survey based on the number of people 
@@ -45,8 +45,8 @@
                 strata there are within this dataset.
             </p>
             <figure>
-                <img class="figure" src="/csci5622/figures/slhome.jpg">
-                <figcaption>Figure 17: A single-mother household in rural Sierra Leone (Wamala, 2022).</figcaption>
+                <img class="figure" src="/csci5622/figures/clustering/slhome.jpg">
+                <figcaption>A single-mother household in rural Sierra Leone (Wamala, 2022).</figcaption>
             </figure>
             
             <h3>Data Prep</h3>
@@ -66,13 +66,13 @@
                 "label". Below, find snapshots of the data post-processing.
             </p>
             <figure>
-                <img class="figure" src="/csci5622/figures/numdata.png">
-                <figcaption>Figure 18: A snapshot of the dataset ready to be scaled for clustering. A copy of this numerical dataset can be found 
+                <img class="figure" src="/csci5622/figures/clustering/numdata.png">
+                <figcaption>A snapshot of the dataset ready to be scaled for clustering. A copy of this numerical dataset can be found 
                     <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/data/sl19num.csv">here</a>.</figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/figures/scaleddata.png">
-                <figcaption>Figure 19: A snapshot of the dataset after normalization, ready for clustering. A copy of this scaled dataset can be found 
+                <img class="figure" src="/csci5622/figures/clustering/scaleddata.png">
+                <figcaption>A snapshot of the dataset after normalization, ready for clustering. A copy of this scaled dataset can be found 
                     <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/data/sl19scaled.csv">here</a>.</figcaption>
             </figure>
             <p>
@@ -81,8 +81,8 @@
                 below:
             </p>
             <figure>
-                <img class="figure" src="/csci5622/charts/scatter/pcaclusters.png">
-                <figcaption>Figure 20: A 2D plot of the principal components of the numerical data with the wealth index overlaid in color. Here one can see that 
+                <img class="figure" src="/csci5622/figures/clustering/pcaclusters.png">
+                <figcaption>A 2D plot of the principal components of the numerical data with the wealth index overlaid in color. Here one can see that 
                     the correlation between the demographic variables being used and wealth index is not very strong, since the colors are all a bit disperesed.
                 </figcaption>
             </figure>
@@ -93,8 +93,36 @@
             
             <h3>Results</h3>
             <p>
-                
+                Clustering was run for k = [2,3,4,5]. Silhouette analysis was performed for each of these k-values, and the resulting charts are below:
             </p>
+            <figure>
+                <img class="figure" src="/csci5622/figures/clustering/kmeans2.png">
+                <figcaption>Clustering results for k=2, graphed along the two principal components. Unsurprisingly, the split is almost entirely along
+                    the first principal component.
+                </figcaption>
+            </figure>
+            <figure>
+                <img class="figure" src="/csci5622/figures/clustering/kmeans3.png">
+                <figcaption>Clustering results for k=3, graphed along the two principal components. Here, the partitions are still primarily
+                    along the first principal component.
+                </figcaption>
+            </figure>
+            <figure>
+                <img class="figure" src="/csci5622/figures/clustering/kmeans4.png">
+                <figcaption>Clustering results for k=4, graphed along the two principal components. Here, we see a fourth category emerge 
+                    on top defined primarily by high values of the second principal component.
+                </figcaption>
+            </figure>
+            <figure>
+                <img class="figure" src="/csci5622/figures/clustering/kmeans5.png">
+                <figcaption>Clustering results for k=5, graphed along the two principal components. Here, we seen interesting segementation
+                    happen in the heart of the cluster, likely along a the dimensions least captured by the principal components.
+                </figcaption>
+            </figure>
+            <figure>
+                <img class="figure" src="/csci5622/figures/clustering/silhouette.png">
+                <figcaption>The silhouette graph for K. We can see that the minimum Silhouette Score is 0.212 when n=3.</figcaption>
+            </figure>
             <h3>Conclusions</h3>
             <h3>References</h3>
             <p class="reference">Seif, George. 2018. Towards Data Science. https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68</p>
