@@ -12,9 +12,58 @@
     <div class="content">
         <div class="textbox">
             <h1>Association Rule Mining</h1>
+            <!-- 
+                (a) Overview: Here, describe ARM, including measures like support, confidence, and lift. What are rules? 
+                    What is the Apriori algorithm and how does it work?  Have two images. More is fine.
+                (b) Data Prep. All models and methods require specific data formats. ARM requires ONLY unlabeled transaction data. 
+                    Explain this and show an image of the sample of data you plan to use. LINK to the sample of data as well. 
+                (c) Code. Use  R (only) to code ARM. LINK to the code.
+                (d) Results. Discuss, illustrate, describe, and visualize the results. Include the top 15 rules for support, 
+                    the top 15 for confidence, and the top 15 for lift. What thresholds did you use? Include at least 2 visualizations 
+                    (networks) that show the associations you found. 
+                (e) Conclusions. What did you learn that pertains to your topic? 
+            -->
             <h3>Overview</h3>
+            <p>
+                Association Rule Mining (ARM) is a technique in machine learning that identifies relationships between items in large datasets.
+                It involves finding patterns, or associations, between items that occur together frequently, and "mining" out rules that
+                describe the data. ARM is perfect for transaction data where each transaction is unlabeled, just like a grocery store basket.
+            </p>
+            <figure>
+                <img class="figure" src="/csci5622/figures/arm/basket.png">
+                <figcaption>Rules are mined from transactional data to find items that appear frequently together.</figcaption>
+            </figure>
+            <p>
+                A rule represents an if-then relationship between two sets of items with an antecedent on the left-hand side (the "if"), and
+                the consequent on the right-hand side (the "then"). Each rule is characterized by a variety of metrics, the most common
+                of which are support, confidence, and lift. These metrics are used to evaluate the strength and significance of the discovered 
+                association rules. Support measures how often the sets of items appears in the dataset, while confidence measures the proportion
+                of times that the consequent appears given the antecedent. The support will always be lower than the frequency of each item
+                individually, and the confidence of a rule will always be greater than or equal to the rule. Lift measures the degree of correlation
+                between the antecedent and consequent, accounting for the base frequency of both.
+
+                The Apriori algorithm is a popular algorithm used in association rule mining. It works by generating a set of candidate itemsets
+                and pruning them based on their support values. The algorithm starts with single items and incrementally builds larger itemsets 
+                until no more frequent itemsets can be found. It prunes supersets by checking whether all subsets of a candidate itemset meet 
+                the minimum support threshold. This reduces the search space and improves efficiency.
+            </p>
+            <figure>
+                <img class="figure" src="/csci5622/figures/arm/apriori.png">
+                <figcaption>The Apriori Algorithm makes rule mining much more effient as supersets of infrequent rules are pruned.</figcaption>
+            </figure>
+            <p>
+                For this dataset, ARM is used to find associations between the various assets included in the DHS surveys, such as cell phones, 
+                bicycles, mosquito nets, and refridgerators.
+            </p>
+
             <h3>Data Prep</h3>
+            <p>
+                As described above, 
+            </p>
+
             <h3>Code</h3>
+            
+            
             <h3>Results</h3>
             <figure>
                 <a href="/csci5622/rulesVis.html">
@@ -23,6 +72,14 @@
                 <figcaption>An interactive visualization of the 10 rules with the highest lift. Click the image for the interactive version!</figcaption>
             </figure>
             <h3>Conclusions</h3>
+            <h3>References</h3>
+            <p class="reference">
+                Data Camp. 2018. "Market Basket Analysis using R." https://www.datacamp.com/tutorial/market-basket-analysis-r
+            </p>
+            <p class="reference">
+                Engati. 2021. "What is Apriori Algorithm?." https://www.engati.com/glossary/apriori-algorithm
+            </p>
+           
         </div>
     </div>
 
