@@ -76,7 +76,7 @@
 
             Finally, we can calculate the information gain in terms of Entropy:
 
-            \[InformationGain = E(Before) - E(After) = 0.50 - {(13*0.14) + (17*0.36) \over 30 } \approx 0.24 \]
+            \[InformationGain = E(Before) - E(After) = 0.50 - {(13*0.14) + (17*0.36) \over 30 } \approx 0.24 bits \]
 
             By using these methods to measure the "goodness" of a split, the Decision Tree algorithm is able to find the optimal split points that will result in the most accurate predictions. If all of the variables used for the decision tree, there will be many but finite possible trees. However, if even a single numerical variable is introduced, there becomes an infinite number of ways that the nodes can be split, and thus an infinite number of possible trees. Not all trees are equally effective in making accurate predictions, and so it's important to use methods like GINI and Entropy to guide the creation of the most effective decision tree.
             
@@ -113,11 +113,15 @@
             <figure>
                 <img class="figure" src="/csci5622/figures/dtrees/codeSnippet.png">
             </figure>
+
             <h3>Results</h3>
+            
             <h3>Conclusions</h3>
+            
             <h3>References</h3>
             <p class="reference">Chauhan, Nagesh Singh. 2022. "Decision Tree Algorithm, Explained." KD Nuggets. https://www.kdnuggets.com/2020/01/decision-tree-algorithm-explained.html</p>
             <p class="reference">Provost, Foster; Fawcett, Tom. 2013. "Data Science for Business: What You Need to Know about Data Mining and Data-Analytic Thinking."</p>
+            <p class="reference">Kamperis, Stathis. 2021. "Decision Trees: Gini index vs entropy". https://ekamperi.github.io/machine%20learning/2021/04/13/gini-index-vs-entropy-decision-trees.html</p>
         </div>
     </div>
 </body>
