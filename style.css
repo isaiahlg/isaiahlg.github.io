@@ -51,12 +51,12 @@ img:hover {
     margin: 10px 10px;
     transition-duration: 0.5s;
     border-radius: 25px;
-    box-shadow: 0 0px 10px 0 rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0px 10px 0 rgba(255, 255, 255, 0.1);
 }
 
 .back-button:hover {
     background-color: blueviolet; 
-    box-shadow: 0 0px 20px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0px 30px 0 rgba(255, 255, 255, 0.4);
     margin-left: 30px;
 }
 
@@ -73,12 +73,12 @@ img:hover {
     border-radius: 30px;
     width: 40%;
     text-decoration: none;
-    box-shadow: 0px 0px 10px 0 rgba(255, 255, 255, 0.15);
+    box-shadow: 0px 0px 10px 0 rgba(255, 255, 255, 0.2);
 }
 
 .purple-button:hover {
     background-color: blueviolet; 
-    box-shadow: 0px 0px 20px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 0px 30px 0 rgba(255, 255, 255, 0.4);
     font-size: 18px;
     margin: 0px 10px;
 }
@@ -141,7 +141,7 @@ hr.rounded {
 }
 
 .textbox {
-    background-color: rgba(0,0,0, 0.8);
+    background-color: rgba(0,0,0, 0.9);
     padding-left: 100px;
     padding-right: 100px;
     padding-top: 50px;
@@ -153,6 +153,7 @@ hr.rounded {
 }
 
 .textbox:hover {
+    background-color: rgba(0,0,0, 0.7);
     box-shadow: 0px 0px 60px rgba(255, 255, 255, 0.4);
 }
 
