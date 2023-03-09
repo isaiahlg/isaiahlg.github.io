@@ -19,6 +19,7 @@ body {
     height: 300px;
     width: auto;
     margin-top: 100px;
+    margin-bottom: 5px;
     box-shadow: 0px 0px 20px 0 rgba(255, 255, 255, 0.3);
     transition-duration: 0.5s;
 }
@@ -27,6 +28,7 @@ body {
     height: 310px;
     width: auto;
     margin-top: 95px;
+    margin-bottom: 0px;
     box-shadow: 0px 0px 30px 0 rgba(255, 255, 255, 0.5);
 }
 
@@ -78,6 +80,7 @@ img:hover {
     background-color: blueviolet; 
     box-shadow: 0px 0px 20px 0 rgba(255, 255, 255, 0.3);
     font-size: 18px;
+    margin: 0px 0px;
 }
 
 hr.rounded {
@@ -108,6 +111,7 @@ hr.rounded {
 .navbar a:hover {
     background-color: blueviolet;
     font-size: 15px;
+    padding-bottom: 19px;
 }
 
 .navbar .active {
@@ -145,10 +149,11 @@ hr.rounded {
     border-radius: 20px;
     text-align: left;
     box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.2);
+    transition-duration: 0.5s;
 }
 
 .textbox:hover {
-    box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 0px 60px rgba(255, 255, 255, 0.4);
 }
 
 .text a {

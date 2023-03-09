@@ -5,13 +5,51 @@
     <title>Isaiah LG - ML/D-Trees</title>
     <link rel="stylesheet" href="/style.css">
     <script src="https://kit.fontawesome.com/f4ea09cda5.js" crossorigin="anonymous"></script>
+    <!-- for rendering equations from TeX to HTML -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body>
     <button class="back-button" onclick="history.back()"><i class="fa-solid fa-arrow-left"></i></button>
     <div class="content">
         <div class="textbox">
-            <h1>Decision Trees</h1>
+            <h1><i class="fa fa-tree"></i> Decision Trees</h1>
+            <h3>Overview</h3>
+            Decision Trees are a popular machine learning algorithm used to solve a variety of problems, such as classification and regression. At a high level, Decision Trees work by splitting the data based on different features or attributes, in order to create a tree-like structure of decision rules. Decision trees are one of the few non-linear ways of partitioning data, making them especially powerful for mixed data that includes both qualitative and quantitative variables. 
+            <figure>
+                <img class="figure" src="/csci5622/figures/dtrees/structure.png">
+                <figcaption>
+                    This diagram shows the anatomy of a decision tree. After each node, the data is split based on a given variable designed to reduce the entropy as much as possible. The splitting continues until one ends up at a terminal node. (Chauhan, 2022)
+                </figcaption>
+            </figure>
+            To create a Decision Tree, the Decision Tree algorithm will look at the data and try to find the most important features that are highly correlated with the target variable  It will then split the data based on these features, creating a tree-like structure where each branch represents a decision rule. In order to determine which feature to split on and how to determine the threshold for the split, the Decision Tree algorithm evaluates "goodness" of a split by calculating the "Information Gain" for the given split. Information Gain is defined as the reduction in either the GINI or Entropy of the data. 
+            
+            <h4>Gini</h4>
+            Gini measures the impurity of a node in the decision tree. The lower the GINI score, the more pure the node is (i.e. the more homogeneous the data is within that node). 
+            The equation for GINI is:
+                \[Gini = 1 - \sum_ {i=1}^C (p_i)^2 \]
+            
+            where \(i\) represents each possible value of the target variable on the given node of the decision tree with \(C\) possible values. \(p_i\) is the probability of each of those values. Here, we are squaring the probability of each of the values and then subtracting them from 1. The more imbalanced the data, the lower the value of the Gini will be. \(Gini \in [0,0.5]\). The minimum value of 0.0 occurs when the probability of one element is 1.0 (100%) and thus 0.0 for all others. The maximum value of 0.5 occurs when there are two target values (\(C=2\)) and there is an equal probability of both (\(p_i = 0.5\)). When the target values are evenly distributed, then the value of \(Entropy = 1 - {1 \over C}\). Optimizing for Gini tends to lead to fewer, larger nodes in the tree. 
+            
+            <h4>Entropy</h4>
+            Entropy, on the other hand, is a measure of the uncertainty or randomness within a node. A lower entropy score indicates a more certain or predictable outcome. The equation for Entropy is:
+                \[Entropy = \sum_{i=1}^C -p_i * log_2(p_i) \]
+
+            To calculate entropy of a node, we are multiplying the negative probability of each value times the logarithm base 2 of each probability. Since the probability is always bewteen \([0,1]\), the \(log_2(p_i)\) will always be negative, and thus is flipped back to positive when multiplied by \(-p_i\). That's how \(Entropy \in [0,log_2(k)]\). Optimizing for Entropy tends to favor splitting into more smaller nodes in the tree. By using these methods to measure the "goodness" of a split, the Decision Tree algorithm is able to find the optimal split points that will result in the most accurate predictions.
+            </p>
+            <h4>Example</h4>
+            <figure>
+                <img class="figure" src="/csci5622/figures/dtrees/example.png">
+                <figcaption>Here's an example. </figcaption>
+            </figure>
+            If all of the variables used for the decision tree, there will be many but finite possible trees. However, if even a single numerical variable is introduced, there becomes an infinite number of ways that the nodes can be split, and thus an infinite number of possible trees. Not all trees are equally effective in making accurate predictions, and so it's important to use methods like GINI and Entropy to guide the creation of the most effective decision tree.
+            <h3>Data Prep</h3>
+            <h3>Code</h3>
+            <h3>Results</h3>
+            <h3>Conclusions</h3>
+            <h3>References</h3>
+            <p class="reference">Chauhan, Nagesh Singh. 2022. "Decision Tree Algorithm, Explained." KD Nuggets. https://www.kdnuggets.com/2020/01/decision-tree-algorithm-explained.html</p>
         </div>
     </div>
 </body>
