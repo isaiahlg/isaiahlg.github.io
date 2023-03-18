@@ -115,9 +115,52 @@
             </figure>
 
             <h3>Results</h3>
+            The resulting decision tree is pictured below:
+            <figure>
+                <img class="figure" src="/csci5622/figures/dtrees/dtree.png">
+                <figcaption>The resulting decision tree for the data.</figcaption>
+            </figure>
+            A graph of the x-relative error compared to the complexity parameter is shown below. Interestingly, the resulting tree is just four levels deep, suggesting that many of the variables included in the model were not relevant for classification. 
+            <figure>
+                <img class="figure" src="/csci5622/figures/dtrees/cpplot.png">
+                <figcaption>The relationship between the complexity parameter and the x-relative error.</figcaption>
+            </figure>
+            When this model is applied to the 20% of disjoint data kept for testing, the overall accuracy of the model is 39.17%. While this might seem low, its important to remember that there are 5 categories. The no information accuracy would have been 23.45%, meaning that htis model is nearly a 2X improvement over the null model.  The 95% confidence interval of that accuracy is from 37.3% up to 41.1%, a relatively narrow range resulting from the size of the data. The p-value of this model is nearly 0, so a definitive improvement over null. Below are two copies of the confusion matrix, where the frequency is mapped to size and color respectively.
+            <figure>
+                <img class="figure2" src="/csci5622/figures/dtrees/confmatrixblocks.png"> 
+                <img class="figure2" src="/csci5622/figures/dtrees/confmatrixheat.png">
+                <figcaption>The confusion matrices where frequency is mapped to size and color respectively.</figcaption>
+            </figure>
+            <p></p>
+            Finally, to wrap up the results, below is a list of the variables as ranked by their importance:
+            <ol>
+                <li>hv208 (Television): 25</li>
+                <li>hv209 (Refridgerator): 21</li>
+                <li>hv206 (Electricity): 18</li>
+                <li>hv243a (Mobile telephone): 14</li>
+                <li>hv247 (Bank account): 7</li>
+                <li>hv243e (Computer): 6</li>
+                <li>hv243b (Watch): 5</li>
+                <li>hv212 (Car): 2</li>
+                <li>hv216 (# Rooms for sleeping): 1</li>
+                <li>hv207 (Radio): 1</li>
+            </ol>
             
             <h3>Conclusions</h3>
-            
+            Creating a decision tree a very interesting exercise for this dataset. One of the most useful insights that we can glean from the decision tree is the list of variable importance. The biggest differentiator between the rich and poor seems to be ownership of a TV, followed closely by ownership of a refridgerator. Effectively none of the poorest households own a TV, and owning one means there's a 50% chance you're in the top 20%.  Owning a TV and a fridge means there's a 2/3 chance of being in the top 20%. This is interesting given that a TV costs around $50 and a fridge around $250 in Sierra Leone, suggesting that the average amount of assets held by a household is quite low. On the other end of the spectrum, if you do not have a TV nor a cell phone, you are most likely in the bottom 20% of households. The best differentiator between the bottom 20% and the next quintile up is owning a wristwatch. 
+            <p></p>
+            Another interesting outcome of the model, is that is it is much better at predicting the extremes than the middle classes. The class-level accuracy is highest for the bottom and top quintiles. This means that it is easier to distinguish the poor and the rich, but harder to differential among the middle class. 
+            <p></p>
+            Finally, let's think about why the model may have performed relatively poorly. The columns included in the analysis were selected to be representative of the assets that households have, but the accuracy was still just around 40%. It seems that there are other important variables that may be used in the calculation of the wealth index.  Possible columns that might be relevant for predicting economic class in future analysis could be:
+            <ol>
+                <li>hv213: Main floor material</li>
+                <li>hv214: Main wall material</li>
+                <li>hv215: Main roof material</li>
+                <li>hv244: Owns land usable for agriculture</li>
+                <li>hv245: Hectares of agricultural land (1 decimal)</li>
+                <li>hml1: Number of mosquito bed nets</li>
+            </ol>
+            Such analysis is recommended for future studies. 
             <h3>References</h3>
             <p class="reference">Chauhan, Nagesh Singh. 2022. "Decision Tree Algorithm, Explained." KD Nuggets. https://www.kdnuggets.com/2020/01/decision-tree-algorithm-explained.html</p>
             <p class="reference">Provost, Foster; Fawcett, Tom. 2013. "Data Science for Business: What You Need to Know about Data Mining and Data-Analytic Thinking."</p>
