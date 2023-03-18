@@ -120,7 +120,7 @@
                 <img class="figure" src="/csci5622/figures/dtrees/dtree.png">
                 <figcaption>The resulting decision tree for the data.</figcaption>
             </figure>
-            A graph of the x-relative error compared to the complexity parameter is shown below. Interestingly, the resulting tree is just four levels deep, suggesting that many of the variables included in the model were not relevant for classification. 
+            A graph of the x-relative error compared to the complexity parameter is shown below. The minimum complexity parameter value for this tree was 0.016. Interestingly, the resulting tree is just four levels deep, suggesting that many of the variables included in the model were not relevant for classification. 
             <figure>
                 <img class="figure" src="/csci5622/figures/dtrees/cpplot.png">
                 <figcaption>The relationship between the complexity parameter and the x-relative error.</figcaption>
@@ -132,7 +132,7 @@
                 <figcaption>The confusion matrices where frequency is mapped to size and color respectively.</figcaption>
             </figure>
             <p></p>
-            Finally, to wrap up the results, below is a list of the variables as ranked by their importance:
+            Finally, to wrap up the results of this decision tree, below is a list of the variables as ranked by their importance:
             <ol>
                 <li>hv208 (Television): 25</li>
                 <li>hv209 (Refridgerator): 21</li>
@@ -145,7 +145,17 @@
                 <li>hv216 (# Rooms for sleeping): 1</li>
                 <li>hv207 (Radio): 1</li>
             </ol>
-            
+            To experiment a bit further with decision tree creation, another tree is created with a manual complexity parameter of 0.005 instead of 0.016 in order to create a tree with more nodes. The resulting tree is pictured below. Interestingly, when this model is run on the test dataset, the accuracy was exactly the same at 39.17%. This is good evidence that these lower nodes are not important for the performance of the model. 
+            <figure>
+                <img class="figure" src="/csci5622/figures/dtrees/dtree2.png">
+                <figcaption>A second decision tree model with the complexity parameter lowered to 0.005 to add depth.</figcaption>
+            </figure>
+            Finally, to be more rigorous in evaluating the performance of the decision tree model, another model is created using 5-fold cross validation. This method is better able to optimize for performance on unseen data by average the MSE for each of 5 test runs. The resulting tree is pictured below. The most striking feature of this tree is its simplicity -- it only uses two binary variables (TV, then cell phone), to classify households. It completely ignores categories 2 and 4 and instead just classifies households into poor (1), middle (3), and rich (5). The performance of this model on the test dataset is 35.8%, just a little bit worse but much simpler. This entire decision tree could be communicated verbally to someone. An interesting final result!
+            <figure>
+                <img class="figure" src="/csci5622/figures/dtrees/dtree5.png">
+                <figcaption>A third decision tree model created with 5-fold cross validation.</figcaption>
+            </figure>
+            The most important variable has changed! We now have "type of floor" emerging as the biggest differentiator between the wealthy and the poor.  
             <h3>Conclusions</h3>
             Creating a decision tree a very interesting exercise for this dataset. One of the most useful insights that we can glean from the decision tree is the list of variable importance. The biggest differentiator between the rich and poor seems to be ownership of a TV, followed closely by ownership of a refridgerator. Effectively none of the poorest households own a TV, and owning one means there's a 50% chance you're in the top 20%.  Owning a TV and a fridge means there's a 2/3 chance of being in the top 20%. This is interesting given that a TV costs around $50 and a fridge around $250 in Sierra Leone, suggesting that the average amount of assets held by a household is quite low. On the other end of the spectrum, if you do not have a TV nor a cell phone, you are most likely in the bottom 20% of households. The best differentiator between the bottom 20% and the next quintile up is owning a wristwatch. 
             <p></p>
@@ -153,14 +163,46 @@
             <p></p>
             Finally, let's think about why the model may have performed relatively poorly. The columns included in the analysis were selected to be representative of the assets that households have, but the accuracy was still just around 40%. It seems that there are other important variables that may be used in the calculation of the wealth index.  Possible columns that might be relevant for predicting economic class in future analysis could be:
             <ol>
+                <li>hv205: Type of toilet</li>
                 <li>hv213: Main floor material</li>
                 <li>hv214: Main wall material</li>
                 <li>hv215: Main roof material</li>
                 <li>hv244: Owns land usable for agriculture</li>
                 <li>hv245: Hectares of agricultural land (1 decimal)</li>
-                <li>hml1: Number of mosquito bed nets</li>
             </ol>
             Such analysis is recommended for future studies. 
+            
+            
+            <h3>Bonus Tree</h3>
+            The future is now! The tree is rerun with the additional variables suggested above because the author was just too curious. Below is the resulting tree--notice significantly more depth.
+            <figure>
+                <img class="figure" src="/csci5622/figures/dtrees/dtree3.png">
+                <figcaption>A fourth decision tree model created with the addition of 5 variables.</figcaption>
+            </figure>
+            The most important variable has changed! We now have "type of floor" emerging as the biggest differentiator between the wealthy and the poor. The next two most important variables are type of roof and type of wall materials. It seems that the DHS surveyors factor these variables much more heavily into their categorization of households in the wealth index. The full new variable importance is:
+            <ol>
+                <li>hv213 (Floor material): 18</li>
+                <li>hv214 (Wall material): 16</li>
+                <li>hv243a (Mobile telephone): 12</li>
+                <li>hv205 (Type of toilet): 11</li>
+                <li>hv244 (Ag. Landowner): 9</li>
+                <li>hv245 (# of Ag. hectacres): 9</li>
+                <li>hv215 (Roof material): 8</li>
+                <li>hv209 (Refridgerator): 5</li>
+                <li>hv208 (Television): 4</li>
+                <li>hv243b (Watch): 2</li>
+                <li>hv206 (Electricity): 1</li>
+                <li>hv243e (Computer): 1</li>
+                <li>hv207 (Radio): 1</li>
+                <li>hv246f (Chickens): 1</li>
+                <li>hv246d (Goats): 1</li>
+            </ol>
+            Another very notable thing about this new model is that our accuracy has improved from 39.17% up to 48.97%, a very significant improvement! Consequently, the confusion matrix has more values concentrated along the diagonal (more red) than before, as pictured below.
+            <figure>
+                <img class="figure" src="/csci5622/figures/dtrees/confmatrixheat3.png">
+                <figcaption>The confusion matrix for the latest model with a nearly 50% accuracy for 5 classes.</figcaption>
+            </figure>
+            A very interesting improvement overall, very worth the extra run!
             <h3>References</h3>
             <p class="reference">Chauhan, Nagesh Singh. 2022. "Decision Tree Algorithm, Explained." KD Nuggets. https://www.kdnuggets.com/2020/01/decision-tree-algorithm-explained.html</p>
             <p class="reference">Provost, Foster; Fawcett, Tom. 2013. "Data Science for Business: What You Need to Know about Data Mining and Data-Analytic Thinking."</p>
