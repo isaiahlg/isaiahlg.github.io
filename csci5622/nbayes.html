@@ -7,10 +7,13 @@
     <script src="https://kit.fontawesome.com/f4ea09cda5.js" crossorigin="anonymous"></script>
     <!-- For converting markdown to html -->
     <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <!-- for rendering equations from TeX to HTML -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body>
-    <button class="back-button" onclick="history.back()"><i class="fa-solid fa-arrow-left"></i></button>
+    <button class="back-button" onclick="window.location.href='/csci5622/home.html';"><i class="fa-solid fa-arrow-left"></i></button>
     <div class="content">
         <div class="textbox">
             <!-- Assignment
@@ -25,27 +28,102 @@
             (e) Conclusions. What did you learn (and/or what can you predict here) that pertains to your topic? -->
             <md-block>
             # Naive Bayes
-            Naive Bayes is a popular machine learning algorithm used for classification tasks. It is based on Bayes' theorem, which states that the probability of a hypothesis given some evidence is proportional to the probability of the evidence given the hypothesis, multiplied by the prior probability of the hypothesis.
+            
+            ### Overview
+            Naive Bayes is a popular machine learning algorithm used for classification tasks. It is based on Bayes' theorem, which states that the probability of a hypothesis given some evidence is proportional to the probability of the evidence given the hypothesis, multiplied by the prior probability of the hypothesis. In Naive Bayes, the input features are assumed to be independent of each other. This means that the algorithm assumes that the presence or absence of a particular feature is unrelated to the presence or absence of any other feature. In real world data, this is often not the case, and so inputs and outputs must be adapted accordingly. 
 
             There are several types of Naive Bayes algorithms, including Basic Naive Bayes, Multinomial Naive Bayes, Bernoulli Naive Bayes, and Gaussian Naive Bayes. Let's take a closer look at each of these.
             
-            1. Basic Naive Bayes: This is the simplest form of Naive Bayes, where the input features are assumed to be independent of each other. This means that the algorithm assumes that the presence or absence of a particular feature is unrelated to the presence or absence of any other feature. This makes it suitable for binary classification problems.
+            1. Multinomial Naive Bayes: This algorithm is often used for text classification tasks, where the input features are the frequency of occurrence of each word in a document. It assumes that the frequency of each word in a document follows a multinomial distribution.
             
-            2. Multinomial Naive Bayes: This algorithm is used for text classification tasks, where the input features are the frequency of occurrence of each word in a document. It assumes that the frequency of each word in a document follows a multinomial distribution.
+            1. Bernoulli Naive Bayes: This algorithm is similar to Multinomial Naive Bayes, but it is used for binary data, where each feature can take on only two values, usually 0 or 1. It assumes that the features are independent and follow a Bernoulli distribution. Instead of word frequency, this model looks instead at whether the word appeared or not.
             
-            3. Bernoulli Naive Bayes: This algorithm is similar to Multinomial Naive Bayes, but it is used for binary data, where each feature can take on only two values, usually 0 or 1. It assumes that the features are independent and follow a Bernoulli distribution.
+            1. Gaussian Naive Bayes: This algorithm is used for continuous data, where the input features are assumed to follow a Gaussian distribution. It is often used in data science applications where the input features are measurements, such as temperature or weight.
             
-            4. Gaussian Naive Bayes: This algorithm is used for continuous data, where the input features are assumed to follow a Gaussian distribution. It is often used in data science applications where the input features are measurements, such as temperature or weight.
-            
-            In summary, Naive Bayes algorithms are used for classification tasks, where the goal is to predict the class of a given input based on a set of features. Depending on the type of data being used, one of the four types of Naive Bayes algorithms can be used to build a classifier.
-            
-            
-
-
-
-
-            
+            In summary, Naive Bayes algorithms are used for classification tasks, where the goal is to predict the class of a given input based on a set of features. Depending on the type of data being used, one of the types of Naive Bayes algorithms can be used to build a classifier.
             </md-block>
+            \[Bayes \space Theorem\]
+            \[ P(A|B) = {P(A) \over P(B)}*P(B|A)\]
+            <h3>Data Prep</h3>
+            In order to do supervised learning, one needs a dataset with a label. For this dataset, the target variable of interest in the wealth index quantile. Instead of using the one that is normalized for urban and rural (hv270a) as was used for decision trees, this analysis uses the combined wealth index since the data are not split (hv270). There are 5 groups, and it is interesting to see which variables are the strongest predictors of this. The Naive Bayes model is analyzing the relavance of each other variable in the survey towards predicting the wealth quantile. The variables of interest are the assets used during Association Rule Mining, and the additional variables discovered to be significant in Decision Trees. The demographic data has been removed since it was found to be insignificant during decision tree modeling. Since this will be mixed data, it will need to be performed in R. 
+            <p></p>
+            A copy of the full dataset can be found <a href="https://github.com/isaiahlg/csci5622mod3/blob/main/proj/data/sl19.rds" target="_blank">here</a>. To clean the data, the full survey dataset is pulled again from DHS and then trimmed down to just the variables of interest. Next, some additional cleaning is performed to remove missing or unknown values. An additional step is required here to see which variables are highly correlated with each other, and to remove them accordingly. This helps to meet this assumptions of Naive Bayes. To do this, we calculate the correlation of each variable with each other variable, and plot it in a matrix. We then go hunting for the strongest correlations, and eliminate those accordingly. Both correlation matrices before and after filtering are displayed below. 
+            <figure>
+                <img class="figure" src="/csci5622/figures/nbayes/corrbefore.png">
+                <figcaption>A matrix of the correlation between independent variables. Large, dark blue cirlces indicate high correlations that should be eliminated.</figcaption>
+            </figure>
+
+            <figure>
+                <img class="figure" src="/csci5622/figures/nbayes/corrafter.png">
+                <figcaption>A matrix of the correlation between independent variables after filtering. The strongest correlations have been removed.</figcaption>
+            </figure>
+            Next, categorical variables (including the label) are converted to factors to ensure like values are grouped by R. A copy of the clean dataset can be found <a href="https://github.com/isaiahlg/csci5622mod3/blob/main/proj/data/sl19nbClean.rds" target="_blank">here</a>. Before going further, we need to check that the data are relatively balanced between the five wealth index groups. 
+            <figure>
+                <img class="figure" src="/csci5622/figures/nbayes/balanceAll.png">
+                <figcaption>A histogram of the wealth index groups for the entire dataset. Here we can see that the data are relatively balanced between the groups, with the largest group < 20% larger than the smallest group.</figcaption>
+            </figure>
+            Finally, the data need to be split into a training set and testing set. It is important that the test data and the training data are kept disjoint, meaning that the model is never trained on the test data. This maximizes the performance of the model on never before seen data because it ensures that the model isn't just simply fitted to all of the data at hand. Because the data contain over 13,000 rows, there is not much concern of having sufficiently large samples. To split the data, 80% of the rows are randomly sampled without replacement into a training data set, with the remaining 20% serving as the testing data set. The two data sets remain disjoint for proper evaluation of the NB model. Below are snapshots of the training and testing dataset accordingly. Click on the images to get to RDS files on GitHub.
+            <figure>
+                <a href="https://github.com/isaiahlg/csci5622mod3/blob/main/proj/data/testDFnb.rds" target="_blank">
+                    <img class="figure" src="/csci5622/figures/nbayes/trainData.png">
+                </a>
+                <figcaption>A snapshot of the training data</figcaption>
+            </figure>
+            <figure>
+                <a href="https://github.com/isaiahlg/csci5622mod3/blob/main/proj/data/trainDFnb.rds" target="_blank"></a>
+                    <img class="figure" src="/csci5622/figures/nbayes/testData.png">
+                </a>
+                <figcaption>A snapshot of the test data</figcaption>
+            </figure>  
+            Finally, we need to check to see that the test and the train data are still balanced among the categories with histograms:
+            <figure>
+                <img class="figure2" src="/csci5622/figures/nbayes/balanceTest.png">
+                <img class="figure2" src="/csci5622/figures/nbayes/balanceTrain.png">
+            </figure>
+            </p>
+            <h3>Code</h3>
+            Find all of the code use to clean the data and run the Naive Bayes models in R on GitHub <a href="https://github.com/isaiahlg/csci5622mod3/blob/main/proj/nbayes.Rmd" target="_blank">here.</a> 
+            <figure>
+                <img class="figure" src="/csci5622/figures/nbayes/codeSnippet.png">
+            </figure>
+            <md-block>
+            ### Results
+            Naive Bayes is run with the package e1071 on the dataset. A laplace smoothing of 1 was applied to the numerator and denominator to handle zero probabilities. When the model is applied to the test dataset, an overall accuracy of 55.3% is achieved. The full confusion matrix statistics are below in a table, along with a heatmap of the predictions by class.
+            </md-block>
+            <figure>
+                <img class="figure" src="/csci5622/figures/nbayes/cmTable.png">
+                <figcaption>A table of the confusion matrix data.</figcaption>
+                <img class="figure" src="/csci5622/figures/nbayes/cm.png">
+                <figcaption>A heatmap of the confusion matrix data.</figcaption>
+            </figure>
+            <md-block>
+            The model was run as well without removing the highly correlated columns, and this reduced the accuracy of the model down to 42.53%. It seems that reducing the number of columns used in Naive Bayes intelligently can improve the model performance. 
+            ### Conclusions
+            The overall accuracy of the Naive Bayes model is lower than that of the decision tree model when the DT model is run for the combined wealth index variable, hv270 (71.08% accuracy versus 55.3%). This could very well be because the Decision Tree effectively performs variable selection with the complexity parameter. This would be in line with the findings from running the model on all variables, even the highly correlated ones. Therefore, it is worth re-running Naive Bayes with just the variables that performed well in the decision tree to see if the accuracy is improved. The variables to keep along with their importance from the decision tree are:
+            1. hv213 (Floor material): 17
+            1. hv214 (Wall material): 13
+            1. hv208 (Television): 11
+            1. hv205 (Type of toilet): 10
+            1. hv244 (Ag. Landowner): 8
+            1. hv245 (# of Ag. hectacres): 8
+            1. hv243a (Mobile telephone): 8
+            1. hv206 (Electricity): 7
+            1. hv209 (Refridgerator): 6
+            1. hv247 (Bank account): 3
+            1. hv215 (Roof material): 2
+            1. hv246f (Chickens): 1
+            1. hv207 (Radio): 1
+            1. hv216 (# Sleeping Rooms): 1
+            1. hv243b (Watch): 1
+            1. hv246d (Goats): 1
+            
+            As hypothesized, using these variables instead improved the accuracy of the NB model from 55.3% up to an impressive 74.22%, even higher than the accuracy of the decision tree model! This is an exciting result. However, it is frustrating that Naive Bayes is not able to perform variable selection for us--to achieve such an accuracy, we have to rely on the outputs of the decision tree model. To finish this section off, check out the final confusion matrix that finally looks as one might hope a confusion matrix to look. 
+            </md-block>
+            <figure>
+                <img class="figure" src="/csci5622/figures/nbayes/cm2.png">
+                <figcaption>A beautiful confusion matrix.</figcaption>
+            </figure>
+
         </div>
     </div>
 </body>
