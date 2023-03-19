@@ -44,6 +44,19 @@
             </md-block>
             \[Bayes \space Theorem\]
             \[ P(A|B) = {P(A) \over P(B)}*P(B|A)\]
+            To apply this to our situation, let's substitute in the probability of vector \(X\) belonging to class \(y\):
+            \[ P(y|X) = {P(y) \over P(X)}*P(X|y)\]
+            Since P(X) is the same for any given vector X, we can find the relative probability without this term. 
+            \[ P(y|X) \propto P(y)*P(X|y)\]
+            Since \(x_i\) is independent, the probability of X can be expressed as the product \(x_i\):
+            \[ P(y|X) \propto P(y)*P(x_1|y)*P(x_2|y)*...*P(x_n|y)\]
+            ...or more concisely written:
+            \[ P(y|X) \propto P(y)*\prod_{i=i}^n P(x_i|y)\]
+            This gives us the formula by which we can calculate the relative probability of vector X belonging to class y and make predictions accordingly!
+            <figure>
+                <img class="figure" src="/csci5622/figures/nbayes/diagram.jpg">
+                <figcaption>A diagram illustrating how the Naive Bayes classifier works. The probability of a given vector belonging to a class can be calculated by finding the probability of each element in the vector appearing for the given class throughout the dataset. The total probability is calculated as the product of each of these probabilities times the probability of the class y appearing at all.  (Image from Coderz Column, 2022)</figcaption>
+            </figure>
             <h3>Data Prep</h3>
             In order to do supervised learning, one needs a dataset with a label. For this dataset, the target variable of interest in the wealth index quantile. Instead of using the one that is normalized for urban and rural (hv270a) as was used for decision trees, this analysis uses the combined wealth index since the data are not split (hv270). There are 5 groups, and it is interesting to see which variables are the strongest predictors of this. The Naive Bayes model is analyzing the relavance of each other variable in the survey towards predicting the wealth quantile. The variables of interest are the assets used during Association Rule Mining, and the additional variables discovered to be significant in Decision Trees. The demographic data has been removed since it was found to be insignificant during decision tree modeling. Since this will be mixed data, it will need to be performed in R. 
             <p></p>
@@ -116,14 +129,15 @@
             1. hv216 (# Sleeping Rooms): 1
             1. hv243b (Watch): 1
             1. hv246d (Goats): 1
-            
+
             As hypothesized, using these variables instead improved the accuracy of the NB model from 55.3% up to an impressive 74.22%, even higher than the accuracy of the decision tree model! This is an exciting result. However, it is frustrating that Naive Bayes is not able to perform variable selection for us--to achieve such an accuracy, we have to rely on the outputs of the decision tree model. To finish this section off, check out the final confusion matrix that finally looks as one might hope a confusion matrix to look. 
             </md-block>
             <figure>
                 <img class="figure" src="/csci5622/figures/nbayes/cm2.png">
                 <figcaption>A beautiful confusion matrix.</figcaption>
             </figure>
-
+            <h3>References</h3>
+            <p class="reference">Coderz Column, 2022. "Scikit-Learn - Naive Bayes for Classification Tasks". https://coderzcolumn.com/tutorials/machine-learning/scikit-learn-sklearn-naive-bayes</p>
         </div>
     </div>
 </body>
