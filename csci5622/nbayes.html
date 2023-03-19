@@ -5,6 +5,7 @@
     <title>Isaiah LG - ML/Naive Bayes</title>
     <link rel="stylesheet" href="/style.css">
     <script src="https://kit.fontawesome.com/f4ea09cda5.js" crossorigin="anonymous"></script>
+    <!-- For converting markdown to html -->
     <script type="module" src="https://md-block.verou.me/md-block.js"></script>
 </head>
 
@@ -24,7 +25,25 @@
             (e) Conclusions. What did you learn (and/or what can you predict here) that pertains to your topic? -->
             <md-block>
             # Naive Bayes
-            This is a test of some markdown. 
+            Naive Bayes is a popular machine learning algorithm used for classification tasks. It is based on Bayes' theorem, which states that the probability of a hypothesis given some evidence is proportional to the probability of the evidence given the hypothesis, multiplied by the prior probability of the hypothesis.
+
+            There are several types of Naive Bayes algorithms, including Basic Naive Bayes, Multinomial Naive Bayes, Bernoulli Naive Bayes, and Gaussian Naive Bayes. Let's take a closer look at each of these.
+            
+            1. Basic Naive Bayes: This is the simplest form of Naive Bayes, where the input features are assumed to be independent of each other. This means that the algorithm assumes that the presence or absence of a particular feature is unrelated to the presence or absence of any other feature. This makes it suitable for binary classification problems.
+            
+            2. Multinomial Naive Bayes: This algorithm is used for text classification tasks, where the input features are the frequency of occurrence of each word in a document. It assumes that the frequency of each word in a document follows a multinomial distribution.
+            
+            3. Bernoulli Naive Bayes: This algorithm is similar to Multinomial Naive Bayes, but it is used for binary data, where each feature can take on only two values, usually 0 or 1. It assumes that the features are independent and follow a Bernoulli distribution.
+            
+            4. Gaussian Naive Bayes: This algorithm is used for continuous data, where the input features are assumed to follow a Gaussian distribution. It is often used in data science applications where the input features are measurements, such as temperature or weight.
+            
+            In summary, Naive Bayes algorithms are used for classification tasks, where the goal is to predict the class of a given input based on a set of features. Depending on the type of data being used, one of the four types of Naive Bayes algorithms can be used to build a classifier.
+            
+            Both Multinomial and Bernoulli Naive Bayes are known for their simplicity, efficiency, and effectiveness, particularly for text classification tasks. They can handle large amounts of data with high dimensionality, and are relatively insensitive to irrelevant features. However, their assumptions of feature independence may not always hold in real-world datasets, leading to reduced performance.
+
+
+
+
             
             </md-block>
         </div>
