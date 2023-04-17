@@ -15,7 +15,7 @@
     <div class="content">
         <div class="textbox">
             <h1><i class="fa fa-tree"></i> Decision Trees</h1>
-            <h3>Overview</h3>
+            <h2>Overview</h2>
             Decision Trees are a popular machine learning algorithm used to solve a variety of problems, such as classification and regression. At a high level, Decision Trees work by splitting the data based on different features or attributes, in order to create a tree-like structure of decision rules. Decision trees are one of the few non-linear ways of partitioning data, making them especially powerful for mixed data that includes both qualitative and quantitative variables. 
             <figure>
                 <img class="figure" src="/csci5622/figures/dtrees/structure.png">
@@ -80,7 +80,7 @@
 
             By using these methods to measure the "goodness" of a split, the Decision Tree algorithm is able to find the optimal split points that will result in the most accurate predictions. If all of the variables used for the decision tree, there will be many but finite possible trees. However, if even a single numerical variable is introduced, there becomes an infinite number of ways that the nodes can be split, and thus an infinite number of possible trees. Not all trees are equally effective in making accurate predictions, and so it's important to use methods like GINI and Entropy to guide the creation of the most effective decision tree.
             
-            <h3>Data Prep</h3>
+            <h2>Data Prep</h2>
             <p>
             In order to do supervised learning, one needs a dataset with a label. For this dataset, the target variable of interest in the wealth index quantile. There are 5 groups, and it is interesting to see which variables are the strongest predictors of this. The decision tree is analyzing the relavance of each other variable in the survey towards predicting the wealth quantile. The variables of interest are the assets used during Association Rule Mining, but also the demographic data used in clustering. Since this will be mixed data, it will need to be performed in R. 
             </p><p>
@@ -108,13 +108,13 @@
                 <img class="figure2" src="/csci5622/figures/dtrees/balanceTrain.png">
             </figure>
             </p>
-            <h3>Code</h3>
+            <h2>Code</h2>
             Find all of the code use to clean the data and run the decision trees in R on GitHub <a href="https://github.com/isaiahlg/csci5622mod3/blob/main/proj/dtrees.Rmd" target="_blank">here.</a> 
             <figure>
                 <img class="figure" src="/csci5622/figures/dtrees/codeSnippet.png">
             </figure>
 
-            <h3>Results</h3>
+            <h2>Results</h2>
             The resulting decision tree is pictured below:
             <figure>
                 <img class="figure" src="/csci5622/figures/dtrees/dtree.png">
@@ -156,7 +156,7 @@
                 <figcaption>A third decision tree model created with 5-fold cross validation.</figcaption>
             </figure>
             The most important variable has changed! We now have "type of floor" emerging as the biggest differentiator between the wealthy and the poor.  
-            <h3>Conclusions</h3>
+            <h2>Conclusions</h2>
             Creating a decision tree a very interesting exercise for this dataset. One of the most useful insights that we can glean from the decision tree is the list of variable importance. The biggest differentiator between the rich and poor seems to be ownership of a TV, followed closely by ownership of a refridgerator. Effectively none of the poorest households own a TV, and owning one means there's a 50% chance you're in the top 20%.  Owning a TV and a fridge means there's a 2/3 chance of being in the top 20%. This is interesting given that a TV costs around $50 and a fridge around $250 in Sierra Leone, suggesting that the average amount of assets held by a household is quite low. On the other end of the spectrum, if you do not have a TV nor a cell phone, you are most likely in the bottom 20% of households. The best differentiator between the bottom 20% and the next quintile up is owning a wristwatch. 
             <p></p>
             Another interesting outcome of the model, is that is it is much better at predicting the extremes than the middle classes. The class-level accuracy is highest for the bottom and top quintiles. This means that it is easier to distinguish the poor and the rich, but harder to differential among the middle class. 
@@ -173,7 +173,7 @@
             Such analysis is recommended for future studies. 
             
             
-            <h3>Bonus Tree</h3>
+            <h2>Bonus Tree</h2>
             The future is now! The tree is rerun with the additional variables suggested above because the author was just too curious. Below is the resulting tree--notice significantly more depth.
             <figure>
                 <img class="figure" src="/csci5622/figures/dtrees/dtree3.png">
@@ -203,7 +203,7 @@
                 <figcaption>The confusion matrix for the latest model with a nearly 50% accuracy for 5 classes.</figcaption>
             </figure>
             A very interesting improvement overall, very worth the extra run!
-            <h3>References</h3>
+            <h2>References</h2>
             <p class="reference">Chauhan, Nagesh Singh. 2022. "Decision Tree Algorithm, Explained." KD Nuggets. https://www.kdnuggets.com/2020/01/decision-tree-algorithm-explained.html</p>
             <p class="reference">Provost, Foster; Fawcett, Tom. 2013. "Data Science for Business: What You Need to Know about Data Mining and Data-Analytic Thinking."</p>
             <p class="reference">Kamperis, Stathis. 2021. "Decision Trees: Gini index vs entropy". https://ekamperi.github.io/machine%20learning/2021/04/13/gini-index-vs-entropy-decision-trees.html</p>

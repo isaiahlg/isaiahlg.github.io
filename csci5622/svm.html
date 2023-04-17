@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Isaiah LG - ML/SVMs</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://kit.fontawesome.com/f4ea09cda5.js" crossorigin="anonymous"></script>
+    <!-- For converting markdown to html -->
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <!-- for rendering equations from TeX to HTML -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <button class="back-button" onclick="window.location.href='/csci5622/home.html';"><i class="fa-solid fa-arrow-left"></i></button>
+    <div class="content">
+        <div class="textbox">
+            <!-- Assignment
+            (a) Overview: Here, describe SVMs, why they are linear separators, how the kernel works, why the dot product is so critical to the use of the kernel, and what the polynomial and rbf kennel function look like. Also show an example of taking a 2D points and a polynomial kernel with r = 1 and d = 2 and "casting" that point into the proper number of dimensions.  Have at least two images that assist in your overview of SVMs. 
+
+            (b) Data Prep. All models and methods require specific data formats. Supervised modeling requires first that you have labeled data. Next, it requires that you split your data into a Training Set (to train/build) the model, and a Testing Set to test the accuracy of your model. ONLY labeled data can be used for supervised methods. Explain this and show an image of the sample of data you plan to use. LINK to the sample of data as well. Also include information and a small image of the Training Set and Testing set and explain how you created them and why they are (and must be) disjoint. SVMs can only work on labeled numeric data. Be sure to include this fact and explain why. 
+
+            (c) Code. Use Python. Create code that performs SVM modeling (classification) on your dataset. LINK to the code. 
+
+            (d) Results. Discuss, illustrate, describe, and visualize the results. Include the confusion matrix and the accuracy.  You must use at least 3 different kernels. Try out different costs with each of the three kernels. Include, for each kernel (assuming an appropriate cost) a confusion matrix. Create at least one visualization. Compare the kernels. Which was best?
+
+            (e) Conclusions. What did you learn (and/or what can you predict here) that pertains to your topic? -->
+            <md-block>
+            # Support Vector Machines (SVMs)
+            
+            ## Overview
+            Support Vector Machines (SVMs) are a type of machine learning algorithm that are commonly used for classification tasks. At their core, SVMs are linear separators, which means they use a linear boundary to separate two classes of data in a feature space. To create that separator, SVMs find a multi-dimensional hyperplane to separate one group of data from the rest.......
+            
+            <figure>
+                <img class="figure" src="/csci5622/figures/svm/margin.png">
+                <figcaption>A diagram illustrating how the SVM algorithm finds a hyperplane (here just a line) that separates..... (Image from Analytics Vidhya, 2021)</figcaption>
+            </figure>
+
+            However, in practice, the data may not be linearly separable, which is where the kernel comes in. The kernel is a function that takes in two data points and returns a similarity score. By using the kernel trick, SVMs can map the data into a higher-dimensional space where the data may become linearly separable.
+
+            The dot product is critical to the use of the kernel because it measures the similarity between two data points in the higher-dimensional space. The kernel function can be thought of as a way of implicitly computing the dot product in this higher-dimensional space, without actually having to perform the expensive computations.
+
+            There are several types of kernel functions that can be used with SVMs, but two common ones are the polynomial kernel and the radial basis function (RBF) kernel. The polynomial kernel maps the data into a higher-dimensional space using a polynomial function, while the RBF kernel maps the data into an infinite-dimensional space using a Gaussian function.
+
+            The polynomial kernel has the form K(x, y) = (x • y + c)^d, where x and y are two data points, c is a constant, and d is the degree of the polynomial. The RBF kernel has the form K(x, y) = exp(-gamma ||x - y||^2), where gamma is a hyperparameter that controls the shape of the kernel.
+
+            Overall, SVMs are a powerful tool for classification tasks, and the kernel trick allows them to handle complex, non-linearly separable data.
+
+            ## Data Prep
+
+            ## Code
+            Find all of the code use to clean the data and run the SVMs in Python on GitHub <a href="https://github.com/isaiahlg/csci5622mod4/blob/main/svm.py" target="_blank">here.</a> 
+            <figure>
+                <img class="figure" src="/csci5622/figures/nbayes/codeSnippet.png">
+            </figure>
+
+            ## Results
+           
+            ## References
+            Saini, Anshul. 2021. "Support Vector Machine(SVM): A Complete guide for beginners." Analytics Vidhya.
+                https://www.analyticsvidhya.com/blog/2021/10/support-vector-machinessvm-a-complete-guide-for-beginners/</p>
+            </md-block>
+        </div>
+    </div>
+</body>
+</html>

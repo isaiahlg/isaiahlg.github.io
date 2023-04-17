@@ -13,7 +13,7 @@
         <div class="textbox">            
             <h1>Clustering</h1>
 
-            <h3>Overview</h3>
+            <h2>Overview</h2>
             Clustering is a set of unsupervised learning algorithms that serve to group like data together. In order to be able to group data by "similarity", all clustering methods must define a distance metric that gives the "distance" between any two points in the dataset, say A and B. The distance function can be any function that (a) is always >= 0, is 0 if A and B are the same point, and cannot be shortcutted through a third point C. That is, the distance D(A,B) must be >= D(A,C) + D(B,C). No wormholes! Common distance metrics include minkowski distances with p=1 (Manhattan Distance) and p=2 (Euclidean Distance), as well as consine similarity. One you have a distance metric, there are three main approaches to clustering: 
             <ol>
                 <li><b>Partitional Clustering:</b> in this approach, "partitions" are created between groups that become clustered around centroids. Examples of this
@@ -34,7 +34,7 @@
                 <figcaption>A single-mother household in rural Sierra Leone (Wamala, 2022).</figcaption>
             </figure>
             
-            <h3>Data Prep</h3>
+            <h2>Data Prep</h2>
             For this dataset, clustering is performed based on euclidean distance and based on cosine similarity. Both of these algorithms require continuous, numeric data for each of the dimensions, and so the data has to be cleaned. Of the 50 or so variables kept from the cleaning process, only 9 of them have clean numeric data. Of these variables, only 6 are determined to be of interest:
             <ol>
                 <li>hv010: Number of eligible women in household</li>
@@ -62,10 +62,10 @@
                     the correlation between the demographic variables being used and wealth index is not very strong, since the colors are all a bit disperesed.
                 </figcaption>
             </figure>
-            <h3>Code</h3>
+            <h2>Code</h2>
             Python is used to perform k-means clustering and principal component analysis with the code <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/kmeans.py">here</a>. R is used to perform hierarchical clustering with the code <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/hclust.Rmd">here</a>. 
             
-            <h3>Results</h3>
+            <h2>Results</h2>
             Clustering is run for k = [2,3,4,5]. Silhouette analysis is performed for each of these k-values, and the resulting charts are below:
             <figure>
                 <img class="figure" src="/csci5622/figures/clustering/kmeans2.png">
@@ -103,7 +103,7 @@
                 <img class="figure" src="/csci5622/figures/clustering/elbow.png">
                 <figcaption>Finally, one last graph from R about the optimal number of clusters. Interstingly, this doesn't agree with Python.</figcaption>
             </figure>
-            <h3>Conclusions</h3>
+            <h2>Conclusions</h2>
             To draw conclusions about the relationship between demographics and wealth index, it's necessary to first compute the mean values for each variable for each of the clusters to find their "centers". Next, these scaled values for cluster centers can be multiplied times the standard deviation for each column, and then added to the mean, so that they are effectively "unscaled". Next, the mean value of the label (in this case, wealth index) is computed for each of the clusters for each of set of k-means. This shows the average wealth of each cluster. These results are shown in the table below:
             <figure>
                 <img class="figure" src="/csci5622/figures/clustering/clustercenters.png">
@@ -121,7 +121,7 @@
                 </li>
             </ul>
             It should be noted as well that these trends are slight (z-scores all smaller than 0.3). This is inline with the initial graph created with clusters that shows a high degree of dispersion of the wealth quintiles. Further resesearch should take into account non-numerical variables as well, like the algorithm k-prototype. Hopefully this would provide a better predictive model for wealth index than just using household demographics.
-            <h3>References</h3>
+            <h2>References</h2>
             <p class="reference">Seif, George. 2018. Towards Data Science. https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know</p>
             <p class="reference">Wamala, Lydia. 2022. World Food Project. https://www.wfp.org/stories/rural-sierra-leone-fatmatas-kids-wont-be-eating</p>
 

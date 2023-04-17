@@ -13,7 +13,7 @@
         <div class="textbox">
             <h1>Association Rule Mining</h1>
 
-            <h3>Overview</h3>
+            <h2>Overview</h2>
             Association Rule Mining (ARM) is a technique in machine learning that identifies relationships between items in large datasets. It involves finding patterns, or associations, between items that occur together frequently, and "mining" out rules that describe the data. ARM is perfect for transaction data where each transaction is unlabeled, just like a grocery store basket.
             <figure>
                 <img class="figure" src="/csci5622/figures/arm/basket.png">
@@ -28,7 +28,7 @@
             </figure>
             For this dataset, ARM is used to find associations between the various assets included in the DHS surveys, such as cell phones, bicycles, mosquito nets, and refridgerators.
 
-            <h3>Data Prep</h3>
+            <h2>Data Prep</h2>
             As described above, Association Rule Mining requires data with unique items that are in transaction format. The first step towards this end for the DHS data is to filter for just columns of interest.  Of the 56 variables kept in the Data Cleaning phase, 21 are selected for association rule mining because they pertained to assets. They were:
             <ul>
                 <li>hv206: Has electricity</li>
@@ -66,9 +66,9 @@
                 </figcaption>
             </figure>
 
-            <h3>Code</h3>
+            <h2>Code</h2>
             All code for ARM is written in R, and can be found on Github <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/arm.Rmd">here</a>.
-            <h3>Results</h3>
+            <h2>Results</h2>
             Before rules are even mined, one can plot the frequency of each of the items in the transaction data. In this case, this tell us what are the most commonly owned assets among the households surveyed. In the figure below, we can see that the most commonly owned assets by far are cell phones and bednets, followed by radio, chickens, and a watch. The next category might be considered luxuty items in Sierra Leone since fewer than 1 in 5 households have one: electricity, goats, television, and a bank account. Down close to 1 in 10 households, we have motorcycle, sheep, and fridge. Finally, the rest of the assets appear in fewer than 1 in 20 households: bicycle, computer, car, cows, and a boat. The last three assets have such low rates, they no longer seem like luxuries, but rather oddities: landline, animal cart, and horses. Really interesting stuff here.
             <figure>
                 <img class="figure" src="/csci5622/figures/arm/freq.png">
@@ -100,10 +100,10 @@
                 <figcaption>An interactive visualization of the 10 rules with the highest lift. Click the image for the interactive version!</figcaption>
             </figure>
             
-            <h3>Conclusions</h3>
+            <h2>Conclusions</h2>
             This process of Association Rule Mining is very informative on this data set. It tells us that the most commonly owned items are cell phones and bednets. It also tells us that owning a bednet is a much worse predictor of owning electronic assets than owning other electronics. We see watches, cell phones, radios paired together frequently. Furthermore, these small electronics are almost always present in households that own larger appliances such as a television or an electricity connection. We also learned that certain high-value assets such as motorcycles, cars, and livestock are extremely rare in Sierra Leone. It seems to follow that many people are living month to month, week to week, or even day to day and do not have many assets or savings. It would be interesting to follow up with the top 1% of households in terms of assets to see what clusters they belong too, what their family make-up is, etc. Future research!
             
-            <h3>References</h3>
+            <h2>References</h2>
             <p class="reference">Data Camp. 2018. "Market Basket Analysis using R." https://www.datacamp.com/tutorial/market-basket-analysis-r</p>
             <p class="reference">Engati. 2021. "What is Apriori Algorithm?." https://www.engati.com/glossary/apriori-algorithm</p>
            

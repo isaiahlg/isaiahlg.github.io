@@ -29,7 +29,7 @@
             <md-block>
             # Naive Bayes
             
-            ### Overview
+            ## Overview
             Naive Bayes is a popular machine learning algorithm used for classification tasks. It is based on Bayes' theorem, which states that the probability of a hypothesis given some evidence is proportional to the probability of the evidence given the hypothesis, multiplied by the prior probability of the hypothesis. In Naive Bayes, the input features are assumed to be independent of each other. This means that the algorithm assumes that the presence or absence of a particular feature is unrelated to the presence or absence of any other feature. In real world data, this is often not the case, and so inputs and outputs must be adapted accordingly. 
 
             There are several types of Naive Bayes algorithms, including Basic Naive Bayes, Multinomial Naive Bayes, Bernoulli Naive Bayes, and Gaussian Naive Bayes. Let's take a closer look at each of these.
@@ -57,7 +57,7 @@
                 <img class="figure" src="/csci5622/figures/nbayes/diagram.jpg">
                 <figcaption>A diagram illustrating how the Naive Bayes classifier works. The probability of a given vector belonging to a class can be calculated by finding the probability of each element in the vector appearing for the given class throughout the dataset. The total probability is calculated as the product of each of these probabilities times the probability of the class y appearing at all.  (Image from Coderz Column, 2022)</figcaption>
             </figure>
-            <h3>Data Prep</h3>
+            <h2>Data Prep</h2>
             In order to do supervised learning, one needs a dataset with a label. For this dataset, the target variable of interest in the wealth index quantile. Instead of using the one that is normalized for urban and rural (hv270a) as was used for decision trees, this analysis uses the combined wealth index since the data are not split (hv270). There are 5 groups, and it is interesting to see which variables are the strongest predictors of this. The Naive Bayes model is analyzing the relavance of each other variable in the survey towards predicting the wealth quantile. The variables of interest are the assets used during Association Rule Mining, and the additional variables discovered to be significant in Decision Trees. The demographic data has been removed since it was found to be insignificant during decision tree modeling. Since this will be mixed data, it will need to be performed in R. 
             <p></p>
             A copy of the full dataset can be found <a href="https://github.com/isaiahlg/csci5622mod3/blob/main/proj/data/sl19.rds" target="_blank">here</a>. To clean the data, the full survey dataset is pulled again from DHS and then trimmed down to just the variables of interest. Next, some additional cleaning is performed to remove missing or unknown values. An additional step is required here to see which variables are highly correlated with each other, and to remove them accordingly. This helps to meet this assumptions of Naive Bayes. To do this, we calculate the correlation of each variable with each other variable, and plot it in a matrix. We then go hunting for the strongest correlations, and eliminate those accordingly. Both correlation matrices before and after filtering are displayed below. 
@@ -94,13 +94,13 @@
                 <img class="figure2" src="/csci5622/figures/nbayes/balanceTrain.png">
             </figure>
             </p>
-            <h3>Code</h3>
+            <h2>Code</h2>
             Find all of the code use to clean the data and run the Naive Bayes models in R on GitHub <a href="https://github.com/isaiahlg/csci5622mod3/blob/main/proj/nbayes.Rmd" target="_blank">here.</a> 
             <figure>
                 <img class="figure" src="/csci5622/figures/nbayes/codeSnippet.png">
             </figure>
             <md-block>
-            ### Results
+            ## Results
             Naive Bayes is run with the package e1071 on the dataset. A laplace smoothing of 1 was applied to the numerator and denominator to handle zero probabilities. When the model is applied to the test dataset, an overall accuracy of 55.3% is achieved. The full confusion matrix statistics are below in a table, along with a heatmap of the predictions by class.
             </md-block>
             <figure>
@@ -111,7 +111,7 @@
             </figure>
             <md-block>
             The model was run as well without removing the highly correlated columns, and this reduced the accuracy of the model down to 42.53%. It seems that reducing the number of columns used in Naive Bayes intelligently can improve the model performance. 
-            ### Conclusions
+            ## Conclusions
             The overall accuracy of the Naive Bayes model is lower than that of the decision tree model when the DT model is run for the combined wealth index variable, hv270 (71.08% accuracy versus 55.3%). This could very well be because the Decision Tree effectively performs variable selection with the complexity parameter. This would be in line with the findings from running the model on all variables, even the highly correlated ones. Therefore, it is worth re-running Naive Bayes with just the variables that performed well in the decision tree to see if the accuracy is improved. The variables to keep along with their importance from the decision tree are:
             1. hv213 (Floor material): 17
             1. hv214 (Wall material): 13
@@ -136,7 +136,7 @@
                 <img class="figure" src="/csci5622/figures/nbayes/cm2.png">
                 <figcaption>A beautiful confusion matrix.</figcaption>
             </figure>
-            <h3>References</h3>
+            <h2>References</h2>
             <p class="reference">Coderz Column, 2022. "Scikit-Learn - Naive Bayes for Classification Tasks". https://coderzcolumn.com/tutorials/machine-learning/scikit-learn-sklearn-naive-bayes</p>
         </div>
     </div>
