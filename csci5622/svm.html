@@ -65,9 +65,9 @@
             <md-block>
 
             ## Data Prep
-            Preparing the data for SVMs is relatively straightforward. The key driver is that SVMs can only be performed on numerical data, since each data point must be able to be plotted into n-dimensional space. For this analysis, the variable we will categorize by is again, the wealth index quantile (hv270). We will try to determine with economic class a given household belongs to based on their responses to a set of numerical variables.
+            Preparing the data for SVMs is relatively straightforward. Since SVMs are a supervised learning method, one must begin with labeled data. The other key consideration is that SVMs can only be performed on numerical data, since each data point must exist within n-dimensional space to be separable. For this analysis, the variable we will use as the label is again, the wealth index quantile (hv270). We will try to determine with economic class a given household belongs to based on their responses to a set of numerical variables.
 
-            First, the dataset is cut down from over 3000 to just 50ish economic and demographic variables of interest to make the dataset easier to handle. Response values are then converted from categorical to numerical values, such as "no" to 0 and "yes" to 1. Next, only the variables that can be converted to numerical responses are included. These variables were selected from the decision tree analysis in order of variable importance. Some basic demographic variables were also included since they were easily converted to numeric values. The final list of variables used is:
+            First, the dataset is cut down from over 3000 to just 50ish economic and demographic variables of interest to make the dataset easier to handle. Next, only the variables that can be converted to numerical responses are included. These variables were selected from the decision tree analysis in order of variable importance. Some basic demographic variables were also included since they were easily converted to numeric values. The final list of variables used is:
             - hv243a (Mobile telephone)
             - hv244 (Ag. Landowner)
             - hv209 (Refridgerator)
@@ -80,17 +80,27 @@
             - hv012 (Number of de jure members)
             - hv014 (Number of children 5 and under (de jure))
             - hv216 (Number of rooms used for sleeping)
+            
+            Below is a screenshot of the data after it has been filtered down to just the columns of interest, but before any of the values have been changed. The data can be found on GitHub [here](https://github.com/isaiahlg/csci5622mod4/blob/main/exports/sl19svm.csv).
+            <figure><img class="figure" src="/csci5622/figures/svm/datapre.png"></figure>
 
-            Finally, the data are normalized with a standard deviation of 1 and a mean of 0 to make it easier for the support vector machine algorithm to fit the data. To better see the way in which the data cluster based on the variables used in this analysis, we can run Principle Component Analysis for 2 components and then plot the 2D results. We can a good amount of clustering, but still a good deal of overlap. This is likely indicative of how our SVM will be able to perform.
+            Next response values are then converted from categorical to numerical values, such as "no" to 0 and "yes" to 1. This allows us to be able to change the datatype of of each of the columns to numeric data. Next, the data are normalized with a standard deviation of 1 and a mean of 0 to make it easier for the support vector machine algorithm to fit the data. Below is a screenshot of the data after it has been scaled. A copy of this dataframe can be found on GitHub [here](https://github.com/isaiahlg/csci5622mod4/blob/main/exports/sl19scaled.csv).
+            <figure><img class="figure" src="/csci5622/figures/svm/datascaled.png"></figure>
+
+            To better see the way in which the data are separable based on the variables used in this analysis, we can run Principle Component Analysis for 2 components and then plot the 2D results. We can see a good amount of clustering, but there is still a good deal of overlap. This foreshadows some challenges that the SVMs might have in creating separability in the data.
             
             <figure>
                 <img class="figure" src="/csci5622/figures/svm/clusters.png"> 
                 <figcaption>A scatterplot of the two principle components of the data vectors, pc1 and pc2. The wealth index of the household is indicated with color. There is a decent amount of clustering, though there remains a good deal of overlap between categories.</figcaption>
             </figure>
-                
-            Now that we have scaled data, we then separate it into training and testing data so that we can evaluate the performance of each of our SVMs. In this case, an 80/20 split is used for training and testing respectively. Labels are also removed from the testing data and training data to allow for the training and evaluation of each.
             
-            Now that the data is ready for SVMs, we fit an SVM to the training data and then evaluate it on the test data a total of 12 times: 3 different kernels with 4 difference cost values for each kernel. The kernels used are linear, radial basis function (RBF), and polynomial. The 4 different cost values used are 1, 10, 100, and 1000. The cost value determines how much an SVM should be allowed to "bend" with the data. Extra bending may lead to the correct classification of more points in the training dataset, but at the cost of a narrower margin. This can lead to reduced performance on the testing dataset. It it analogous to the overfitting of data in other machine learning models such as regression. 
+            Now that we have scaled data, we then separate it into training and testing data so that we can evaluate the performance of each of our SVMs. In this case, an 80/20 split is used for training and testing respectively. Labels are also removed and stored separately from the testing data and training data to allow for the training and evaluation of each.  Below is a screenshot of the training (left) and testing (right) data. Note that the row indexes are different and do not have overlap to ensure we are testing with data the model has never seen before.
+            <figure>
+                <img class="figure2" src="/csci5622/figures/svm/datatrain.png">
+                <img class="figure2" src="/csci5622/figures/svm/datatest.png">
+            </figure>
+
+            Now that the data is ready for SVMs, we fit an SVM to the training data and then evaluate it on the test data a total of 12 times: 3 different kernels with 4 difference cost values for each kernel. The kernels used are linear, radial basis function (RBF), and polynomial. The 4 different cost values used are 1, 10, 100, and 1000. The cost value determines how much an SVM should be allowed to "bend" with the data. Extra bending may lead to the correct classification of more points in the training dataset, but at the cost of a narrower margin. This can lead to reduced performance on the testing dataset. It it analogous to the overfitting of data in other machine learning models such as regression. Running each of these iterations allows us to compare various models to see what is best for our dataset. 
 
             ## Code
             Find all of the code use to clean the data and run the SVMs in Python on GitHub [here](https://github.com/isaiahlg/csci5622mod4/blob/main/svm.py)
@@ -101,6 +111,7 @@
             Below, you can find the results for each of the 12 runs from 4 different cost values on 3 different kernels.
             
             ### Linear Kernel
+            The linear kernel performed quite well overall, correctly classifying about 55.3% of the data. It performed ever so slightly better with C=1000 at 55.4%, but this difference is so small, we cannot conclude that it ran better. It should be noted that the SVM fitting function threw a warning on the default number of maximum iterations of 1000 that "the model had not yet converged". Given this, the number of maximum iterations was increased to 100,000. This allowed the models for C=1 and C=10 to converge, but the warning persisted for C=100 and C=1000. Given the performance cost of increasing both the cost and the number of maximum iterations, this was the highest values used. As is, it still took the model over 10 minutes to fit the data with a linear kernel for C=1000 and 100,000 maximum iterations.
             <figure>
                 <img class="figure2" src="/csci5622/figures/svm/linear1.png">
                 <img class="figure2" src="/csci5622/figures/svm/linear10.png">
@@ -111,6 +122,7 @@
             </figure>
             
             ### Radial Basis Function (RBF) Kernel
+            For the radial basis function kernel, we actually see a small but consistent jump in performance, maxing out with C=10 at 56.3% This one actually dips down in accuracy significantly as the cost parameter is increased to 1000. 
             <figure>
                 <img class="figure2" src="/csci5622/figures/svm/rbf1.png">
                 <img class="figure2" src="/csci5622/figures/svm/rbf10.png">
@@ -121,6 +133,7 @@
             </figure>
 
             ### Polynomial Kernel (3rd Degree)
+            Here, we see the best overall performance of any of the three kernels. It peaks at 56.6% accuracy with C=10, and then decreases down to 56.1% and 55.4% with C=100 and 1000 respectively. This is a very similar relationship between accuracy and cost that was seen with the RBF kernel. 
             <figure>
                 <img class="figure2" src="/csci5622/figures/svm/poly1.png">
                 <img class="figure2" src="/csci5622/figures/svm/poly10.png">
@@ -130,6 +143,21 @@
                 <img class="figure2" src="/csci5622/figures/svm/poly1000.png">
             </figure>
 
+            ## Conclusions
+            The key takeaway here is that the top performing SVM model is the one was that used the polynomial kernel with the 3rd degree and C=10. This is likely because there was a high degree over overlap in the data that the polynomial kernel was able to create some extra separation in by adding additional dimensionality. We can plot the results of all of the runs on a single 3 x 4 heatmap.
+
+            <figure><img class="figure" src="/csci5622/figures/svm/accuracies.png"></figure>
+
+            One thing that isn't depicted here is that all of this analysis was actually performed as well with just 5 of the variables listed above, the ones relating to demographics. However, the prediction accuracy of the SVMs was between 20-30%. This is pretty abysmal performance given that there are only 5 classes, and the chance of randomly guessing one correctly is 20%. Included below is one of the confusion matrices from this analysis for reference.
+            <figure>
+                <img class="figure2" src="/csci5622/figures/svm/linearc1.png">
+                <img class="figure2" src="/csci5622/figures/svm/linearc10.png">
+            </figure>
+            <figure>
+                <img class="figure2" src="/csci5622/figures/svm/linearc100.png">
+                <img class="figure2" src="/csci5622/figures/svm/linearc1000.png">
+            </figure>
+            These commically bad classification models give a similar insight as that had during clustering --- demographic variables along do not make for very strong predictors of economic wealth. The accuracy of these models jumped way up into the 50s when high-importance variables from the decision tree analysis were added in here. This highlights a key limitation of support vector machines -- the fact that they do not perform variable selection and that they cannot handle categorical data. For a dataset like this one that has many different categorical variables, one is left with either one-hot encoding all of these (unwieldy), or simply ommitting them. It appears that the correct selection of variables has a much higher impact on the performance of the model than the selection of a kernel or the right hyperparameters.
            
             ## References
             Saini, Anshul. 2021. "Support Vector Machine(SVM): A Complete guide for beginners." Analytics Vidhya.
