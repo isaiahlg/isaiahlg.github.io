@@ -101,7 +101,7 @@ hr.rounded {
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
-    width: 33.33%;
+    width: 25%;
     color: white;
     text-decoration: none;
     font-size: 14px;
@@ -157,15 +157,15 @@ hr.rounded {
     box-shadow: 0px 0px 60px rgba(255, 255, 255, 0.4);
 }
 
-.text a {
+.textbox a {
     color: rgb(95, 124, 255);
 }
 
-.text a:visited {
+.textbox a:visited {
     color: rgb(175, 111, 184);
   }
   
-.text a:hover {
+.textbox a:hover {
     color: blueviolet;
 }
 
