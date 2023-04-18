@@ -65,13 +65,40 @@
             <md-block>
 
             ## Data Prep
+            Preparing the data for SVMs is relatively straightforward. The key driver is that SVMs can only be performed on numerical data, since each data point must be able to be plotted into n-dimensional space. For this analysis, the variable we will categorize by is again, the wealth index quantile (hv270). We will try to determine with economic class a given household belongs to based on their responses to a set of numerical variables.
 
+            First, the dataset is cut down from over 3000 to just 50ish economic and demographic variables of interest to make the dataset easier to handle. Response values are then converted from categorical to numerical values, such as "no" to 0 and "yes" to 1. Next, only the variables that can be converted to numerical responses are included. These variables were selected from the decision tree analysis in order of variable importance. Some basic demographic variables were also included since they were easily converted to numeric values. The final list of variables used is:
+            - hv243a (Mobile telephone)
+            - hv244 (Ag. Landowner)
+            - hv209 (Refridgerator)
+            - hv208 (Television)
+            - hv243b (Watch)
+            - hv206 (Electricity)
+            - hv207 (Radio)
+            - hv010 (Number of eligible women in household)
+            - hv011 (Number of eligible men in household)
+            - hv012 (Number of de jure members)
+            - hv014 (Number of children 5 and under (de jure))
+            - hv216 (Number of rooms used for sleeping)
+
+            Finally, the data are normalized with a standard deviation of 1 and a mean of 0 to make it easier for the support vector machine algorithm to fit the data. To better see the way in which the data cluster based on the variables used in this analysis, we can run Principle Component Analysis for 2 components and then plot the 2D results. We can a good amount of clustering, but still a good deal of overlap. This is likely indicative of how our SVM will be able to perform.
+            
+            <figure>
+                <img class="figure" src="/csci5622/figures/svm/clusters.png"> 
+                <figcaption>A scatterplot of the two principle components of the data vectors, pc1 and pc2. The wealth index of the household is indicated with color. There is a decent amount of clustering, though there remains a good deal of overlap between categories.</figcaption>
+            </figure>
+                
+            Now that we have scaled data, we then separate it into training and testing data so that we can evaluate the performance of each of our SVMs. In this case, an 80/20 split is used for training and testing respectively. Labels are also removed from the testing data and training data to allow for the training and evaluation of each.
+            
+            Now that the data is ready for SVMs, we fit an SVM to the training data and then evaluate it on the test data a total of 12 times: 3 different kernels with 4 difference cost values for each kernel. The kernels used are linear, radial basis function (RBF), and polynomial. The 4 different cost values used are 1, 10, 100, and 1000. The cost value determines how much an SVM should be allowed to "bend" with the data. Extra bending may lead to the correct classification of more points in the training dataset, but at the cost of a narrower margin. This can lead to reduced performance on the testing dataset. It it analogous to the overfitting of data in other machine learning models such as regression. 
 
             ## Code
             Find all of the code use to clean the data and run the SVMs in Python on GitHub [here](https://github.com/isaiahlg/csci5622mod4/blob/main/svm.py)
             <figure><img class="figure" src="/csci5622/figures/svm/code.png"></figure>
 
             ## Results
+
+            Below, you can find the results for each of the 12 runs from 4 different cost values on 3 different kernels.
             
             ### Linear Kernel
             <figure>
