@@ -30,22 +30,39 @@
             # Support Vector Machines (SVMs)
             
             ## Overview
-            Support Vector Machines (SVMs) are a type of machine learning algorithm that are commonly used for classification tasks. At their core, SVMs are linear separators, which means they use a linear boundary to separate two classes of data in a feature space. To create that separator, SVMs find a multi-dimensional hyperplane to separate one group of data from the rest.......
+            Support Vector Machines (SVMs) are a type of machine learning algorithm that are commonly used for classification tasks. At their core, SVMs are linear separators, which means they use a linear boundary to separate two classes of data in a feature space. To work, this requires that the data be linearly separable. To create that separator, SVMs find a multi-dimensional hyperplane to separate one group of data from the rest. That hyperplane is the support vector machine.  The "support vectors" are the data points that are closest to this separator. They help define the boundary more than the rest of data points.  
             
             <figure>
                 <img class="figure" src="/csci5622/figures/svm/margin.png">
-                <figcaption>A diagram illustrating how the SVM algorithm finds a hyperplane (here just a line) that separates..... (Image from Analytics Vidhya, 2021)</figcaption>
+                <figcaption>A diagram illustrating how the SVM algorithm finds a hyperplane (here just a line) that separates the two categories based on their attributes X1 and X2. All values on one side belong to one category, and all values on the other side do not. To make this separator as effective as possible at classification, we want to maximize the size of the margin. (Image from Analytics Vidhya, 2021)</figcaption>
             </figure>
 
-            However, in practice, the data may not be linearly separable, which is where the kernel comes in. The kernel is a function that takes in two data points and returns a similarity score. By using the kernel trick, SVMs can map the data into a higher-dimensional space where the data may become linearly separable.
+            However, in practice, the data may not be linearly separable, which is where the kernel comes in. The kernel is a function that takes in two data points and returns a similarity score. By using the kernel trick, SVMs can map the data into a higher-dimensional space where the data may become linearly separable. Take the example below. If we have 1 dimensional data, the only way to separate it is with a point. However, if that data is mirrored as we have below, this becomes impossible. To fix this here, we can add a polynomial kernel by squaring each data point, and defining the distance between two points as the difference of squares. We are effectively casting the points onto a 2D parabola, which allows us to then draw a line (a 1D hyperplane) separating the categories. 
+
+            <figure>
+                <img class="figure" src="/csci5622/figures/svm/kernel.png">
+                <figcaption>A diagram illustrating how a kernel can make data linearly separable by effectively casting it into a higher dimension (Image by Kovenko, 2020)</figcaption>
+            </figure>
 
             The dot product is critical to the use of the kernel because it measures the similarity between two data points in the higher-dimensional space. The kernel function can be thought of as a way of implicitly computing the dot product in this higher-dimensional space, without actually having to perform the expensive computations.
 
             There are several types of kernel functions that can be used with SVMs, but two common ones are the polynomial kernel and the radial basis function (RBF) kernel. The polynomial kernel maps the data into a higher-dimensional space using a polynomial function, while the RBF kernel maps the data into an infinite-dimensional space using a Gaussian function.
+            
+            </md-block>
+            The polynomial kernel has the form \(K(x, y) = (\hat{x} • \hat{y} + r)^d\), where x and y are two data vectors, r is a constant, and d is the degree of the polynomial. The RBF kernel has the form \(K(x, y) = e^{-\gamma ||x - y||^2}\), where gamma is a hyperparameter that controls the shape of the kernel. This kernel is most useful for data that has radial symmetry. Let's write out an example of a polynomial kernel for 2-dimensional data where r = 1 and d = 2. Let's say we have two vectors \(\hat{x} = [x_1, x_2]\), and \(\hat{y} = [y_1, y_2]\).
+            \[K(\hat{x},\hat{y}) = (\hat{x} • \hat{y} + r)^d \]
+            \[K(\hat{x},\hat{y}) = (\hat{x} • \hat{y} + 1)^2 \]
+            \[K(\hat{x},\hat{y}) = (x_1•y_1 + x_2•y_2 + 1)^2 \]
+            \[K(\hat{x},\hat{y}) = x_1^2 y_1^2 + x_2^2 y_2^2 + 2 x_1 y_1 x_2 y_2 + x_1 y_1 + x_2 y_2 + 1 \]
 
-            The polynomial kernel has the form K(x, y) = (x • y + c)^d, where x and y are two data points, c is a constant, and d is the degree of the polynomial. The RBF kernel has the form K(x, y) = exp(-gamma ||x - y||^2), where gamma is a hyperparameter that controls the shape of the kernel.
+            This result is the same as taking the dot product of two higher dimensional vectors that can be expressed in terms of the original vector components: 
+            \[\hat{x'} = [x_1^2, x_2^2, \sqrt{2} x_1 x_2, x_1, x_2, 1]\]
+            \[\hat{y'} = [y_1^2, y_2^2, \sqrt{2} y_1 y_2, y_1, y_2, 1]\]
+
+            Because this expression can be expressed as a dot product, it can be substited into the dual form of the optimization function. Techniques like this can make data linearly separable without actually having to cast the data into higher dimensions. The kernel allows us to find the distance between two points in these higher dimensions without actually casting them, dramatically improving performance of SVMs.
 
             Overall, SVMs are a powerful tool for classification tasks, and the kernel trick allows them to handle complex, non-linearly separable data.
+            <md-block>
 
             ## Data Prep
 
@@ -58,36 +75,41 @@
             
             ### Linear Kernel
             <figure>
-                <img class="figure2" src="/csci5622/figures/svm/linearc1.png">
-                <img class="figure2" src="/csci5622/figures/svm/linearc10.png">
+                <img class="figure2" src="/csci5622/figures/svm/linear1.png">
+                <img class="figure2" src="/csci5622/figures/svm/linear10.png">
             </figure>
             <figure>
-                <img class="figure2" src="/csci5622/figures/svm/linearc100.png">
-                <img class="figure2" src="/csci5622/figures/svm/linearc1000.png">
+                <img class="figure2" src="/csci5622/figures/svm/linear100.png">
+                <img class="figure2" src="/csci5622/figures/svm/linear1000.png">
             </figure>
             
             ### Radial Basis Function (RBF) Kernel
             <figure>
-                <img class="figure2" src="/csci5622/figures/svm/rbfc1.png">
-                <img class="figure2" src="/csci5622/figures/svm/rbfc10.png">
+                <img class="figure2" src="/csci5622/figures/svm/rbf1.png">
+                <img class="figure2" src="/csci5622/figures/svm/rbf10.png">
             </figure>
             <figure>
-                <img class="figure2" src="/csci5622/figures/svm/rbfc100.png">
+                <img class="figure2" src="/csci5622/figures/svm/rbf100.png">
+                <img class="figure2" src="/csci5622/figures/svm/rbf1000.png">
             </figure>
 
-            ### Polynomial Kernel (2nd Degree)
+            ### Polynomial Kernel (3rd Degree)
             <figure>
-                <img class="figure2" src="/csci5622/figures/svm/polyc1.png">
-                <img class="figure2" src="/csci5622/figures/svm/polyc10.png">
+                <img class="figure2" src="/csci5622/figures/svm/poly1.png">
+                <img class="figure2" src="/csci5622/figures/svm/poly10.png">
             </figure>
             <figure>
-                <img class="figure2" src="/csci5622/figures/svm/polyc100.png">
+                <img class="figure2" src="/csci5622/figures/svm/poly100.png">
+                <img class="figure2" src="/csci5622/figures/svm/poly1000.png">
             </figure>
 
            
             ## References
             Saini, Anshul. 2021. "Support Vector Machine(SVM): A Complete guide for beginners." Analytics Vidhya.
-                https://www.analyticsvidhya.com/blog/2021/10/support-vector-machinessvm-a-complete-guide-for-beginners/</p>
+                https://www.analyticsvidhya.com/blog/2021/10/support-vector-machinessvm-a-complete-guide-for-beginners/
+            
+            Kovenko, Volodymyr. 2020. "SVM (Support Vector Machines)". DS/ML Course.
+                https://machine-learning-and-data-science-with-python.readthedocs.io/en/latest/assignment4_sup_ml.html
             </md-block>
         </div>
     </div>
