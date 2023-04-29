@@ -2,22 +2,125 @@
 <html>
 
 <head>
-    <title>Isaiah LG - ML/Coming Soon</title>
+    <title>Isaiah LG - ML/Conclusions</title>
     <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/assets/baobab.png">
     <script src="https://kit.fontawesome.com/f4ea09cda5.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body>
     <button class="back-button" onclick="window.location.href='/csci5622/home.html';"><i class="fa-solid fa-arrow-left"></i></button>
     <div class="content">
         <div class="textbox">
-            <h1>Coming Soon</h1>
-            This page is still coming!
-            <hr class="rounded">
-            <hr class="rounded">
-            <hr class="rounded">
-            <hr class="rounded">
-            <hr class="rounded">
+            <!-- 
+                (a) Overview: Here, describe Linear Regression, basically how it works, and what its limitations are. Have at least one image. 
+                (b) Data Prep. All models and methods require specific data formats. For Linear Regression, let's keep it simple. Create a dataset (from your existing datasets) that has two continuous and quantitative variables. One of the variables will be the "independent" and the other will be the one you are using LR to predict. Include an image of the dataset and LINK to the dataset as always. 
+                (c) Code. Use R or Python. Create code that performs LR modeling (classification) on your dataset. LINK to the code. 
+                (d) Results. Discuss, illustrate, describe, and visualize the results. Include an example of your model (the linear equation) and what it predicts. Also include a visualization of the data and the regression line you coded to fit the data. 
+                (e) Conclusions. What did you learn (and/or what can you predict here) that pertains to your topic? 
+            -->
+            <md-block>
+            # Conclusions
+            
+            ## Overview
+            </md-block>
+            Linear regression is a statistical method used to model the relationship between a dependent variable and one or more independent variables. The goal of linear regression is to find the best linear function that describes the relationship between the independent variables and the dependent variable. The linear function takes the form of a straight line, and its equation can be written as \(Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + ... + \beta_n X_n\), where \(Y\) is the dependent variable, \(X_1\) to \(X_n\) are the independent variables, a is the intercept term, and b1 to bn are the coefficients of the independent variables.
+            <md-block>
+            The process of finding the best linear function involves minimizing the sum of the squared differences between the predicted values and the actual values. This is done using a method called least squares regression. The method calculates the values of the coefficients that minimize the sum of the squared differences.
+            <figure>
+                <img class="figure" src="/csci5622/figures/regression/diagram.png"/>
+                <figcaption>A diagram of a simple linear regression model bewteen two variables, X and Y. We can see that Y and X generally trend together, with higher values of Y as we see higher values of X. However, there is a bit of noise, or error. Linear regression is able to find the "trend", and fit a linear relationship between the variables (Image from Kanade, 2023).</figcaption>
+            </figure>
+
+            Linear regression makes a few assumptions about the dataset that you're working with. The first assumption is that there is a linear relationship between the independent variables and the dependent variable. This means that as the independent variables increase or decrease, the dependent variable changes in a consistent and predictable way. Sometimes, if this is not the case, the variables can be transformed with a logarithm or an exponent into a normal form.
+
+            The second assumption is that there is no perfect multicollinearity among the independent variables. This means that the independent variables are not too highly correlated with each other. If they are, it can be difficult to determine the individual contributions of each independent variable to the dependent variable. To get around this, one can check for correlation among the independent variables in the dataset and eliminate one of any pair that is highly correlated.
+
+            The third assumption is that the residuals (the difference between the predicted values and the actual values) are normally distributed and have constant variance. This means that the errors made by the model are distributed in a way that is predictable and consistent.
+
+            The main limitation of linear regressions is that only works if the above conditions are not met. For example, if any of the variables do not have a normal distribution, if the data points are not independent such that each data point is not influenced by any other data points, or if the distribution of the data varies across the dataset. If these assumptions are not met, linear regression will provide unreliable results.
+
+            ## Data Prep
+            For an optimal application of linear regression to this dataset, we need numeric variables. To keep things as simple as possible, we will just select a single target variable and a single predictor variable to look at the relationship between the two. In the DHS survey, there are many many variables that are categorical, or even numerical and discrete, but there are very few "continuous" numeric variables. Among the questions that relate to assets, the variables with the highest number of decimal places are:
+            1. hv245: Hectares of agricultural land (1 decimal)
+            2. hv271: Wealth index factor score combined (5 decimals)
+
+            Since we have previously been trying to predict the wealth index factor score, we will make that the target variable, and the acres of agricultural land the predictor variable. This leaves us with a dataset of two columns and about 13,000 rows. The next step is to remove null values from the survey, bringing us down to around 8000 rows. To work with these variables further, they are then converted to a numeric data type. Next, the "unknown" values (< 950) are filtered out, as well as 950 since that is a placeholder for 95 hectares or more. Lastly, rows with 0 hectares are removed to only look at households with at least some land. This leaves us with just under 7,000 rows, or roughly half of the original dataset. The columns are also renamed for clarity. Below are side by side snapshots of the data before and after cleaning. Finally, there is a strong outlier on the wealth dataset, and so we'll filter that one out. This is commonn practice for linear regression, since outliers can hurt the ability of the model to predict the best line for the most resutls.
+
+            <figure>
+                <img class="figure2" src="/csci5622/figures/regression/datatwo.png"/>
+                <img class="figure2" src="/csci5622/figures/regression/datareg.png"/>
+                <figcaption><b>Left:</b> A snapshot of the data with just the two columns of interest before data cleaning. The data file is stored on GitHub <a href=https://github.com/isaiahlg/csci5622mod5/blob/main/data/sl19two.rds target="_blank">here</a>. <b>Right:</b> A snapshot of the data after cleaning. This data file is available on GitHub <a href=https://github.com/isaiahlg/csci5622mod5/blob/main/data/sl19reg.rds target="_blank">here</a>.</figcaption>
+            </figure>
+            
+            Next, before performing linear regression, we want to be sure that both variables are normally distributed. We can do that with a histogram and a box plot of each variable -- they should be symmetrical around a mean.
+
+            <figure>
+                <img class="figure2" src="/csci5622/figures/regression/histacres.png"/>
+                <img class="figure2" src="/csci5622/figures/regression/histwealth.png"/>
+                <figcaption><b>Left:</b> A histogram of acreage. <b>Right:</b> A histogram of wealth index. Notice the strong right skew on both.</figcaption>
+                <img class="figure2" src="/csci5622/figures/regression/boxacres.png"/>
+                <img class="figure2" src="/csci5622/figures/regression/boxwealth.png"/>
+                <figcaption><b>Left:</b> A boxplot of acreage. Notice the clustering towards the bottom. <b>Right:</b> A boxplot of wealth index. Notice the clustering towards the bottom on both. </figcaption>
+                <img class="figure" src="/csci5622/figures/regression/scatter1.png"/>
+                <figcaption>A scatter plot of the two variables. There certainly does not seem to be a linear trend between them.</figcaption>
+            </figure>
+
+            It looks like both of these variables are in serious need of a transformation. The two most common transformations are to take the logarithm of a variable, or to raise it to a power. After trying several of these out on both variables, it was found that the best transformations are by using a log transform on land, and raising wealth index to 0.25 (square root of the square root). The same five figures from above now become much more normal and symmetrical.
+
+            <figure>
+                <img class="figure2" src="/csci5622/figures/regression/histacreslog.png"/>
+                <img class="figure2" src="/csci5622/figures/regression/histwealthsqrt.png"/>
+                <figcaption><b>Left:</b> A histogram of the natural log of acreage. <b>Right:</b> A histogram of the fourth root of wealth index. Notice the roughly normal distribution.</figcaption>
+                <img class="figure2" src="/csci5622/figures/regression/boxacreslog.png"/>
+                <img class="figure2" src="/csci5622/figures/regression/boxwealthsqrt.png"/>
+                <figcaption><b>Left:</b> A boxplot the natural log of acreage. Notice the clustering towards the bottom. <b>Right:</b> A boxplot of the fourth root of wealth index. Notice the rough vertical symmetry. </figcaption>
+                <img class="figure" src="/csci5622/figures/regression/scatter2.png"/>
+                <figcaption>A scatter plot of the two variables. There certainly does not seem to be a linear trend between them.</figcaption>
+            </figure>
+
+            Now we're ready to run linear regression.
+
+            ## Code
+            Find all of the code use to clean the data and run the linear regression in R on GitHub [here](https://github.com/isaiahlg/csci5622mod5/blob/main/regression.Rmd). Notice that the code to run the actual model is just a single line!
+            <figure><img class="figure" src="/csci5622/figures/regression/code.png"></figure>
+
+            ## Results
+            </md-block>
+            We then run the model with just a single line of code. However, before we interpret the model results, let's check to be sure that the assumptions of linear regression have been met so that we can have confidence in our results. To do that, let's check for homoscedasticity and normality of the residuals.
+            <figure>
+                <img class="figure" src="/csci5622/figures/regression/resvsfitted.png">
+                <figcaption>Here, we've plotted the residuals against the fitted values. We're want to see that range of values in the residuals is consistent across the fitted values. Here, we see a nice point cloud of relatively even height, and so we know we've done a good job transforming our variables. This is the test for homoscedasticity.</figcaption>
+                <img class="figure" src="/csci5622/figures/regression/resqq.png">
+                <figcaption>Here, we have a Quantile-Quantile (QQ) plot of the residuals. This plot compares the distribution of the actual residuals to a theoretical Gaussian distrbution to test for normality. We see the cloud of points closely follows the line from left to right, again validating the assumptions of our model and giving us more confidence in our results.</figcaption>
+            </figure>
+            
+            Now we are ready to interpret the results. A linear model is best described by the coefficient vector \(\hat{\beta}\), which in this case has just two dimensions, \(\beta_0, \beta_1\), the intercept and slope respectively. For this model, we have:
+            \[\beta_0 = 15.7742\]
+            \[\beta_1 = 0.03634\]
+
+            The full equation and the line of best fit plotted on the scatter plot are below:
+
+            \[\sqrt[4]{Wealth} = 15.7742 + 0.03634*\ln(Hectares + 1)\]
+
+            <figure><img class="figure" src="/csci5622/figures/regression/scatter2fitted.png"></figure>
+
+            You might notice that the line seems almost flat. That's because the slope is just barely over 0 at 0.036. If you think that seems odd, you're right! The next important piece to check is the p-value associated with each value. This tell us how certain the model is that these coefficients come from a relationship between the two variables, and not just random chance. The p-value for the intercept is << 0.05, and so we can trust that value. However, the p-value for the slope is 0.298. This is much larger than 0.05, and so we fail to reject the null hypothesis that these two variables have a meaningful relationship. This is in-line with the multiple \(R^2\) of 0.000168, meaning that the acreage variable is only able to explain 0.01% of the variation in the wealth index. That's basically 0. A fascinating null result we have on our hands!
+
+            In the plots above, we can see that the residuals are relatively const
+            <md-block>
+            ## Conclusions
+
+            From the model above, the biggest conclusion that we can take away is that the number of hectares that a household uses for farming does not correlate with the wealth index used by the Demographic and Health Surveys. This was an unexpected result, since the amount of land that someone farms would intuitively seem correlated with their economic status. The most likely explanation is that the DHS simply does not factor this variable into their calculations of wealth index. Another possible explanation is that the quality of this survey question is poor -- that perhaps respondents do not accurately report the amount of acreage that they farm. In either case, this variable holds less importance for understanding wealth than we initially thought.
+     
+            ## References
+            Kanade, Vijay. 2023. "What Is Linear Regression? Types, Equation, Examples, and Best Practices for 2022". Spiceworks.
+                https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-linear-regression/
+
+            OpenAI. 2023. ChatGPT. https://chat.openai.com/chat
+            </md-block>
         </div>
     </div>
 </body>
