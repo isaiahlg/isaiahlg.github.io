@@ -17,11 +17,9 @@
             <md-block>
             # Conclusions
             
-            ## Initial Research Questions
-            
-            As a refresher, below are the original research questions posed at the beginning of this project:
+            This research explored the patterns of economic wealth and poverty in Sierra Leone. It examine the relationship between demographics, assets, facilities, and economic wealth. As a refresher, below are the original research questions posed at the beginning of this project:
 
-             1. Are there socioeconomic clusters in rural communities in sub-Saharan Africa?
+            1. How common is access to electricity and ownership of household electronics?
             1. How many different groups are there among Sierra Leonean households in terms of demographics?
             1. What are the demographics of the poorest and wealthiest quantiles of households?
             1. How does poverty vary spatially across Sierra Leone?
@@ -32,6 +30,28 @@
             1. Can you determine a household's economic outlook by looking at their house?
             1. Do people without electricity access still own electric appliances?
      
+            In order to explore these questions, we started with a survey of 13,339 households in Sierra Leone conducted by the Demographic and Health Survey program, an initiative of the United States Agency for International Development. We explored the thousands of questions in the dataset, and narrowed it down to about 50 questions of interest. We then applied a series of models and methods to the data to find patterns. These methods were in order:
+
+            - Descriptive Statistics
+            - K-Means clustering
+            - Association Rule mining
+            - Decision Trees
+            - Naive Bayes
+            - Support Vector Machines
+            - Regression
+
+            From the exploratory data analysis, we saw that the surveys are taken in clusters around the country evenly split between the five main regions of Sierra Leone. We learned that the typical household has 4-5 members with 1-2 women and 0-1 men, though many households are much larger, bringing up the mean. We also learned that the most commonly owned assets are radios, cell phones, and watches. Less common are high-energy consumption appliances like fridges and TVs. Rarer still were modes of transportation such as bicycles, motorcycles, and cars, with barely 1 in 20 homes owning a car. This tells us that many people get around on foot or through public transit, and that owning valuable assets beyond a home is rare. 
+
+            In order to cluster the households, we focused on demographics to explore the relationship between household composition and wealth index. In short, the relationship is not very strong, and there is a good deal of variation within clusters. The optimal number of clusters based solely on demographics is 3. However, some interesting trends emerged within each cluster. With just two clusters, larger households were the wealthier ones. However, when we allowed for 3-5 clusters, the smaller households were no longer the poorest. The poorest households were those with few men and many dependents. This suggests that men have a disproportionate bearing on the wealth of a household. This is possibly a symptom of a patriarchical society with few income opportunities for women. 
+
+            For Association Rule Mining, we explored the relationships between various household assets. We found that the most commonly owned items are cell phones and bednets. We also found that that owning a bednet is a much worse predictor of owning electronic assets than owning other electronics. We saw watches, cell phones, radios paired together frequently. Furthermore, these small electronics were almost always present in households that own larger appliances such as a television or an electricity connection. We also learned that certain high-value assets such as motorcycles, cars, and livestock are extremely rare in Sierra Leone. These findings could be telling us many people are living month to month, week to week, or even day to day and do not have many assets or savings.
+
+            For Decision Trees, Naive Bayes, Support Vector Machines, and Regression, we focused on trying to predict a household's wealth index based on their assets and access to facilities. The simplest was regression that explored the relationship between reported size of farm and wealth index and found effecitvely none. The next most complex analysis was with support vector machines because both of the models required numeric inputs. We were able to achieve an accuracy of 55.3% using Naive Bayes, which is essentially identical to the 55.3% accuracy achieved from Support Vector Machines with a linear kernel. However, Support Vector Machines were able to outperform Naive Bayes with 56.3% when using a gaussian kernel, and 56.6% using a polynomial kernel. The decision trees [rovided a difference angle on the data because were able to handle categorical data. Though the final accuracy was not as high at 48 and consequently far outperformed the rest of the classification models with an accuracy of 
+
+            To address the initial research questions, 
+
+            Future analysis can look at spatial patterns, one hot ecoding of categorical questions, time series, public health questions, and multiple countries. 
+
             ## References
             Kanade, Vijay. 2023. "What Is Linear Regression? Types, Equation, Examples, and Best Practices for 2022". Spiceworks.
                 https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-linear-regression/

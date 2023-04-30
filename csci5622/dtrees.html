@@ -204,6 +204,41 @@
                 <figcaption>The confusion matrix for the latest model with a nearly 50% accuracy for 5 classes.</figcaption>
             </figure>
             A very interesting improvement overall, very worth the extra run!
+
+            <h2>Super Bonus Tree</h2>
+            While running another model on the data, it was found that the target variable "hv270", Wealth Index Combined, is predicted much better by the data than "hv270a", Wealth Index Rural/Urban. This makes sense because here the data is not being treated in two categories of rural and urban, but rather all together. With this finding, the decision tree models are rerun to predict the new target variable, and the accuracy improvement is significant! Below is the resulting tree:
+
+            <figure>
+                <img class="figure" src="/csci5622/figures/dtrees/dtree6.png">
+                <figcaption>A fourth decision tree model created with the addition of 5 variables.</figcaption>
+            </figure>
+            
+            The first node separates households based on the material of their floor. Three common options all are earthen floors that send one onto the poorer branch. Next among the poorer half is whether one owns a cell phone. Finally, the poorest fifth are distinguished by the type of walls they have. Natural materials put one in the poorest quantile, and otherwise the second poorest. This tells us that the poorest households in Sierra Leone are well characterized by earth floors, natural building materials, and no cell phone. For those with natural floors but a cell phone, they are distinguished by the type of roof -- thatch and mud roofs being the poorer of the division, as compared with tin roofs. Back on the wealthier half of the initial divide, we have households with wood, concrete, and other non-earthen floors. These households are then distinguished by their ownership of a TV. If you have a TV as well, you are immediately into the top quintile of wealth. Of those who don't, they are distinguished by agricultural land ownership. Counter-intuitively, owning agricultural land puts one into the middle quintile, otherwise you land in the 4th quintile. This tells us that farming is not a particularly lucrative source of income, and those who have other income tend to fare better. Fascinating! The full list of variable importance is below:
+
+            <ol>
+                <li>hv213 (Floor material): 17</li>
+                <li>hv214 (Wall material): 13</li>
+                <li>hv208 (Television): 11</li>
+                <li>hv205 (Type of toilet): 10</li>
+                <li>hv244 (Ag. Landowner): 8</li>
+                <li>hv245 (# of Ag. hectacres): 8</li>
+                <li>hv243a (Mobile telephone): 8</li>
+                <li>hv206 (Electricity): 7</li>
+                <li>hv209 (Refridgerator): 6</li>
+                <li>hv247 (Bank account): 3 </li>
+                <li>hv215 (Roof material): 2</li>
+                <li>hv246f (Chickens): 1</li>
+                <li>hv207 (Radio): 1</li>
+                <li>hv216 (# of rooms): 1 </li>
+                <li>hv243b (Watch): 1</li>
+                <li>hv246d (Goats): 1</li>
+            </ol>
+            Now onto the accuracy. By predicting the combined wealth index, the model accuracy increases from 49% all the way up to 71.08%! Finally, we have a meaningful, high performing model that correctly classifies most households! The full confusion matrix is below. 
+            <figure>
+                <img class="figure" src="/csci5622/figures/dtrees/confmatrixheat6.png">
+                <figcaption>The confusion matrix for the latest model with a 71.08% accuracy for 5 classes.</figcaption>
+            </figure>
+
             <h2>References</h2>
             <p class="reference">Chauhan, Nagesh Singh. 2022. "Decision Tree Algorithm, Explained." KD Nuggets. https://www.kdnuggets.com/2020/01/decision-tree-algorithm-explained.html</p>
             <p class="reference">Provost, Foster; Fawcett, Tom. 2013. "Data Science for Business: What You Need to Know about Data Mining and Data-Analytic Thinking."</p>
