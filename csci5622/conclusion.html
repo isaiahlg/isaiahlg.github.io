@@ -25,7 +25,7 @@
             1. How does poverty vary spatially across Sierra Leone?
             1. What are the most important variables for predicting a household's wealth?
             1. Does access to electricity have any effects on wealth?
-            1. Are farmers more or less likely to have access to electricity?
+            1. Are farmers more or less wealthy than non-farmers?
             1. Is the size of ones farm important for determining wealth?
             1. Can you determine a household's economic outlook by looking at their house?
             1. Do people without electricity access still own electric appliances?
@@ -46,17 +46,50 @@
 
             For Association Rule Mining, we explored the relationships between various household assets. We found that the most commonly owned items are cell phones and bednets. We also found that that owning a bednet is a much worse predictor of owning electronic assets than owning other electronics. We saw watches, cell phones, radios paired together frequently. Furthermore, these small electronics were almost always present in households that own larger appliances such as a television or an electricity connection. We also learned that certain high-value assets such as motorcycles, cars, and livestock are extremely rare in Sierra Leone. These findings could be telling us many people are living month to month, week to week, or even day to day and do not have many assets or savings.
 
-            For Decision Trees, Naive Bayes, Support Vector Machines, and Regression, we focused on trying to predict a household's wealth index based on their assets and access to facilities. The simplest was regression that explored the relationship between reported size of farm and wealth index and found effecitvely none. The next most complex analysis was with support vector machines because both of the models required numeric inputs. We were able to achieve an accuracy of 55.3% using Naive Bayes, which is essentially identical to the 55.3% accuracy achieved from Support Vector Machines with a linear kernel. However, Support Vector Machines were able to outperform Naive Bayes with 56.3% when using a gaussian kernel, and 56.6% using a polynomial kernel. The decision trees [rovided a difference angle on the data because were able to handle categorical data. Though the final accuracy was not as high at 48 and consequently far outperformed the rest of the classification models with an accuracy of 
+            For Decision Trees, Naive Bayes, Support Vector Machines, and Regression, we focused on trying to predict a household's wealth index based on their assets and access to facilities. The simplest was regression that explored the relationship between reported size of farm and wealth index and found effecitvely none. The next most complex analysis was with support vector machines because it required numeric inputs. We were able to achieve an accuracy of 55.3%  with Support Vector Machines with a linear kernel. However, Support Vector Machines were able to improve on this up to 56.3% when using a gaussian kernel, and 56.6% using a polynomial kernel. 
+            
+            Finally, and perhaps the most interesting models were done with decision trees and naive bayes because both of these models were able to handle categorical data. The top performing decision tree achieved an impressive accuracy of 71.08%, and gave us deep insight into the importance of the various variables. The final list of the 11 most important variables is included below as it addresses many of the research questions posed at the beginning of this project:
+            
+            1. hv213 (Floor material): 17
+            1. hv214 (Wall material): 13
+            1. hv208 (Television): 11
+            1. hv205 (Type of toilet): 10
+            1. hv244 (Ag. Landowner): 8
+            1. hv245 (# of Ag. hectacres): 8
+            1. hv243a (Mobile telephone): 8
+            1. hv206 (Electricity): 7
+            1. hv209 (Refridgerator): 6
+            1. hv247 (Bank account): 3 
+            1. hv215 (Roof material): 2
 
-            To address the initial research questions, 
+            The initial Naive Bayes model achieved an accuracy of just 42.53%. However, when the number of variables was intelligently trimmed down based on variable importance from the D-trees, the accuracy improved to 55.3%. Finally, when the additional 5 variables added in the second version of decision trees were added, the accuracy improved to a project best 74.22%., correctly classifying nearly 3 in 4 households. 
 
-            Future analysis can look at spatial patterns, one hot ecoding of categorical questions, time series, public health questions, and multiple countries. 
+            As a bonus analysis, the wealth index and electricity access was mapped across Sierra Leone to examine the spatial distribution of each of these variables. 
+            <figure>
+                <img class="figure2" src="/csci5622/figures/conclusion/wealthmap.png">
+                <img class="figure2" src="/csci5622/figures/conclusion/electricitymap.png">
+                <figcaption>
+                    Maps showing the spatial distribution of wealth and electricity access across Sierra Leone.   
+                </figcaption>
+            </figure>
 
-            ## References
-            Kanade, Vijay. 2023. "What Is Linear Regression? Types, Equation, Examples, and Best Practices for 2022". Spiceworks.
-                https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-linear-regression/
+            Now, we are ready to directly address the initial research questions, below are the initial research questions posed along with their answers:
 
-            OpenAI. 2023. ChatGPT. https://chat.openai.com/chat
+            1. How common is access to electricity and ownership of household electronics? Quite rare. Fewer than 1 in 6 households have access to electricity, and even fewer own fridges or TVs. However, battery powered appliances like cell phones and radios though are quite common. 
+            1. How many different groups are there among Sierra Leonean households in terms of demographics? The natural grouping based on demographics are into 3 clusters, but the wealth index is split into 5 quantiles. 
+            1. What are the demographics of the poorest and wealthiest quantiles of households? Wealthier households tend to have more men and fewer children, and poorer households are often without a man but many dependents.
+            1. How does poverty vary spatially across Sierra Leone? Yes, it does. The wealthiest region is the greater Freetown area, and the poorest is the Northern Provice. 
+            1. What are the most important variables for predicting a household's wealth? Type of floor material, type of roof material, ownership of a television, access to a quality toilet, and having income other than farming.
+            1. Does access to electricity have any effects on wealth? Yes it does! It correlates positively with wealth. 
+            1. Are farmers more or less wealthy than non-farmers? Less wealthy! Owning farmland correlates negatively with wealth class. 
+            1. Is the size of ones farm important for determining wealth? No, it is not. Among those who have farms (about half of respondents), there is no meaningful difference between their mean wealth index. 
+            1. Can you determine a household's economic outlook by looking at their house? Yes! Floor, roof, and wall material are each very predictive of wealth index. Earthen floors and natural building materials indicate low income.
+            1. Do people without electricity access still own electric appliances? Yes they do! Especially battery powered appliances such as watches and cell phones, but sometimes televisions as well. 
+
+
+            Future analysis can look deeper into the spatial patterns of the data. Since each cluster has a geolocation, we can look for phenonena such as spatial autocorrelation or heterogeneity with spatial lag models or geographically weighted regression. Another avenue for further research would be to take all of the categorical variables such as roof and floor types, and one hot encode them so that they can be used with numerical models such as support vector machines and linear regression. Another interesting avenue for further research would be to take additional surveys from Sierra Leone from other years and turn the dataset into a time series to look at how these trends have changed over time. Finally, the analysis could be expanded to other countries in sub-Saharan Africa to investigate the heterogeneity of these findings across the continent. 
+
+            Thanks for reading! Please feel free to reach out to the author, [Isaiah Lyons-Galante](mailto:isaiah.lyons-galante@colorado.edu) with any questions!
             </md-block>
         </div>
     </div>
