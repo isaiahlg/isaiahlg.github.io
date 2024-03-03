@@ -3,7 +3,7 @@ console.log("Welcome to my website!")
 const headerTemplate = document.createElement('template');
 headerTemplate.innerHTML = `
 <style>
-    
+        
     .navbar {
         width: 100%;
         background-color: rgb(27, 27, 27);
@@ -17,7 +17,7 @@ headerTemplate.innerHTML = `
         text-align: center;
         padding-top: 20px;
         padding-bottom: 20px;
-        width: 20%;
+        width: 25%;
         color: white;
         text-decoration: none;
         font-size: 14px;
@@ -33,8 +33,7 @@ headerTemplate.innerHTML = `
 
 <div class="navbar">
     <a href="/index.html"><i class="fa fa-fw fa-home"></i> Home</a>
-    <a href="/portfolio/csci5622/home.html"><i class="fa fa-fw fa-robot"></i> Machine Learning</a>
-    <a href="/csci5922/home.html"><i class="fa-solid fa-diagram-project"></i> Deep Learning</a>
+    <a href="/portfolio/portfolio.html"><i class="fa fa-fw fa-robot"></i> Data Science Portfolio</a>
     <a href="/photography/home.html"><i class="fa fa-fw fa-camera"></i> Photography</a>
     <a href="/ultimate/home.html"><i class="fa fa-fw fa-circle"></i> Ultimate</a>
 </div>
