@@ -55,7 +55,7 @@
             \[ P(y|X) \propto P(y)*\prod_{i=i}^n P(x_i|y)\]
             This gives us the formula by which we can calculate the relative probability of vector X belonging to class y and make predictions accordingly!
             <figure>
-                <img class="figure" src="/csci5622/figures/nbayes/diagram.jpg">
+                <img class="figure" src="/portfolio/csci5622/figures/nbayes/diagram.jpg">
                 <figcaption>A diagram illustrating how the Naive Bayes classifier works. The probability of a given vector belonging to a class can be calculated by finding the probability of each element in the vector appearing for the given class throughout the dataset. The total probability is calculated as the product of each of these probabilities times the probability of the class y appearing at all.  (Image from Coderz Column, 2022)</figcaption>
             </figure>
             <h2>Data Prep</h2>
@@ -63,51 +63,51 @@
             <p></p>
             A copy of the full dataset can be found <a href="https://github.com/isaiahlg/csci5622mod3/blob/main/proj/data/sl19.rds" target="_blank">here</a>. To clean the data, the full survey dataset is pulled again from DHS and then trimmed down to just the variables of interest. Next, some additional cleaning is performed to remove missing or unknown values. An additional step is required here to see which variables are highly correlated with each other, and to remove them accordingly. This helps to meet this assumptions of Naive Bayes. To do this, we calculate the correlation of each variable with each other variable, and plot it in a matrix. We then go hunting for the strongest correlations, and eliminate those accordingly. Both correlation matrices before and after filtering are displayed below. 
             <figure>
-                <img class="figure" src="/csci5622/figures/nbayes/corrbefore.png">
+                <img class="figure" src="/portfolio/csci5622/figures/nbayes/corrbefore.png">
                 <figcaption>A matrix of the correlation between independent variables. Large, dark blue cirlces indicate high correlations that should be eliminated.</figcaption>
             </figure>
 
             <figure>
-                <img class="figure" src="/csci5622/figures/nbayes/corrafter.png">
+                <img class="figure" src="/portfolio/csci5622/figures/nbayes/corrafter.png">
                 <figcaption>A matrix of the correlation between independent variables after filtering. The strongest correlations have been removed.</figcaption>
             </figure>
             Next, categorical variables (including the label) are converted to factors to ensure like values are grouped by R. A copy of the clean dataset can be found <a href="https://github.com/isaiahlg/csci5622mod3/blob/main/proj/data/sl19nbClean.rds" target="_blank">here</a>. Before going further, we need to check that the data are relatively balanced between the five wealth index groups. 
             <figure>
-                <img class="figure" src="/csci5622/figures/nbayes/balanceAll.png">
+                <img class="figure" src="/portfolio/csci5622/figures/nbayes/balanceAll.png">
                 <figcaption>A histogram of the wealth index groups for the entire dataset. Here we can see that the data are relatively balanced between the groups, with the largest group < 20% larger than the smallest group.</figcaption>
             </figure>
             Finally, the data need to be split into a training set and testing set. It is important that the test data and the training data are kept disjoint, meaning that the model is never trained on the test data. This maximizes the performance of the model on never before seen data because it ensures that the model isn't just simply fitted to all of the data at hand. Because the data contain over 13,000 rows, there is not much concern of having sufficiently large samples. To split the data, 80% of the rows are randomly sampled without replacement into a training data set, with the remaining 20% serving as the testing data set. The two data sets remain disjoint for proper evaluation of the NB model. Below are snapshots of the training and testing dataset accordingly. Click on the images to get to RDS files on GitHub.
             <figure>
                 <a href="https://github.com/isaiahlg/csci5622mod3/blob/main/proj/data/testDFnb.rds" target="_blank">
-                    <img class="figure" src="/csci5622/figures/nbayes/trainData.png">
+                    <img class="figure" src="/portfolio/csci5622/figures/nbayes/trainData.png">
                 </a>
                 <figcaption>A snapshot of the training data</figcaption>
             </figure>
             <figure>
                 <a href="https://github.com/isaiahlg/csci5622mod3/blob/main/proj/data/trainDFnb.rds" target="_blank"></a>
-                    <img class="figure" src="/csci5622/figures/nbayes/testData.png">
+                    <img class="figure" src="/portfolio/csci5622/figures/nbayes/testData.png">
                 </a>
                 <figcaption>A snapshot of the test data</figcaption>
             </figure>  
             Finally, we need to check to see that the test and the train data are still balanced among the categories with histograms:
             <figure>
-                <img class="figure2" src="/csci5622/figures/nbayes/balanceTest.png">
-                <img class="figure2" src="/csci5622/figures/nbayes/balanceTrain.png">
+                <img class="figure2" src="/portfolio/csci5622/figures/nbayes/balanceTest.png">
+                <img class="figure2" src="/portfolio/csci5622/figures/nbayes/balanceTrain.png">
             </figure>
             </p>
             <h2>Code</h2>
             Find all of the code use to clean the data and run the Naive Bayes models in R on GitHub <a href="https://github.com/isaiahlg/csci5622mod3/blob/main/proj/nbayes.Rmd" target="_blank">here.</a> 
             <figure>
-                <img class="figure" src="/csci5622/figures/nbayes/codeSnippet.png">
+                <img class="figure" src="/portfolio/csci5622/figures/nbayes/codeSnippet.png">
             </figure>
             <md-block>
             ## Results
             Naive Bayes is run with the package e1071 on the dataset. A laplace smoothing of 1 was applied to the numerator and denominator to handle zero probabilities. When the model is applied to the test dataset, an overall accuracy of 55.3% is achieved. The full confusion matrix statistics are below in a table, along with a heatmap of the predictions by class.
             </md-block>
             <figure>
-                <img class="figure" src="/csci5622/figures/nbayes/cmTable.png">
+                <img class="figure" src="/portfolio/csci5622/figures/nbayes/cmTable.png">
                 <figcaption>A table of the confusion matrix data.</figcaption>
-                <img class="figure" src="/csci5622/figures/nbayes/cm.png">
+                <img class="figure" src="/portfolio/csci5622/figures/nbayes/cm.png">
                 <figcaption>A heatmap of the confusion matrix data.</figcaption>
             </figure>
             <md-block>
@@ -134,7 +134,7 @@
             As hypothesized, using these variables instead improved the accuracy of the NB model from 55.3% up to an impressive 74.22%, even higher than the accuracy of the decision tree model! This is an exciting result. However, it is frustrating that Naive Bayes is not able to perform variable selection for us--to achieve such an accuracy, we have to rely on the outputs of the decision tree model. To finish this section off, check out the final confusion matrix that finally looks as one might hope a confusion matrix to look. 
             </md-block>
             <figure>
-                <img class="figure" src="/csci5622/figures/nbayes/cm2.png">
+                <img class="figure" src="/portfolio/csci5622/figures/nbayes/cm2.png">
                 <figcaption>A beautiful confusion matrix.</figcaption>
             </figure>
             <h2>References</h2>

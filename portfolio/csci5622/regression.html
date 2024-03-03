@@ -33,7 +33,7 @@
             <md-block>
             The process of finding the best linear function involves minimizing the sum of the squared differences between the predicted values and the actual values. This is done using a method called least squares regression. The method calculates the values of the coefficients that minimize the sum of the squared differences.
             <figure>
-                <img class="figure" src="/csci5622/figures/regression/diagram.png"/>
+                <img class="figure" src="/portfolio/csci5622/figures/regression/diagram.png"/>
                 <figcaption>A diagram of a simple linear regression model bewteen two variables, X and Y. We can see that Y and X generally trend together, with higher values of Y as we see higher values of X. However, there is a bit of noise, or error. Linear regression is able to find the "trend", and fit a linear relationship between the variables (Image from Kanade, 2023).</figcaption>
             </figure>
 
@@ -53,34 +53,34 @@
             Since we have previously been trying to predict the wealth index factor score, we will make that the target variable, and the acres of agricultural land the predictor variable. This leaves us with a dataset of two columns and about 13,000 rows. The next step is to remove null values from the survey, bringing us down to around 8000 rows. To work with these variables further, they are then converted to a numeric data type. Next, the "unknown" values (< 950) are filtered out, as well as 950 since that is a placeholder for 95 hectares or more. Lastly, rows with 0 hectares are removed to only look at households with at least some land. This leaves us with just under 7,000 rows, or roughly half of the original dataset. The columns are also renamed for clarity. Below are side by side snapshots of the data before and after cleaning. Finally, there is a strong outlier on the wealth dataset, and so we'll filter that one out. This is commonn practice for linear regression, since outliers can hurt the ability of the model to predict the best line for the most resutls.
 
             <figure>
-                <img class="figure2" src="/csci5622/figures/regression/datatwo.png"/>
-                <img class="figure2" src="/csci5622/figures/regression/datareg.png"/>
+                <img class="figure2" src="/portfolio/csci5622/figures/regression/datatwo.png"/>
+                <img class="figure2" src="/portfolio/csci5622/figures/regression/datareg.png"/>
                 <figcaption><b>Left:</b> A snapshot of the data with just the two columns of interest before data cleaning. The data file is stored on GitHub <a href=https://github.com/isaiahlg/csci5622mod5/blob/main/data/sl19two.rds target="_blank">here</a>. <b>Right:</b> A snapshot of the data after cleaning. This data file is available on GitHub <a href=https://github.com/isaiahlg/csci5622mod5/blob/main/data/sl19reg.rds target="_blank">here</a>.</figcaption>
             </figure>
             
             Next, before performing linear regression, we want to be sure that both variables are normally distributed. We can do that with a histogram and a box plot of each variable -- they should be symmetrical around a mean.
 
             <figure>
-                <img class="figure2" src="/csci5622/figures/regression/histacres.png"/>
-                <img class="figure2" src="/csci5622/figures/regression/histwealth.png"/>
+                <img class="figure2" src="/portfolio/csci5622/figures/regression/histacres.png"/>
+                <img class="figure2" src="/portfolio/csci5622/figures/regression/histwealth.png"/>
                 <figcaption><b>Left:</b> A histogram of acreage. <b>Right:</b> A histogram of wealth index. Notice the strong right skew on both.</figcaption>
-                <img class="figure2" src="/csci5622/figures/regression/boxacres.png"/>
-                <img class="figure2" src="/csci5622/figures/regression/boxwealth.png"/>
+                <img class="figure2" src="/portfolio/csci5622/figures/regression/boxacres.png"/>
+                <img class="figure2" src="/portfolio/csci5622/figures/regression/boxwealth.png"/>
                 <figcaption><b>Left:</b> A boxplot of acreage. Notice the clustering towards the bottom. <b>Right:</b> A boxplot of wealth index. Notice the clustering towards the bottom on both. </figcaption>
-                <img class="figure" src="/csci5622/figures/regression/scatter1.png"/>
+                <img class="figure" src="/portfolio/csci5622/figures/regression/scatter1.png"/>
                 <figcaption>A scatter plot of the two variables. There certainly does not seem to be a linear trend between them.</figcaption>
             </figure>
 
             It looks like both of these variables are in serious need of a transformation. The two most common transformations are to take the logarithm of a variable, or to raise it to a power. After trying several of these out on both variables, it was found that the best transformations are by using a log transform on land, and raising wealth index to 0.25 (square root of the square root). The same five figures from above now become much more normal and symmetrical.
 
             <figure>
-                <img class="figure2" src="/csci5622/figures/regression/histacreslog.png"/>
-                <img class="figure2" src="/csci5622/figures/regression/histwealthsqrt.png"/>
+                <img class="figure2" src="/portfolio/csci5622/figures/regression/histacreslog.png"/>
+                <img class="figure2" src="/portfolio/csci5622/figures/regression/histwealthsqrt.png"/>
                 <figcaption><b>Left:</b> A histogram of the natural log of acreage. <b>Right:</b> A histogram of the fourth root of wealth index. Notice the roughly normal distribution.</figcaption>
-                <img class="figure2" src="/csci5622/figures/regression/boxacreslog.png"/>
-                <img class="figure2" src="/csci5622/figures/regression/boxwealthsqrt.png"/>
+                <img class="figure2" src="/portfolio/csci5622/figures/regression/boxacreslog.png"/>
+                <img class="figure2" src="/portfolio/csci5622/figures/regression/boxwealthsqrt.png"/>
                 <figcaption><b>Left:</b> A boxplot the natural log of acreage. Notice the clustering towards the bottom. <b>Right:</b> A boxplot of the fourth root of wealth index. Notice the rough vertical symmetry. </figcaption>
-                <img class="figure" src="/csci5622/figures/regression/scatter2.png"/>
+                <img class="figure" src="/portfolio/csci5622/figures/regression/scatter2.png"/>
                 <figcaption>A scatter plot of the two variables. There certainly does not seem to be a linear trend between them.</figcaption>
             </figure>
 
@@ -88,15 +88,15 @@
 
             ## Code
             Find all of the code use to clean the data and run the linear regression in R on GitHub [here](https://github.com/isaiahlg/csci5622mod5/blob/main/regression.Rmd). Notice that the code to run the actual model is just a single line!
-            <figure><img class="figure" src="/csci5622/figures/regression/code.png"></figure>
+            <figure><img class="figure" src="/portfolio/csci5622/figures/regression/code.png"></figure>
 
             ## Results
             </md-block>
             We then run the model with just a single line of code. However, before we interpret the model results, let's check to be sure that the assumptions of linear regression have been met so that we can have confidence in our results. To do that, let's check for homoscedasticity and normality of the residuals.
             <figure>
-                <img class="figure" src="/csci5622/figures/regression/resvsfitted.png">
+                <img class="figure" src="/portfolio/csci5622/figures/regression/resvsfitted.png">
                 <figcaption>Here, we've plotted the residuals against the fitted values. We're want to see that range of values in the residuals is consistent across the fitted values. Here, we see a nice point cloud of relatively even height, and so we know we've done a good job transforming our variables. This is the test for homoscedasticity.</figcaption>
-                <img class="figure" src="/csci5622/figures/regression/resqq.png">
+                <img class="figure" src="/portfolio/csci5622/figures/regression/resqq.png">
                 <figcaption>Here, we have a Quantile-Quantile (QQ) plot of the residuals. This plot compares the distribution of the actual residuals to a theoretical Gaussian distrbution to test for normality. We see the cloud of points closely follows the line from left to right, again validating the assumptions of our model and giving us more confidence in our results.</figcaption>
             </figure>
             
@@ -108,7 +108,7 @@
 
             \[\sqrt[4]{Wealth} = 15.7742 + 0.03634*\ln(Hectares + 1)\]
 
-            <figure><img class="figure" src="/csci5622/figures/regression/scatter2fitted.png"></figure>
+            <figure><img class="figure" src="/portfolio/csci5622/figures/regression/scatter2fitted.png"></figure>
 
             You might notice that the line seems almost flat. That's because the slope is just barely over 0 at 0.036. If you think that seems odd, you're right! The next important piece to check is the p-value associated with each value. This tell us how certain the model is that these coefficients come from a relationship between the two variables, and not just random chance. The p-value for the intercept is << 0.05, and so we can trust that value. However, the p-value for the slope is 0.298. This is much larger than 0.05, and so we fail to reject the null hypothesis that these two variables have a meaningful relationship. This is in-line with the multiple \(R^2\) of 0.000168, meaning that the acreage variable is only able to explain 0.01% of the variation in the wealth index. That's basically 0. A fascinating null result we have on our hands!
 

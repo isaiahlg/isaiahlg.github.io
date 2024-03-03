@@ -17,14 +17,14 @@
             <h2>Overview</h2>
             Association Rule Mining (ARM) is a technique in machine learning that identifies relationships between items in large datasets. It involves finding patterns, or associations, between items that occur together frequently, and "mining" out rules that describe the data. ARM is perfect for transaction data where each transaction is unlabeled, just like a grocery store basket.
             <figure>
-                <img class="figure" src="/csci5622/figures/arm/basket.png">
+                <img class="figure" src="/portfolio/csci5622/figures/arm/basket.png">
                 <figcaption>Rules are mined from transactional data to find items that appear frequently together.</figcaption>
             </figure>
             A rule represents an if-then relationship between two sets of items with an antecedent on the left-hand side (the "if"), and the consequent on the right-hand side (the "then"). Each rule is characterized by a variety of metrics, the most common of which are support, confidence, and lift. These metrics are used to evaluate the strength and significance of the discovered  association rules. Support measures how often the sets of items appears in the dataset, while confidence measures the proportion of times that the consequent appears given the antecedent. The support will always be lower than the frequency of each item individually, and the confidence of a rule will always be greater than or equal to the rule. Lift measures the degree of correlation between the antecedent and consequent, accounting for the base frequency of both.
 
             The Apriori algorithm is a popular algorithm used in association rule mining. It works by generating a set of candidate itemsets and pruning them based on their support values. The algorithm starts with single items and incrementally builds larger itemsets  until no more frequent itemsets can be found. It prunes supersets by checking whether all subsets of a candidate itemset meet  the minimum support threshold. This reduces the search space and improves efficiency.
             <figure>
-                <img class="figure" src="/csci5622/figures/arm/apriori.png">
+                <img class="figure" src="/portfolio/csci5622/figures/arm/apriori.png">
                 <figcaption>The Apriori Algorithm makes rule mining much more effient as supersets of infrequent rules are pruned.</figcaption>
             </figure>
             For this dataset, ARM is used to find associations between the various assets included in the DHS surveys, such as cell phones, bicycles, mosquito nets, and refridgerators.
@@ -56,13 +56,13 @@
             </ul> 
             The next step is to remove any rows that had NA, missing, or unknown values. In this dataset, that is any row with a value of 95 of higher. To do this, the dataframe is converted to integers and then a numeric filter is applied. Next, for consistency, all zero values are converted to NA, and all other non-zero values are converted to 1s. To continue, the integers are then converted to characters. The final transformation applied to the record data is  to substitute the 1s in each column for a word unique to each column that descibes the asset, such as  "electricity" or "goats". This left a neat dataframe pictured below:
             <figure>
-                <img class="figure" src="/csci5622/figures/arm/recorddata.png">
+                <img class="figure" src="/portfolio/csci5622/figures/arm/recorddata.png">
                 <figcaption>The final state of the data while still in record format, ready to be changed into transaction data. This R data object is on Github <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/data/sl19words.rds">here</a>.
                 </figcaption>
             </figure>
             The next step is to convert the data into transaction data, which can fortunately completed in a single line in R. Beautiful. Below, find another snapshot of the data, this time in transaction format. In this format, it is essentially a list of assets that each house owns - a post-purchase market basket.
             <figure>
-                <img class="figure" src="/csci5622/figures/arm/txdata.png">
+                <img class="figure" src="/portfolio/csci5622/figures/arm/txdata.png">
                 <figcaption>The data is finally in transaction format and ready for rule mining. This R data object is on Github <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/data/tx.rds">here</a>.
                 </figcaption>
             </figure>
@@ -72,31 +72,31 @@
             <h2>Results</h2>
             Before rules are even mined, one can plot the frequency of each of the items in the transaction data. In this case, this tell us what are the most commonly owned assets among the households surveyed. In the figure below, we can see that the most commonly owned assets by far are cell phones and bednets, followed by radio, chickens, and a watch. The next category might be considered luxuty items in Sierra Leone since fewer than 1 in 5 households have one: electricity, goats, television, and a bank account. Down close to 1 in 10 households, we have motorcycle, sheep, and fridge. Finally, the rest of the assets appear in fewer than 1 in 20 households: bicycle, computer, car, cows, and a boat. The last three assets have such low rates, they no longer seem like luxuries, but rather oddities: landline, animal cart, and horses. Really interesting stuff here.
             <figure>
-                <img class="figure" src="/csci5622/figures/arm/freq.png">
+                <img class="figure" src="/portfolio/csci5622/figures/arm/freq.png">
                 <figcaption>The relative frequencies of assets among Sierra Leonean households.</figcaption>
             </figure>
             Rule mining was a bit of an interative process in choosing the thresholds. The maximum value for support was just 0.5, and so the threshold was set relatively low at 0.15 to ensure rarer items with intersting associations could still be captured. Confidence values ranged quite high, so the threshold was set up to 0.5 to filter the total number of rules down close to 60--more than 45 but not much more. Finally, the rules have a minimum number of elements of two to avoid any null values on the left or right hand sides. Below are screenshots of our top rules sorted by their respective metrics:
             <figure>
-                <img class="figure" src="/csci5622/figures/arm/rulesSup1.png">
-                <img class="figure" src="/csci5622/figures/arm/rulesSup2.png" style="margin-top: -5px;">
+                <img class="figure" src="/portfolio/csci5622/figures/arm/rulesSup1.png">
+                <img class="figure" src="/portfolio/csci5622/figures/arm/rulesSup2.png" style="margin-top: -5px;">
                 <figcaption>The 15 rules with the highest support.</figcaption>
             </figure>
             Unsurprisingly, the rule with the highest support is among bednets and cellphones, and vice version. The lift is just 1.02 though, meaning their appearance is relatively independent. The next highest support is between cell phones and radios, a logical pairing -- battery powered, connective electronics. A lift > 1 suggests they truly do pair together. Next we have chickens and bednets, which one can assume is an association found in rural areas. The only other item that we see emerge into the most common rules is watches. Not a lot of surpises nor insights here. Next, we can examine the rules with the highest confidence: 
             <figure>
-                <img class="figure" src="/csci5622/figures/arm/rulesConf1.png">
-                <img class="figure" src="/csci5622/figures/arm/rulesConf2.png" style="margin-top: -5px;">
+                <img class="figure" src="/portfolio/csci5622/figures/arm/rulesConf1.png">
+                <img class="figure" src="/portfolio/csci5622/figures/arm/rulesConf2.png" style="margin-top: -5px;">
                 <figcaption>The 15 rules with the highest confidence.</figcaption>
             </figure>
             Here, we have some more telling rules! The highest confidence rule is that if a household has a television, there is a > 98% chance that they will have a cell phone. This is intuitive but the level of confidence is still impressive. Along a similar vein, the next high-confidence rule tell us that if a household has electricity, there's a > 97% chance they'll have a cell phone. Neither of these occur very often (about 1 in 6 households), but the confidence is so high. The next few rules are other combinations of assets that suggest a household will have a cell phone, such as a radio and a watch, or a bednet/watch combo. The top 12 confidence rules are all predicting the presence of cell phones. #13-15 are predicting the presence of bednets, given by radio/cell/chickens, as well as a watch. In short, these rules are telling us that cell phones and bednets not just widespread, but that they are much more prevalent among households with other, more rare assets. This suggests a sort of hierarchy among assets that could be useful for future analysis. Next, we can examine the rules with the highest lift: 
             <figure>
-                <img class="figure" src="/csci5622/figures/arm/rulesLift1.png">
-                <img class="figure" src="/csci5622/figures/arm/rulesLift2.png" style="margin-top: -7px;">
+                <img class="figure" src="/portfolio/csci5622/figures/arm/rulesLift1.png">
+                <img class="figure" src="/portfolio/csci5622/figures/arm/rulesLift2.png" style="margin-top: -7px;">
                 <figcaption>The 15 rules with the highest lift.</figcaption>
             </figure>
             Lift tells us about correlations. Interestingly, the strongest lift is about 1.5, which is likely due to the large sample size of 13,000+. The highest lift rule is that radio and cell phone are very highly correlated with having a watch. This is intuitive with the vein of small, battery powered electronics, but surprising that this has the highest lift of all. The next rule adds bednets into that equation. The next set of 3 rules are very similar, relating radios, bednets, cell phones, and wtches. The only other two items that appear in the top 15 rules are electricity (paired with cellphones), and chickens (paired with radios and watches). All this is to suggest that households that have some electronics are likely to have others. Finally, we can export the 10 most interesting rules based on lift into an interactive HTML-based visualization. The blue rectangles depict elements, connected by rules in red circles. The intensity of the color shows the lift of each rule. 
             <figure>
-                <a href="/csci5622/rulesVis.html">
-                    <img class="figure" src="/csci5622/figures/arm/rulesVis.png">
+                <a href="/portfolio/csci5622/rulesVis.html">
+                    <img class="figure" src="/portfolio/csci5622/figures/arm/rulesVis.png">
                 </a>
                 <figcaption>An interactive visualization of the 10 rules with the highest lift. Click the image for the interactive version!</figcaption>
             </figure>

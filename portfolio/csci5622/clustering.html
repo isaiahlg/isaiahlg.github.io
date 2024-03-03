@@ -26,12 +26,12 @@
                 that span overlapping values of the various dimensions, but are shaped in a relatively continuous blob.</li>
             </ol>
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering/clustering.png">
+                <img class="figure" src="/portfolio/csci5622/figures/clustering/clustering.png">
                 <figcaption>Examples of various types of clustering algorithms (Seif, 2018).</figcaption>
             </figure>
             In this project, clustering is used to determine how many meaningful groups there are among households in the survey based on the number of people that comprise the household, the number of rooms of the house, and a wealth index score. The outcome of this clustering will tell how many socio-demographicstrata there are within this dataset.
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering/slhome.jpg">
+                <img class="figure" src="/portfolio/csci5622/figures/clustering/slhome.jpg">
                 <figcaption>A single-mother household in rural Sierra Leone (Wamala, 2022).</figcaption>
             </figure>
             
@@ -47,18 +47,18 @@
             </ol>
             In this clustering analysis, demographics will be used to predict wealth index for urban rural, and so the final variable hv270a is removed as it is the "label". Below, find snapshots of the data post-processing.
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering/numdata.png">
+                <img class="figure" src="/portfolio/csci5622/figures/clustering/numdata.png">
                 <figcaption>A snapshot of the dataset ready to be scaled for clustering. A copy of this numerical dataset can be found 
                     <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/data/sl19num.csv">here</a>.</figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering/scaleddata.png">
+                <img class="figure" src="/portfolio/csci5622/figures/clustering/scaleddata.png">
                 <figcaption>A snapshot of the dataset after normalization, ready for clustering. A copy of this scaled dataset can be found 
                     <a href="https://github.com/isaiahlg/csci5622mod2/blob/main/proj/data/sl19scaled.csv">here</a>.</figcaption>
             </figure>
             In order to see if there are any patterns in the clustering, a principal component analysis is run of the remaining 5 numerical variables down to 2 principal components. This allows for a 2D plot of the data. The label is added back into the PCA data frame to be graphed with color, with the results below:
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering/pcaclusters.png">
+                <img class="figure" src="/portfolio/csci5622/figures/clustering/pcaclusters.png">
                 <figcaption>A 2D plot of the principal components of the numerical data with the wealth index overlaid in color. Here one can see that 
                     the correlation between the demographic variables being used and wealth index is not very strong, since the colors are all a bit disperesed.
                 </figcaption>
@@ -69,45 +69,45 @@
             <h2>Results</h2>
             Clustering is run for k = [2,3,4,5]. Silhouette analysis is performed for each of these k-values, and the resulting charts are below:
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering/kmeans2.png">
+                <img class="figure" src="/portfolio/csci5622/figures/clustering/kmeans2.png">
                 <figcaption>Clustering results for k=2, graphed along the two principal components. Unsurprisingly, the split is almost entirely along the first principal component.
                 </figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering/kmeans3.png">
+                <img class="figure" src="/portfolio/csci5622/figures/clustering/kmeans3.png">
                 <figcaption>Clustering results for k=3, graphed along the two principal components. Here, the partitions are still primarily along the first principal component.
                 </figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering/kmeans4.png">
+                <img class="figure" src="/portfolio/csci5622/figures/clustering/kmeans4.png">
                 <figcaption>Clustering results for k=4, graphed along the two principal components. Here, we see a fourth category emerge on top defined primarily by high values of the second principal component.
                 </figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering/kmeans5.png">
+                <img class="figure" src="/portfolio/csci5622/figures/clustering/kmeans5.png">
                 <figcaption>Clustering results for k=5, graphed along the two principal components. Here, we seen interesting segementation happen in the heart of the cluster, likely along a the dimensions least captured by the principal components.
                 </figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering/silhouette.png">
+                <img class="figure" src="/portfolio/csci5622/figures/clustering/silhouette.png">
                 <figcaption>The silhouette graph for K. We can see that the minimum Silhouette Score is 0.21 when n=3.</figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering/hier_cos.png">
+                <img class="figure" src="/portfolio/csci5622/figures/clustering/hier_cos.png">
                 <figcaption>Here is the dendrogram for hierarchical clustering with the distance metric as cosine similarity.</figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering/hier_euc.png">
+                <img class="figure" src="/portfolio/csci5622/figures/clustering/hier_euc.png">
                 <figcaption>Here is the dendrogram for hierarchical clustering with the distance metric as euclidean distance.</figcaption>
             </figure>
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering/elbow.png">
+                <img class="figure" src="/portfolio/csci5622/figures/clustering/elbow.png">
                 <figcaption>Finally, one last graph from R about the optimal number of clusters. Interstingly, this doesn't agree with Python.</figcaption>
             </figure>
             <h2>Conclusions</h2>
             To draw conclusions about the relationship between demographics and wealth index, it's necessary to first compute the mean values for each variable for each of the clusters to find their "centers". Next, these scaled values for cluster centers can be multiplied times the standard deviation for each column, and then added to the mean, so that they are effectively "unscaled". Next, the mean value of the label (in this case, wealth index) is computed for each of the clusters for each of set of k-means. This shows the average wealth of each cluster. These results are shown in the table below:
             <figure>
-                <img class="figure" src="/csci5622/figures/clustering/clustercenters.png">
+                <img class="figure" src="/portfolio/csci5622/figures/clustering/clustercenters.png">
                 <figcaption>The centers of each cluster as well as the mean values for wealth index.</figcaption>
             </figure>
             Finally, the results of the clustering are interpretable. Going through each value of k, the following can be said about each of the clusters:
