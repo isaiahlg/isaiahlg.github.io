@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Isaiah LG - Portfolio</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/assets/baobab.png">
+    <script src="https://kit.fontawesome.com/f4ea09cda5.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+        $(function(){
+            $('a').each(function(){
+                if ($(this).prop('href') == window.location.href) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
+    <script src="/index.js"></script>
+</head>
+
+<body>
+    <navbar-header></navbar-header>
+    <div class="content">
+        <br/>
+        <h1>Data Science Portfolio</h1>
+        <br/>
+        
+        <div class="textbox">
+            <a href="https://geohai.github.io/vite-vis-dss/">
+                <img class="figure" src="/portfolio/vite-vis-dss/vite-vis-dss.png">
+                <h1>Electricity Distribution Grid Voltage Visualization App</h1>
+            </a>
+            <p><i>Feburary 2024</i></p>
+            <p>This interactive, animated web-application visualizes the voltage of over 20,000 buses on a sythentic electricity distribution grid in Oakland, CA over a 24-hour period. I use 5 different visualization systems as well as 6 different grid components to compare their effectiveness in communicating the data. The app is built with Vite.js web framework along with Deck.gl geovis layers. This project was funded by the National Renewable Energy Lab and is published in https://www.computer.org/csdl/proceedings-article/energyvis/2023/302800a011/1SQrf45KR6o.</p>
+        </div>  
+        <br/>
+
+        <div class="textbox">
+            <a href="/portfolio/csci5922/mod3/pt4_rnn_lstm.html">
+                <img class="figure" src="/portfolio/csci5922/mod3/pt4_schk.png">
+                <h1>Stock Market ETF Prediction with LSTM and RNN</h1>
+            </a>
+            <p><i>December 2023</i></p>
+            <p>This notebook attempts to predict the ETF Index SCHK using historical data from Yahoo finance. Both a Recurrent Neural Network (RNN) and a Long Short Term Memory (LSTM) model are used.</p>
+        </div>
+        <br/>
+        
+        <div class="textbox">
+            <a href="/portfolio/csci5922/mod3/pt2_cnn.html">
+                <img class="figure" src="/portfolio/csci5922/mod3/pt2_cnn.png">
+                <h1>MNIST Classification with an CNN</h1>
+            </a>
+            <p><i>November 2023</i></p>
+            <p>This notebook creates a simple Convolutional Neural Network with keras to classify handwritten digits from the iconic MNIST dataset.</p>
+        </div>
+        <br/>
+
+        <div class="textbox">
+            <a href="/portfolio/csci5922/mod3/pt1_ann.html">
+                <img class="figure" src="/portfolio/csci5922/mod3/pt1_ann.png">
+                <h1>MNIST Classification with an ANN</h1>
+            </a>
+            <p><i>November 2023</i></p>
+            <p>This notebook creates a simple Artificial Neural Network with keras to classify handwritten digits from the iconic MNIST dataset.</p>
+        </div>
+        <br/>
+
+        <div class="textbox">
+            <a href="/portfolio/csci5922/mod2/mod2.html">
+                <img class="figure" src="/portfolio/csci5922/mod2/nn1.png">
+                <h1>Coding Simple Neural Networks by Hand</h1>
+            </a>
+            <p><i>October 2023</i></p>
+            <p>This notebook creates 2 simple neural networks using just pandas and numpy. Functions for feedforward, backpropagtation, and gradient descent are coded mathematically.</p>
+        </div>
+        <br/>
+
+        <div class="textbox">
+            <a href="/portfolio/csci5922/mod1/mod1.html">
+                <img class="figure" src="/portfolio/csci5922/mod1/logreg.jpg">
+                <h1>Coding Logistic Regression by Hand</h1>
+            </a>
+            <p><i>September 2023</i></p>
+            <p>This notebook creates a model that performs logistic regression using just pandas and numpy.</p>
+        </div>
+        <br/>
+
+        <div class="textbox">
+            <a href="/portfolio/csci5622/home.html">
+                <img class="figure" src="/portfolio/csci5622/figures/intro/farmers.jpg">
+                <h1>Machine Learning for Demographic & Health Surveys</h1>
+            </a>
+            <p><i>April 2023</i></p>
+            <p>This project explores relationships between demographics and assets in USAID's Demographic & Health Surveys (DHS) using unsupervised learning such as K-means clustering and association rule mining, as well as supervised learning such as Naive Bayes, regression, and support vector machines.</p>
+        </div>
+        <br/>
+
+        <!-- TODO
+        - Add in UNET VIIRS
+        - Add in NREL visualization
+        - Add in baby stats project from GEOG 3023?
+        - Add in Spatial stats project from GEOG 5023
+        -->
+
+    </div>
+
+</body>
+
+</html>
