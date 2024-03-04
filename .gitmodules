@@ -1,3 +1,6 @@
 [submodule "csci5922"]
 	path = portfolio/csci5922
 	url = https://github.com/isaiahlg/csci5922
+[submodule "geog5023"]
+	path = portfolio/geog5023
+	url = https://github.com/isaiahlg/geog5023.git
