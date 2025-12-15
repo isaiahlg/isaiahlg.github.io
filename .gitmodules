@@ -7,6 +7,3 @@
 [submodule "portfolio/mini-grid-nightlights"]
 	path = portfolio/mini-grid-nightlights
 	url = https://github.com/geohai/mini-grid-nightlights.git
-[submodule "portfolio/alphaearth"]
-	path = portfolio/alphaearth
-	url = https://github.com/isaiahlg/alphaearth.git
