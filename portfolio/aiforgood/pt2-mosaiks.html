@@ -7543,28 +7543,12 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># install any libraries that are missing</span>
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>basemap<span class="w"> </span>--quiet
-<span class="nb">print</span><span class="p">(</span><span class="s2">"libraries installed"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># for fetching data</span>
@@ -7598,27 +7582,53 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>imported
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># configure parameters</span>
 <span class="n">decimal_place</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># spatial resolution of the mosaiks embeddings in degrees of lat/long</span>
 <span class="n">mosaiks_data_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"https://api.mosaiks.org/portal/download_grid_file/coarsened_global_dense_grid_decimal_place=</span><span class="si">{</span><span class="n">decimal_place</span><span class="si">}</span><span class="s2">_GHS_pop_weight=True.zip"</span>
-<span class="n">mosaiks_data_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"./mosaiks</span><span class="si">{</span><span class="n">decimal_place</span><span class="si">}</span><span class="s2">/"</span>
+<span class="n">mosaiks_data_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"data/mosaiks</span><span class="si">{</span><span class="n">decimal_place</span><span class="si">}</span><span class="s2">/"</span>
 <span class="n">zip_file_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">mosaiks_data_path</span><span class="si">}</span><span class="s2">global_</span><span class="si">{</span><span class="n">decimal_place</span><span class="si">}</span><span class="s2">.zip"</span>
 <span class="n">mosaiks_embeddings_file_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">mosaiks_data_path</span><span class="si">}</span><span class="s2">coarsened_global_dense_grid_decimal_place=</span><span class="si">{</span><span class="n">decimal_place</span><span class="si">}</span><span class="s2">_GHS_pop_weight=True.csv"</span>
-<span class="n">labels_filename</span> <span class="o">=</span> <span class="s2">"/kaggle/input/dhs_final_labels.csv"</span>
-<span class="n">labels_centered_filename</span> <span class="o">=</span> <span class="s2">"./dhs_final_labels_centered.csv"</span>
-<span class="n">labels_merged_filename</span> <span class="o">=</span> <span class="s2">"./dhs_final_labels_centered_with_mosaiks.csv"</span>
+<span class="n">labels_filename</span> <span class="o">=</span> <span class="s2">"data/dhs_final_labels.csv"</span>
+<span class="n">labels_centered_filename</span> <span class="o">=</span> <span class="s2">"data/dhs_final_labels_centered.csv"</span>
+<span class="n">labels_merged_filename</span> <span class="o">=</span> <span class="s2">"data/dhs_final_labels_centered_with_mosaiks.csv"</span>
 
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">mosaiks_data_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"configured"</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>configured
+</pre>
 </div>
 </div>
 </div>
@@ -7634,18 +7644,24 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Cookie for authentication, scraped from a web browser session, please do not share</span>
+<span class="c1"># COOKIE = {</span>
+<span class="c1">#     "csrftoken": "I9x2jvGGE4se3MBa9moavDtC9o8YEgaA4Rup5ijhHJjCTRn0qRpHGJW06XG0SooG",</span>
+<span class="c1">#     "sessionid": "y44nlmh7rjrqvvxj902jc8pmw918m1p7",</span>
+<span class="c1"># }</span>
+
 <span class="n">COOKIE</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"csrftoken"</span><span class="p">:</span> <span class="s2">"I9x2jvGGE4se3MBa9moavDtC9o8YEgaA4Rup5ijhHJjCTRn0qRpHGJW06XG0SooG"</span><span class="p">,</span>
-    <span class="s2">"sessionid"</span><span class="p">:</span> <span class="s2">"y44nlmh7rjrqvvxj902jc8pmw918m1p7"</span><span class="p">,</span>
+    <span class="s2">"ss_cvr"</span><span class="p">:</span> <span class="s2">"eec8f713-5f28-472a-bbdc-66af1f3a229c|1765924358453|1765924358453|1765924358453|1"</span><span class="p">,</span>
+    <span class="s2">"ss_cvt"</span><span class="p">:</span> <span class="s2">"1765924358453"</span>
+
 <span class="p">}</span>
 
 <span class="c1"># Function to download a file with progress bar</span>
@@ -7678,12 +7694,49 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>📥 Downloading https://api.mosaiks.org/portal/download_grid_file/coarsened_global_dense_grid_decimal_place=0_GHS_pop_weight=True.zip...
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>/Users/isaiah/miniconda3/envs/ml/lib/python3.14/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'api.mosaiks.org'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+/Users/isaiah/miniconda3/envs/ml/lib/python3.14/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'www.mosaiks.org'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(
+global_0.zip: 116kB [00:00, 3.60MB/s]                    </pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>✅ Downloaded: data/mosaiks0/global_0.zip
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># unzip all downloaded files</span>
@@ -7695,6 +7748,45 @@ a.anchor-link {
         <span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">mosaiks_data_path</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'done unzipping!'</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">BadZipFile</span>                                Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 4</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># unzip all downloaded files</span>
+<span class="ansi-green-fg">      2</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> zip_file <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> glob.glob(os.path.join(mosaiks_data_path, <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">*.zip</span><span class="ansi-yellow-fg">"</span>)):
+<span class="ansi-green-fg">      3</span>     <span style="color: rgb(95,135,135)"># Open the zip file</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> <span class="ansi-yellow-bg">zipfile</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">ZipFile</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">zip_file</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">r</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span> <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> z:
+<span class="ansi-green-fg">      5</span>         <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Extracting </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>zip_file<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> to </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>mosaiks_data_path<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">...</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">      6</span>         <span style="color: rgb(95,135,135)"># Extract all the contents into the extraction directory</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/miniconda3/envs/ml/lib/python3.14/zipfile/__init__.py:1471</span>, in <span class="ansi-cyan-fg">ZipFile.__init__</span><span class="ansi-blue-fg">(self, file, mode, compression, allowZip64, compresslevel, strict_timestamps, metadata_encoding)</span>
+<span class="ansi-green-fg">   1469</span> <span class="ansi-bold" style="color: rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg">   1470</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> mode == <span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">r</span><span class="ansi-yellow-fg">'</span>:
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1471</span>         <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_RealGetContents</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1472</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">elif</span> mode <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> (<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">w</span><span class="ansi-yellow-fg">'</span>, <span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">x</span><span class="ansi-yellow-fg">'</span>):
+<span class="ansi-green-fg">   1473</span>         <span style="color: rgb(95,135,135)"># set the modified flag so central directory gets written</span>
+<span class="ansi-green-fg">   1474</span>         <span style="color: rgb(95,135,135)"># even if no files are added to the archive</span>
+<span class="ansi-green-fg">   1475</span>         <span style="color: rgb(0,135,0)">self</span>._didModify = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/miniconda3/envs/ml/lib/python3.14/zipfile/__init__.py:1538</span>, in <span class="ansi-cyan-fg">ZipFile._RealGetContents</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg">   1536</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> BadZipFile(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">File is not a zip file</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">   1537</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> endrec:
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1538</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> BadZipFile(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">File is not a zip file</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">   1539</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span>.debug &gt; <span class="ansi-green-fg">1</span>:
+<span class="ansi-green-fg">   1540</span>     <span style="color: rgb(0,135,0)">print</span>(endrec)
+
+<span class="ansi-red-fg">BadZipFile</span>: File is not a zip file</pre>
 </div>
 </div>
 </div>
@@ -8161,205 +8253,16 @@ a.anchor-link {
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>This application is used to convert notebook files (*.ipynb)
-        to various other formats.
-
-        WARNING: THE COMMANDLINE INTERFACE MAY CHANGE IN FUTURE RELEASES.
-
-Options
-=======
-The options below are convenience aliases to configurable class-options,
-as listed in the "Equivalent to" description-line of the aliases.
-To see all configurable class-options for some &lt;cmd&gt;, use:
-    &lt;cmd&gt; --help-all
-
---debug
-    set log level to logging.DEBUG (maximize logging output)
-    Equivalent to: [--Application.log_level=10]
---show-config
-    Show the application's configuration (human-readable format)
-    Equivalent to: [--Application.show_config=True]
---show-config-json
-    Show the application's configuration (json format)
-    Equivalent to: [--Application.show_config_json=True]
---generate-config
-    generate default config file
-    Equivalent to: [--JupyterApp.generate_config=True]
--y
-    Answer yes to any questions instead of prompting.
-    Equivalent to: [--JupyterApp.answer_yes=True]
---execute
-    Execute the notebook prior to export.
-    Equivalent to: [--ExecutePreprocessor.enabled=True]
---allow-errors
-    Continue notebook execution even if one of the cells throws an error and include the error message in the cell output (the default behaviour is to abort conversion). This flag is only relevant if '--execute' was specified, too.
-    Equivalent to: [--ExecutePreprocessor.allow_errors=True]
---stdin
-    read a single notebook file from stdin. Write the resulting notebook with default basename 'notebook.*'
-    Equivalent to: [--NbConvertApp.from_stdin=True]
---stdout
-    Write notebook output to stdout instead of files.
-    Equivalent to: [--NbConvertApp.writer_class=StdoutWriter]
---inplace
-    Run nbconvert in place, overwriting the existing notebook (only
-            relevant when converting to notebook format)
-    Equivalent to: [--NbConvertApp.use_output_suffix=False --NbConvertApp.export_format=notebook --FilesWriter.build_directory=]
---clear-output
-    Clear output of current file and save in place,
-            overwriting the existing notebook.
-    Equivalent to: [--NbConvertApp.use_output_suffix=False --NbConvertApp.export_format=notebook --FilesWriter.build_directory= --ClearOutputPreprocessor.enabled=True]
---coalesce-streams
-    Coalesce consecutive stdout and stderr outputs into one stream (within each cell).
-    Equivalent to: [--NbConvertApp.use_output_suffix=False --NbConvertApp.export_format=notebook --FilesWriter.build_directory= --CoalesceStreamsPreprocessor.enabled=True]
---no-prompt
-    Exclude input and output prompts from converted document.
-    Equivalent to: [--TemplateExporter.exclude_input_prompt=True --TemplateExporter.exclude_output_prompt=True]
---no-input
-    Exclude input cells and output prompts from converted document.
-            This mode is ideal for generating code-free reports.
-    Equivalent to: [--TemplateExporter.exclude_output_prompt=True --TemplateExporter.exclude_input=True --TemplateExporter.exclude_input_prompt=True]
---allow-chromium-download
-    Whether to allow downloading chromium if no suitable version is found on the system.
-    Equivalent to: [--WebPDFExporter.allow_chromium_download=True]
---disable-chromium-sandbox
-    Disable chromium security sandbox when converting to PDF..
-    Equivalent to: [--WebPDFExporter.disable_sandbox=True]
---show-input
-    Shows code input. This flag is only useful for dejavu users.
-    Equivalent to: [--TemplateExporter.exclude_input=False]
---embed-images
-    Embed the images as base64 dataurls in the output. This flag is only useful for the HTML/WebPDF/Slides exports.
-    Equivalent to: [--HTMLExporter.embed_images=True]
---sanitize-html
-    Whether the HTML in Markdown cells and cell outputs should be sanitized..
-    Equivalent to: [--HTMLExporter.sanitize_html=True]
---log-level=&lt;Enum&gt;
-    Set the log level by value or name.
-    Choices: any of [0, 10, 20, 30, 40, 50, 'DEBUG', 'INFO', 'WARN', 'ERROR', 'CRITICAL']
-    Default: 30
-    Equivalent to: [--Application.log_level]
---config=&lt;Unicode&gt;
-    Full path of a config file.
-    Default: ''
-    Equivalent to: [--JupyterApp.config_file]
---to=&lt;Unicode&gt;
-    The export format to be used, either one of the built-in formats
-            ['asciidoc', 'custom', 'html', 'latex', 'markdown', 'notebook', 'pdf', 'python', 'qtpdf', 'qtpng', 'rst', 'script', 'slides', 'webpdf']
-            or a dotted object name that represents the import path for an
-            ``Exporter`` class
-    Default: ''
-    Equivalent to: [--NbConvertApp.export_format]
---template=&lt;Unicode&gt;
-    Name of the template to use
-    Default: ''
-    Equivalent to: [--TemplateExporter.template_name]
---template-file=&lt;Unicode&gt;
-    Name of the template file to use
-    Default: None
-    Equivalent to: [--TemplateExporter.template_file]
---theme=&lt;Unicode&gt;
-    Template specific theme(e.g. the name of a JupyterLab CSS theme distributed
-    as prebuilt extension for the lab template)
-    Default: 'light'
-    Equivalent to: [--HTMLExporter.theme]
---sanitize_html=&lt;Bool&gt;
-    Whether the HTML in Markdown cells and cell outputs should be sanitized.This
-    should be set to True by nbviewer or similar tools.
-    Default: False
-    Equivalent to: [--HTMLExporter.sanitize_html]
---writer=&lt;DottedObjectName&gt;
-    Writer class used to write the
-                                        results of the conversion
-    Default: 'FilesWriter'
-    Equivalent to: [--NbConvertApp.writer_class]
---post=&lt;DottedOrNone&gt;
-    PostProcessor class used to write the
-                                        results of the conversion
-    Default: ''
-    Equivalent to: [--NbConvertApp.postprocessor_class]
---output=&lt;Unicode&gt;
-    Overwrite base name use for output files.
-                Supports pattern replacements '{notebook_name}'.
-    Default: '{notebook_name}'
-    Equivalent to: [--NbConvertApp.output_base]
---output-dir=&lt;Unicode&gt;
-    Directory to write output(s) to. Defaults
-                                  to output to the directory of each notebook. To recover
-                                  previous default behaviour (outputting to the current
-                                  working directory) use . as the flag value.
-    Default: ''
-    Equivalent to: [--FilesWriter.build_directory]
---reveal-prefix=&lt;Unicode&gt;
-    The URL prefix for reveal.js (version 3.x).
-            This defaults to the reveal CDN, but can be any url pointing to a copy
-            of reveal.js.
-            For speaker notes to work, this must be a relative path to a local
-            copy of reveal.js: e.g., "reveal.js".
-            If a relative path is given, it must be a subdirectory of the
-            current directory (from which the server is run).
-            See the usage documentation
-            (https://nbconvert.readthedocs.io/en/latest/usage.html#reveal-js-html-slideshow)
-            for more details.
-    Default: ''
-    Equivalent to: [--SlidesExporter.reveal_url_prefix]
---nbformat=&lt;Enum&gt;
-    The nbformat version to write.
-            Use this to downgrade notebooks.
-    Choices: any of [1, 2, 3, 4]
-    Default: 4
-    Equivalent to: [--NotebookExporter.nbformat_version]
-
-Examples
---------
-
-    The simplest way to use nbconvert is
-
-            &gt; jupyter nbconvert mynotebook.ipynb --to html
-
-            Options include ['asciidoc', 'custom', 'html', 'latex', 'markdown', 'notebook', 'pdf', 'python', 'qtpdf', 'qtpng', 'rst', 'script', 'slides', 'webpdf'].
-
-            &gt; jupyter nbconvert --to latex mynotebook.ipynb
-
-            Both HTML and LaTeX support multiple output templates. LaTeX includes
-            'base', 'article' and 'report'.  HTML includes 'basic', 'lab' and
-            'classic'. You can specify the flavor of the format used.
-
-            &gt; jupyter nbconvert --to html --template lab mynotebook.ipynb
-
-            You can also pipe the output to stdout, rather than a file
-
-            &gt; jupyter nbconvert mynotebook.ipynb --stdout
-
-            PDF is generated via latex
-
-            &gt; jupyter nbconvert mynotebook.ipynb --to pdf
-
-            You can get (and serve) a Reveal.js-powered slideshow
-
-            &gt; jupyter nbconvert myslides.ipynb --to slides --post serve
-
-            Multiple notebooks can be given at the command line in a couple of
-            different ways:
-
-            &gt; jupyter nbconvert notebook*.ipynb
-            &gt; jupyter nbconvert notebook1.ipynb notebook2.ipynb
-
-            or you can specify the notebooks list in a config file, containing::
-
-                c.NbConvertApp.notebooks = ["my_notebook.ipynb"]
-
-            &gt; jupyter nbconvert --config mycfg.py
-
-To see all available configurables, use `--help-all`.
-
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>[NbConvertApp] Converting notebook pt2-mosaiks.ipynb to html
+[NbConvertApp] Writing 347418 bytes to pt2-mosaiks.html
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>65280</pre>
+<pre>0</pre>
 </div>
 </div>
 </div>
