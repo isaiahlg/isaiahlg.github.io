@@ -27,11 +27,50 @@
         <br/>
 
         <div class="textbox">
+            <a href="/portfolio/aiforgood/pt4-alphaearth.html">
+                <img class="figure" src="/portfolio/aiforgood/prediction-errors.png">
+                <h1>Wealth Mapping with AlphaEarth Embeddings</h1>
+            </a>
+            <p><i>October 2025</i></p>
+            <p>
+                This notebook explores the use of <i>AlphaEarth</i> embeddings for large-scale wealth and poverty mapping. We pull pretrained AlphaEarth representations via Google Earth Engine, visualize high-dimensional embeddings over urban areas, and then spatially and temporally match these features to survey clusters from the SustainBench dataset. The notebook trains regression models to predict wealth outcomes and maps prediction errors across countries, emphasizing how foundation model embeddings can be operationalized for socioeconomic inference and diagnostic spatial analysis.
+            </p>
+        </div>
+        <br/>
+
+
+        <div class="textbox">
+            <a href="/portfolio/aiforgood/pt3-satclip.html">
+                <img class="figure" src="https://raw.githubusercontent.com/microsoft/satclip/master/figures/satclip.png">
+                <h1>Predicting Wealth &amp; Poverty with SatCLIP</h1>
+            </a>
+            <p><i>April 2025</i></p>
+            <p>
+                This notebook extends the wealth and poverty prediction pipeline by applying <i>SatCLIP</i>, a large-scale geospatial foundation model trained on 1.5 billion geotagged image–text pairs using contrastive learning. Building on the SustainBench Task 1A dataset, the notebook uses SatCLIP to extract location-aware embeddings from satellite imagery and geographic coordinates, and fits supervised models to predict the <code>wealth_index</code> for surveyed and unsurveyed locations. The exercise contrasts SatCLIP’s pretrained, semantically rich representations with simpler feature extractors, highlighting how internet-scale pretraining and location encodings can improve socioeconomic prediction from remote sensing data.
+            </p>
+        </div>
+        <br/>
+
+        
+        <div class="textbox">
+            <a href="/portfolio/aiforgood/pt2-mosaiks.html">
+                <img class="figure" src="https://images.squarespace-cdn.com/content/v1/64090ac2649ae84371ef65cc/0ee082a3-9b0c-419a-aea1-c3bb8a642d19/MOSAIKS_HDI_Highres.jpg">
+                <h1>Predicting Wealth &amp; Poverty with MOSAIKS</h1>
+            </a>
+            <p><i>April 2025</i></p>
+            <p>
+                This notebook builds directly on the SustainBench poverty and wealth dataset introduced in the previous lesson by fitting geospatial image embeddings to predict the <code>wealth_index</code> for unsurveyed locations. Using MOSAIKS (Multi-Task Observation using Satellite Imagery &amp; Kitchen Sinks), a lightweight geospatial foundation model based on random convolutional features, the notebook demonstrates how high-dimensional satellite image embeddings can be paired with survey-derived labels to estimate relative economic well-being. We extract MOSAIKS features from satellite imagery, train a linear regression model to predict wealth outcomes, and evaluate model performance, illustrating how simple, scalable representations can support spatial economic inference in data-scarce regions.
+            </p>
+        </div>
+        <br/>
+
+
+        <div class="textbox">
             <a href="/portfolio/aiforgood/pt1-wealthdata.html">
                 <img class="figure" src="/portfolio/aiforgood/wealth-data.png">
                 <h1>Pulling and Visualizing Wealth & Poverty Data with SustainBench</h1>
             </a>
-            <p><i>Spring 2024</i></p>
+            <p><i>March 2025</i></p>
             <p>
                 This notebook introduces students to benchmark datasets for spatial poverty and wealth mapping using <i>SustainBench</i>, a 2021 dataset released by the Stanford Sustainability and AI Lab. Focusing on Task 1A, the notebook pulls geotagged cluster-level data derived from Demographic and Health Surveys (DHS) conducted across dozens of low- and middle-income countries. Students explore how anonymized survey data—jittered to protect household privacy—can be used to study spatial patterns of wealth and poverty, and visualize these patterns at scale. The notebook situates this dataset within the broader literature on predicting economic well-being from satellite and street-level imagery, and sets the foundation for subsequent notebooks that apply geospatial foundation models such as SatCLIP and MOSAIKS for feature extraction and poverty prediction.
             </p>
