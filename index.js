@@ -33,7 +33,7 @@ headerTemplate.innerHTML = `
 
 <div class="navbar">
     <a href="/index.html"><i class="fa fa-fw fa-home"></i> Home</a>
-    <a href="/portfolio/home.html"><i class="fa fa-fw fa-robot"></i> Data Science Portfolio</a>
+    <a href="/portfolio/home.html"><i class="fa fa-fw fa-robot"></i> Research & Teaching Portfolio</a>
     <a href="/photography/home.html"><i class="fa fa-fw fa-camera"></i> Photography</a>
     <a href="/ultimate/home.html"><i class="fa fa-fw fa-circle"></i> Ultimate</a>
 </div>
